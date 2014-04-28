@@ -85,7 +85,8 @@ namespace enumerator
                 joystick_status.Text = "Joystick: online";
                 Image img = Properties.Resources.online.ToBitmap();
                 joystick_status.Image = img;
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был подключен." + Environment.NewLine;
+                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был подключен." + Environment.NewLine;
+                write_log("Joystick connected");
             }
         }
         private void UpdateJoystick()
@@ -219,7 +220,8 @@ namespace enumerator
                 joystick_status.Text = "Joystick: offline";
                 Image img = Properties.Resources.offline;
                 joystick_status.Image = img;
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был отключен. " + e.ToString() + Environment.NewLine;
+                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был отключен. " + e.ToString() + Environment.NewLine;
+                write_log("Joystick disconnected");
             }
         }
         #endregion
@@ -282,6 +284,7 @@ namespace enumerator
                 case Keys.Enter:
                     if (Data.status == -1)
                     {
+                        if (info.Text != "Ожидание встречи") write_log("Встреча окончена");
                         Data.player1 = null;
                         Data.player2 = null;
                         Data.status = -1;
@@ -358,7 +361,8 @@ namespace enumerator
             {
                 full_reset();
                 info.Text = "Розыгрыш подачи";
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
+                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
+                write_log("Розыгрыш подачи");
                 this.Focus();
             }
 
@@ -393,12 +397,14 @@ namespace enumerator
                     }
                 if (results[results.Length - 1] == "xx")
                 {
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Судья отменил очко, которое ранее заработал игрок " + Data.player1 + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Судья отменил очко, которое ранее заработал игрок " + Data.player1 + Environment.NewLine;
+                    write_log("Судья отменил очко, которое ранее заработал игрок " + Data.player1);
                 }
                 else
                     if (results[results.Length - 1] == "yy")
                     {
                         Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Судья отменил очко, которое ранее заработал игрок " + Data.player2 + Environment.NewLine;
+                        write_log("Судья отменил очко, которое ранее заработал игрок " + Data.player2);
                     }
                 for (int i = 0; i < (results.Length - n); i++)
                 {
@@ -449,6 +455,7 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            write_log("Запуск программы");
             Data.use_console = false;
             Data.find_bd = Properties.Settings.Default.find_bd;
             Data.from_bd = true;
@@ -519,12 +526,14 @@ namespace enumerator
                             Data.xx++;
                             label_xx.Text = Data.xx.ToString();
                             history_add("xx");
-                            Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
+                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
+                            write_log(Data.xx + ":" + Data.yy +" (игрок " + Data.player1 + " заработал очко)");
                             break;
                         case "yy":
                             Data.yy++;
                             label_yy.Text = Data.yy.ToString();
-                            Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
+                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
+                            write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player2 + " заработал очко)");
                             history_add("yy");
                             break;
                     }
@@ -537,13 +546,15 @@ namespace enumerator
                             Data.yy++;
                             label_xx.Text = Data.yy.ToString();
                             history_add("yy");
-                            Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
+                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
+                            write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player2 + " заработал очко)");
                             break;
                         case "yy":
                             Data.xx++;
                             label_yy.Text = Data.xx.ToString();
                             history_add("xx");
-                            Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
+                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
+                            write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player1 + " заработал очко)");
                             break;
                     }
                 }
@@ -561,16 +572,20 @@ namespace enumerator
                     if (Data.x > Data.y)
                     {
                         info.Text = "Победитель: " + Data.player1;
-                        Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player1 + Environment.NewLine;
+                        //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player1 + Environment.NewLine;
+                        write_log("В этой встрече победил: " + Data.player1);
                     }
                     if (Data.y > Data.x)
                     {
                         info.Text = "Победитель: " + Data.player2;
-                        Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player2 + Environment.NewLine;
+                        //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player2 + Environment.NewLine;
+                        write_log("В этой встрече победил: " + Data.player2);
                     }
                     Data.status = -1;
                     Data.query += "UPDATE matches SET x='" + Data.x + "',y='" + Data.y + "',status='2',end='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE id='" + Data.match + "';";
-                    Data.console += Data.query + Environment.NewLine;
+                    //Data.console += Data.query + Environment.NewLine;
+                    // Записать в лог-файл выполняемый запрос
+                    //write_log(Data.query);
                     if (Data.match > 0)
                     {
                         MySqlConnection connect = null;
@@ -597,7 +612,8 @@ namespace enumerator
                 }
                 else
                 {
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало следующей партии" + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало следующей партии" + Environment.NewLine;
+                    write_log("Начало следующей партии");
                     Data.xx = 0;
                     Data.yy = 0;
                     Data.balance = false;
@@ -637,9 +653,23 @@ namespace enumerator
                     label_player2.Text = Data.player2.ToString();
                 if (win(Data.xx, Data.yy) != "")
                 {
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player1 + " - " + Data.player2 + Environment.NewLine;
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString() + Environment.NewLine;
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString() + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player1 + " - " + Data.player2 + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString() + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString() + Environment.NewLine;
+
+                    //write_log("Игроки: " + Data.player1 + " - " + Data.player2);
+                    //write_log("Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString());
+                    //write_log("Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString());
+                    if (win(Data.xx, Data.yy) == "xx")
+                    {
+                        write_log("Эту партию выйграл игрок: " + Data.player1);
+                    }
+                    else
+                        if (win(Data.xx, Data.yy) == "yy")
+                        {
+                            write_log("Эту партию выйграл игрок: " + Data.player2);
+                        }
+                    write_log("Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString() + " Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString());
                 }
             }
             else
@@ -652,9 +682,23 @@ namespace enumerator
                 label_player2.Text = Data.player1.ToString();
                 if (win(Data.xx, Data.yy) != "")
                 {
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player2 + " - " + Data.player1 + Environment.NewLine;
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.yy.ToString() + ":" + Data.xx.ToString() + Environment.NewLine;
-                    Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.y.ToString() + ":" + Data.x.ToString() + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player2 + " - " + Data.player1 + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.yy.ToString() + ":" + Data.xx.ToString() + Environment.NewLine;
+                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.y.ToString() + ":" + Data.x.ToString() + Environment.NewLine;
+
+                    //write_log("Игроки: " + Data.player2 + " - " + Data.player1);
+                    //write_log("Результат: " + Data.yy.ToString() + ":" + Data.xx.ToString());
+                    //write_log("Счет по партиям: " + Data.y.ToString() + ":" + Data.x.ToString());
+                    if (win(Data.xx, Data.yy) == "xx")
+                    {
+                        write_log("Эту партию выйграл игрок: " + Data.player1);
+                    }
+                    else
+                        if (win(Data.xx, Data.yy) == "yy")
+                        {
+                            write_log("Эту партию выйграл игрок: " + Data.player2);
+                        }
+                    write_log("Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString() + " Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString());
                 }
             }
         }
@@ -927,7 +971,9 @@ namespace enumerator
                         break;
                 }
                 set_inning();
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало игры" + Environment.NewLine;
+                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало игры" + Environment.NewLine;
+                write_log("Начало игры: " + Data.player1 + " - " + Data.player2);
+                write_log("Из "+Data.rounds+"-х партий (до "+Data.min_wins+" побед)");
             }
         }
         // Клик по первому игроку - выставление очереди подачи на него
@@ -958,6 +1004,7 @@ namespace enumerator
             }
             else
             {
+                write_log("Закрытие программы");
                 timer1.Stop();
                 //thread.Abort();
                 //thread.Join(500);
@@ -1063,7 +1110,8 @@ namespace enumerator
                             {
                                 full_reset();
                                 info.Text = "Розыгрыш подачи";
-                                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
+                                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
+                                write_log("Розыгрыш подачи");
                             }
                             завершитьВстречуToolStripMenuItem.Enabled = true;
                             выбратьИгроковToolStripMenuItem.Enabled = false;
@@ -1113,7 +1161,8 @@ namespace enumerator
             }
             catch (MySqlException err)
             {
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Ошибка: " + err.ToString() + Environment.NewLine;
+                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Ошибка: " + err.ToString() + Environment.NewLine;
+                write_log("Ошибка: " + err.ToString());
                 result = false;
             }
             finally
@@ -1202,6 +1251,7 @@ namespace enumerator
             завершитьВстречуToolStripMenuItem.Enabled = false;
             выбратьИгроковToolStripMenuItem.Enabled = true;
             настройкиToolStripMenuItem.Enabled = true;
+            write_log("Встреча прервана");
         }
 
         private void write_log(string s)
@@ -1217,6 +1267,7 @@ namespace enumerator
                 //File.Create(log_path);
                 File.WriteAllText(log_path, log_line);
             }
+            Data.console += log_line;
         }
 
         private void info_Click(object sender, EventArgs e)
