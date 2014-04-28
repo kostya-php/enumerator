@@ -1,0 +1,41 @@
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\bin\Debug\enumerator.exe.config
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\bin\Debug\enumerator.exe
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\bin\Debug\enumerator.pdb
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.csprojResolveAssemblyReference.cache
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.Form1.resources
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.Properties.Resources.resources
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.csproj.GenerateResource.Cache
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.exe
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.pdb
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.Main.resources
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\bin\Debug\MySql.Data.dll
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.form_console.resources
+C:\Users\mckay\Google Диск\Программирование\enumerator\enumerator\obj\Debug\enumerator.form_pick.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\bin\Debug\enumerator.exe.config
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.exe
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.pdb
+C:\Users\mckay\Desktop\enumerator\enumerator\bin\Debug\enumerator.exe
+C:\Users\mckay\Desktop\enumerator\enumerator\bin\Debug\enumerator.pdb
+C:\Users\mckay\Desktop\enumerator\enumerator\bin\Debug\MySql.Data.dll
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Form1.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_console.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_pick.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Main.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Properties.Resources.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csproj.GenerateResource.Cache
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_settings.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csprojResolveAssemblyReference.cache
+E:\enumerator\enumerator\bin\Debug\enumerator.exe.config
+E:\enumerator\enumerator\obj\Debug\enumerator.exe
+E:\enumerator\enumerator\obj\Debug\enumerator.pdb
+E:\enumerator\enumerator\bin\Debug\enumerator.exe
+E:\enumerator\enumerator\bin\Debug\enumerator.pdb
+E:\enumerator\enumerator\bin\Debug\MySql.Data.dll
+E:\enumerator\enumerator\obj\Debug\enumerator.csprojResolveAssemblyReference.cache
+E:\enumerator\enumerator\obj\Debug\enumerator.Form1.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.form_console.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.form_pick.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.form_settings.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.Main.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.Properties.Resources.resources
+E:\enumerator\enumerator\obj\Debug\enumerator.csproj.GenerateResource.Cache
