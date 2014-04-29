@@ -17,19 +17,21 @@ namespace enumerator
         {
             InitializeComponent();
         }
+        /*
         private static string host = Properties.Settings.Default.host;
         private static string database = Properties.Settings.Default.database;
         private static string user = Properties.Settings.Default.user;
         private static string password = Properties.Settings.Default.password;
         private static string connectionString = "SERVER=" + host + ";" + "DATABASE=" +
         database + ";" + "UID=" + user + ";" + "PASSWORD=" + password + ";CharSet=utf8;";
+        */
         private string player_name(int id)
         {
             string result = "NoName";
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM players WHERE id='" + id.ToString() + "'";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -60,7 +62,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
 
                 string query = "SELECT * FROM tournaments WHERE id='"+id+"'";
@@ -90,7 +92,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query1 = "SELECT Count(*) FROM players";
                 MySqlCommand cmd1 = new MySqlCommand(query1, connect);
@@ -210,7 +212,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM matches WHERE status='1'";
                 MySqlCommand cmd = new MySqlCommand(query, connect);

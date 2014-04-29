@@ -16,12 +16,14 @@ namespace enumerator
         {
             InitializeComponent();
         }
+        /*
         private static string host = Properties.Settings.Default.host;
         private static string database = Properties.Settings.Default.database;
         private static string user = Properties.Settings.Default.user;
         private static string password = Properties.Settings.Default.password;
         private static string connectionString = "SERVER=" + host + ";" + "DATABASE=" +
         database + ";" + "UID=" + user + ";" + "PASSWORD=" + password + ";CharSet=utf8;";
+        */
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -32,7 +34,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM players WHERE id='"+id.ToString()+"'";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -63,7 +65,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM rounds WHERE `match`='" + id.ToString() + "'";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -100,7 +102,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 int t = 0;
                 string query = "SELECT * FROM tournaments WHERE status='1'";
@@ -208,7 +210,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM players ORDER BY id ASC";
                 MySqlCommand cmd = new MySqlCommand(query, connect);

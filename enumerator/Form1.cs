@@ -29,13 +29,14 @@ namespace enumerator
             Data.button_7 = 0;
             Data.button_8 = 0;
         }
+        /*
         private static string host = Properties.Settings.Default.host;
         private static string database = Properties.Settings.Default.database;
         private static string user = Properties.Settings.Default.user;
         private static string password = Properties.Settings.Default.password;
         private static string connectionString = "SERVER=" + host + ";" + "DATABASE=" +
         database + ";" + "UID=" + user + ";" + "PASSWORD=" + password + ";CharSet=utf8;";
-
+        */
         #region Джойстик
 
         Device joystick;
@@ -373,6 +374,7 @@ namespace enumerator
             // проверить, возможны баги
             if ((Data.history != "") & (Data.history != null))
             {
+                string a = "";
                 string[] results = Data.history.Split(',');
                 Data.xx = 0;
                 Data.yy = 0;
@@ -395,17 +397,7 @@ namespace enumerator
                     {
                         n = 1;
                     }
-                if (results[results.Length - 1] == "xx")
-                {
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Судья отменил очко, которое ранее заработал игрок " + Data.player1 + Environment.NewLine;
-                    write_log("Судья отменил очко, которое ранее заработал игрок " + Data.player1);
-                }
-                else
-                    if (results[results.Length - 1] == "yy")
-                    {
-                        Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Судья отменил очко, которое ранее заработал игрок " + Data.player2 + Environment.NewLine;
-                        write_log("Судья отменил очко, которое ранее заработал игрок " + Data.player2);
-                    }
+                a = results[results.Length - 1];
                 for (int i = 0; i < (results.Length - n); i++)
                 {
                     if (Data.history != "") Data.history += ",";
@@ -434,6 +426,15 @@ namespace enumerator
                 info.Text = Data.history;
                 refresh();
                 set_inning();
+                if (a == "xx")
+                {
+                    write_log(Data.xx + ":" + Data.yy + " (судья отменил очко игрока " + Data.player1 + ")");
+                }
+                else
+                    if (a == "yy")
+                    {
+                        write_log(Data.xx + ":" + Data.yy + " (судья отменил очко игрока: " + Data.player2 + ")");
+                    }
             }
         }
         // Полный сброс
@@ -455,6 +456,12 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.host = Properties.Settings.Default.host;
+            Data.database = Properties.Settings.Default.database;
+            Data.user = Properties.Settings.Default.user;
+            Data.password = Properties.Settings.Default.password;
+            Data.connectionString = "SERVER=" + Data.host + ";" + "DATABASE=" +
+                Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
             write_log("Запуск программы");
             Data.use_console = false;
             Data.find_bd = Properties.Settings.Default.find_bd;
@@ -527,7 +534,7 @@ namespace enumerator
                             label_xx.Text = Data.xx.ToString();
                             history_add("xx");
                             //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
-                            write_log(Data.xx + ":" + Data.yy +" (игрок " + Data.player1 + " заработал очко)");
+                            write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player1 + " заработал очко)");
                             break;
                         case "yy":
                             Data.yy++;
@@ -591,7 +598,7 @@ namespace enumerator
                         MySqlConnection connect = null;
                         try
                         {
-                            connect = new MySqlConnection(connectionString);
+                            connect = new MySqlConnection(Data.connectionString);
                             connect.Open();
                             string query = Data.query;
                             MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -973,7 +980,7 @@ namespace enumerator
                 set_inning();
                 //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало игры" + Environment.NewLine;
                 write_log("Начало игры: " + Data.player1 + " - " + Data.player2);
-                write_log("Из "+Data.rounds+"-х партий (до "+Data.min_wins+" побед)");
+                write_log("Из " + Data.rounds + "-х партий (до " + Data.min_wins + " побед)");
             }
         }
         // Клик по первому игроку - выставление очереди подачи на него
@@ -1080,7 +1087,7 @@ namespace enumerator
                     MySqlConnection connect = null;
                     try
                     {
-                        connect = new MySqlConnection(connectionString);
+                        connect = new MySqlConnection(Data.connectionString);
                         connect.Open();
                         string query = "SELECT * FROM matches WHERE status='1'";
                         MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -1152,7 +1159,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 if (connect != null)
                 {
@@ -1180,7 +1187,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
 
                 string query = "SELECT * FROM tournaments WHERE id='" + id + "'";
@@ -1211,7 +1218,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                connect = new MySqlConnection(connectionString);
+                connect = new MySqlConnection(Data.connectionString);
                 connect.Open();
                 string query = "SELECT * FROM players WHERE id='" + id.ToString() + "'";
                 MySqlCommand cmd = new MySqlCommand(query, connect);

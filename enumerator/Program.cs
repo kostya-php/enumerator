@@ -78,6 +78,12 @@ namespace enumerator
         public static bool find_bd { get; set; }
         // Используется встреча из БД или нет
         public static bool from_bd { get; set; }
+        // Данные для подключения к БД
+        public static string host { get; set; }
+        public static string database { get; set; }
+        public static string user { get; set; }
+        public static string password { get; set; }
+        public static string connectionString { get; set; }
     }
     static class Program
     {

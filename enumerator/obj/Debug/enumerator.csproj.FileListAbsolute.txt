@@ -24,7 +24,6 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Main.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Properties.Resources.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csproj.GenerateResource.Cache
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_settings.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csprojResolveAssemblyReference.cache
 E:\enumerator\enumerator\bin\Debug\enumerator.exe.config
 E:\enumerator\enumerator\obj\Debug\enumerator.exe
 E:\enumerator\enumerator\obj\Debug\enumerator.pdb

@@ -46,6 +46,14 @@ namespace enumerator
                 Properties.Settings.Default.user = textBox_user.Text;
                 Properties.Settings.Default.password = textBox_password.Text;
                 Properties.Settings.Default.Save();
+
+                Data.host = Properties.Settings.Default.host;
+                Data.database = Properties.Settings.Default.database;
+                Data.user = Properties.Settings.Default.user;
+                Data.password = Properties.Settings.Default.password;
+                Data.connectionString = "SERVER=" + Data.host + ";" + "DATABASE=" +
+                    Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
+
                 this.Close();
             }
             else
