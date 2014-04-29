@@ -29,18 +29,9 @@ namespace enumerator
             Data.button_7 = 0;
             Data.button_8 = 0;
         }
-        /*
-        private static string host = Properties.Settings.Default.host;
-        private static string database = Properties.Settings.Default.database;
-        private static string user = Properties.Settings.Default.user;
-        private static string password = Properties.Settings.Default.password;
-        private static string connectionString = "SERVER=" + host + ";" + "DATABASE=" +
-        database + ";" + "UID=" + user + ";" + "PASSWORD=" + password + ";CharSet=utf8;";
-        */
         #region Джойстик
 
         Device joystick;
-        //Thread thread = null;
         private void InitDevices()
         {
             joystick = null;
@@ -55,12 +46,6 @@ namespace enumerator
                 break;
             }
             if (joystick != null)
-            //{
-            //Throw exception if joystick not found.
-            //throw new Exception("No joystick found.");
-            //    MessageBox.Show("No joystick found.");
-            //}
-            //else
             {
                 //Set joystick axis ranges.
                 foreach (DeviceObjectInstance doi in joystick.Objects)
@@ -86,7 +71,6 @@ namespace enumerator
                 joystick_status.Text = "Joystick: online";
                 Image img = Properties.Resources.online.ToBitmap();
                 joystick_status.Image = img;
-                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был подключен." + Environment.NewLine;
                 write_log("Joystick connected");
             }
         }
@@ -351,6 +335,7 @@ namespace enumerator
             label_y.Font = new Font(label_y.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_y.Font.Unit);
 
             info.Font = new Font(info.Font.FontFamily, Convert.ToInt32(font_size), info.Font.Unit);
+            label_timer.Font = new Font(label_timer.Font.FontFamily, Convert.ToInt32(font_size), label_timer.Font.Unit);
             int size = Convert.ToInt32(this.Size.Width * 0.3 / Convert.ToDouble(3));
             inning1.Size = new Size(size, size);
             inning2.Size = new Size(size, size);
@@ -456,6 +441,9 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Data.start = DateTime.Now;
+            //timer4.Start();
+
             Data.host = Properties.Settings.Default.host;
             Data.database = Properties.Settings.Default.database;
             Data.user = Properties.Settings.Default.user;
@@ -1096,12 +1084,14 @@ namespace enumerator
                         int tournament = -1;
                         int player1 = 0;
                         int player2 = 0;
+                        DateTime start = new DateTime();
                         while (dataReader.Read())
                         {
                             match = Convert.ToInt32(dataReader["id"]);
                             tournament = Convert.ToInt32(dataReader["tournament"]);
                             player1 = Convert.ToInt32(dataReader["player1"]);
                             player2 = Convert.ToInt32(dataReader["player2"]);
+                            start = Convert.ToDateTime(dataReader["start"]);
                         }
                         if ((match > 0) & (Data.status == -1))
                         {
@@ -1110,6 +1100,7 @@ namespace enumerator
                             Data.rounds = get_rounds(tournament);
                             Data.player1 = player_name(player1);
                             Data.player2 = player_name(player2);
+                            Data.start = start;
                             Data.status = 0;
                             double temp = Convert.ToDouble(Data.rounds) / 2.0;
                             Data.min_wins = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Data.rounds) / 2.0));
@@ -1123,6 +1114,7 @@ namespace enumerator
                             завершитьВстречуToolStripMenuItem.Enabled = true;
                             выбратьИгроковToolStripMenuItem.Enabled = false;
                             настройкиToolStripMenuItem.Enabled = false;
+                            timer4.Start();
                         }
                         else
                             if ((Data.status != -1) & (match == -1) & (!Data.from_bd))
@@ -1249,6 +1241,35 @@ namespace enumerator
             if (Data.from_bd)
             {
                 // добавить запрос, делающий активную игру неактивной (а также диалог)
+                // UPDATE matches SET status='0', start=null, end=null, x=null, y=null WHERE id='$id'
+                // DELETE FROM rounds WHERE `match`='$id'
+                // ALTER TABLE rounds AUTO_INCREMENT=0;
+
+
+                MySqlConnection connect = null;
+                try
+                {
+                    connect = new MySqlConnection(Data.connectionString);
+                    connect.Open();
+                    string query = "UPDATE matches SET status='0', start=null, end=null, x=null, y=null WHERE id='" + Data.match.ToString() + "'";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    connect.Close();
+                }
+                catch (MySqlException err)
+                {
+                    MessageBox.Show("Ошибка: " + err.ToString());
+                }
+                finally
+                {
+                    if (connect != null)
+                    {
+                        connect.Close();
+                    }
+                }
+
+
+
             }
             Data.player1 = null;
             Data.player2 = null;
@@ -1280,6 +1301,31 @@ namespace enumerator
         private void info_Click(object sender, EventArgs e)
         {
 
+        }
+        private void matches()
+        {
+            form_matches fm = new form_matches();
+            fm.Owner = this;
+            fm.ShowDialog();
+        }
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            DateTime start_datetime = Data.start;
+            string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime end_datetime = Convert.ToDateTime(now);
+            TimeSpan delta = end_datetime - start_datetime;
+            string time = delta.ToString(@"mm\:ss");
+            label_timer.Text = time.ToString();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            matches();
         }
     }
 }

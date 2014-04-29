@@ -45,7 +45,6 @@ namespace enumerator
                 Properties.Settings.Default.database = textBox_database.Text;
                 Properties.Settings.Default.user = textBox_user.Text;
                 Properties.Settings.Default.password = textBox_password.Text;
-                Properties.Settings.Default.Save();
 
                 Data.host = Properties.Settings.Default.host;
                 Data.database = Properties.Settings.Default.database;
@@ -64,6 +63,7 @@ namespace enumerator
             }
             Properties.Settings.Default.find_bd = checkBox_find_bd.Checked;
             Properties.Settings.Default.log_path = textBox_log_path.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void button_test_Click(object sender, EventArgs e)

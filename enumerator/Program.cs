@@ -9,21 +9,6 @@ namespace enumerator
 {
     public class Data
     {
-        /*
-        // Вызов консоли. хз, будет ли использоваться
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool AllocConsole();
-
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool FreeConsole();
-
-        public static void Console()
-        {
-            AllocConsole();
-        }
-        */
         // Имена игроков
         public static string player1 { get; set; }
         public static string player2 { get; set; }
@@ -84,6 +69,9 @@ namespace enumerator
         public static string user { get; set; }
         public static string password { get; set; }
         public static string connectionString { get; set; }
+        // Время начала и конца встречи
+        public static DateTime start { get; set; }
+        public static DateTime end { get; set; }
     }
     static class Program
     {

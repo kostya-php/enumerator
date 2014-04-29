@@ -38,3 +38,5 @@ E:\enumerator\enumerator\obj\Debug\enumerator.form_settings.resources
 E:\enumerator\enumerator\obj\Debug\enumerator.Main.resources
 E:\enumerator\enumerator\obj\Debug\enumerator.Properties.Resources.resources
 E:\enumerator\enumerator\obj\Debug\enumerator.csproj.GenerateResource.Cache
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csprojResolveAssemblyReference.cache
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_matches.resources
