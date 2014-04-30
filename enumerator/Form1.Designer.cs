@@ -32,12 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.выбратьИгроковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьКонсольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.помощьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.завершитьВстречуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label_xx = new System.Windows.Forms.Label();
             this.label_yy = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,12 +49,12 @@
             this.label_x = new System.Windows.Forms.Label();
             this.inning1 = new System.Windows.Forms.PictureBox();
             this.info = new System.Windows.Forms.Label();
+            this.label_timer = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.joystick_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.label_timer = new System.Windows.Forms.Label();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -87,6 +87,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 575);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
@@ -100,7 +101,14 @@
             this.помощьToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 136);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuItem1.Text = "Выбрать встречу";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // выбратьИгроковToolStripMenuItem
             // 
@@ -137,13 +145,6 @@
             this.завершитьВстречуToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.завершитьВстречуToolStripMenuItem.Text = "Завершить встречу";
             this.завершитьВстречуToolStripMenuItem.Click += new System.EventHandler(this.завершитьВстречуToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
-            this.toolStripMenuItem1.Text = "Выбрать встречу";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // label_xx
             // 
@@ -327,6 +328,22 @@
             this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.info.Click += new System.EventHandler(this.info_Click);
             // 
+            // label_timer
+            // 
+            this.label_timer.AutoSize = true;
+            this.label_timer.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanel1.SetColumnSpan(this.label_timer, 2);
+            this.label_timer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_timer.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_timer.ForeColor = System.Drawing.Color.White;
+            this.label_timer.Location = new System.Drawing.Point(0, 0);
+            this.label_timer.Margin = new System.Windows.Forms.Padding(0);
+            this.label_timer.Name = "label_timer";
+            this.label_timer.Size = new System.Drawing.Size(794, 86);
+            this.label_timer.TabIndex = 9;
+            this.label_timer.Text = "00:00";
+            this.label_timer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // timer1
             // 
             this.timer1.Interval = 15;
@@ -358,22 +375,6 @@
             // 
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // label_timer
-            // 
-            this.label_timer.AutoSize = true;
-            this.label_timer.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanel1.SetColumnSpan(this.label_timer, 2);
-            this.label_timer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_timer.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.label_timer.ForeColor = System.Drawing.Color.White;
-            this.label_timer.Location = new System.Drawing.Point(0, 0);
-            this.label_timer.Margin = new System.Windows.Forms.Padding(0);
-            this.label_timer.Name = "label_timer";
-            this.label_timer.Size = new System.Drawing.Size(794, 86);
-            this.label_timer.TabIndex = 9;
-            this.label_timer.Text = "00:00";
-            this.label_timer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer4
             // 
