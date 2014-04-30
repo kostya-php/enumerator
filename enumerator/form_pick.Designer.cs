@@ -111,7 +111,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(260, 19);
             this.progressBar1.Step = 1;
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 7;
             // 
             // timer2
@@ -136,6 +135,7 @@
             this.Name = "form_pick";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Выбор игроков";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form_pick_FormClosed);
             this.Load += new System.EventHandler(this.form_pick_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

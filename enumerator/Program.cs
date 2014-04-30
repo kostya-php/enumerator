@@ -72,6 +72,8 @@ namespace enumerator
         // Время начала и конца встречи
         public static DateTime start { get; set; }
         public static DateTime end { get; set; }
+        // Открыта ли форма с выбором встречи или выбором игроков
+        public static bool fm_fp { get; set; }
     }
     static class Program
     {

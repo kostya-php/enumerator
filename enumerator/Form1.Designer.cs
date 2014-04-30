@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.выбратьВстречуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выбратьИгроковToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьКонсольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,47 +94,48 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.выбратьВстречуToolStripMenuItem,
             this.выбратьИгроковToolStripMenuItem,
             this.открытьКонсольToolStripMenuItem,
             this.настройкиToolStripMenuItem,
             this.помощьToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 158);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
-            // toolStripMenuItem1
+            // выбратьВстречуToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
-            this.toolStripMenuItem1.Text = "Выбрать встречу";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.выбратьВстречуToolStripMenuItem.Name = "выбратьВстречуToolStripMenuItem";
+            this.выбратьВстречуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.выбратьВстречуToolStripMenuItem.Text = "Выбрать встречу";
+            this.выбратьВстречуToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // выбратьИгроковToolStripMenuItem
             // 
             this.выбратьИгроковToolStripMenuItem.Name = "выбратьИгроковToolStripMenuItem";
-            this.выбратьИгроковToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.выбратьИгроковToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.выбратьИгроковToolStripMenuItem.Text = "Выбрать игроков";
             this.выбратьИгроковToolStripMenuItem.Click += new System.EventHandler(this.выбратьИгроковToolStripMenuItem_Click);
             // 
             // открытьКонсольToolStripMenuItem
             // 
             this.открытьКонсольToolStripMenuItem.Name = "открытьКонсольToolStripMenuItem";
-            this.открытьКонсольToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.открытьКонсольToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.открытьКонсольToolStripMenuItem.Text = "Открыть консоль";
             this.открытьКонсольToolStripMenuItem.Click += new System.EventHandler(this.открытьКонсольToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
             // 
             // помощьToolStripMenuItem
             // 
             this.помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.помощьToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.помощьToolStripMenuItem.Text = "Помощь";
             this.помощьToolStripMenuItem.Click += new System.EventHandler(this.помощьToolStripMenuItem_Click);
             // 
@@ -142,7 +143,7 @@
             // 
             this.завершитьВстречуToolStripMenuItem.Enabled = false;
             this.завершитьВстречуToolStripMenuItem.Name = "завершитьВстречуToolStripMenuItem";
-            this.завершитьВстречуToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.завершитьВстречуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.завершитьВстречуToolStripMenuItem.Text = "Завершить встречу";
             this.завершитьВстречуToolStripMenuItem.Click += new System.EventHandler(this.завершитьВстречуToolStripMenuItem_Click);
             // 
@@ -368,7 +369,7 @@
             // 
             this.joystick_status.Image = global::enumerator.Properties.Resources.offline;
             this.joystick_status.Name = "joystick_status";
-            this.joystick_status.Size = new System.Drawing.Size(98, 17);
+            this.joystick_status.Size = new System.Drawing.Size(104, 17);
             this.joystick_status.Text = "Joystick: offline";
             // 
             // timer3
@@ -439,9 +440,9 @@
         public System.Windows.Forms.ToolStripMenuItem выбратьИгроковToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem завершитьВстречуToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label_timer;
         private System.Windows.Forms.Timer timer4;
+        public System.Windows.Forms.ToolStripMenuItem выбратьВстречуToolStripMenuItem;
 
     }
 }

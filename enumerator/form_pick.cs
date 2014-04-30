@@ -17,14 +17,6 @@ namespace enumerator
         {
             InitializeComponent();
         }
-        /*
-        private static string host = Properties.Settings.Default.host;
-        private static string database = Properties.Settings.Default.database;
-        private static string user = Properties.Settings.Default.user;
-        private static string password = Properties.Settings.Default.password;
-        private static string connectionString = "SERVER=" + host + ";" + "DATABASE=" +
-        database + ";" + "UID=" + user + ";" + "PASSWORD=" + password + ";CharSet=utf8;";
-        */
         private string player_name(int id)
         {
             string result = "NoName";
@@ -51,7 +43,7 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
             return result;
@@ -82,7 +74,7 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
             return rounds;
@@ -97,7 +89,7 @@ namespace enumerator
                 string query1 = "SELECT Count(*) FROM players";
                 MySqlCommand cmd1 = new MySqlCommand(query1, connect);
                 int Count = int.Parse(cmd1.ExecuteScalar() + "");
-                //progressBar1.Maximum = Count;
+                progressBar1.Maximum = Count;
 
                 string query = "SELECT * FROM players ORDER BY id ASC";
                 MySqlCommand cmd = new MySqlCommand(query, connect);
@@ -106,7 +98,7 @@ namespace enumerator
                 {
                     comboBox1.Items.Add(dataReader["player"]);
                     comboBox2.Items.Add(dataReader["player"]);
-                    //progressBar1.PerformStep();
+                    progressBar1.PerformStep();
                 }
                 dataReader.Close();
             }
@@ -118,15 +110,13 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
             comboBox1.Enabled = true;
             comboBox2.Enabled = true;
             comboBox3.Enabled = true;
             button1.Enabled = true;
-            progressBar1.Style = ProgressBarStyle.Blocks;
-            progressBar1.Value = 100;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -142,10 +132,9 @@ namespace enumerator
                 Form1 f1 = this.Owner as Form1;
                 if (f1 != null)
                 {
-                    //f1.tableLayoutPanel1.Visible = true;
-                    //f1.Focus();
                     f1.завершитьВстречуToolStripMenuItem.Enabled = true;
                     f1.выбратьИгроковToolStripMenuItem.Enabled = false;
+                    f1.выбратьВстречуToolStripMenuItem.Enabled = false;
                     f1.настройкиToolStripMenuItem.Enabled = false;
                     f1.pick();
                 }
@@ -155,35 +144,11 @@ namespace enumerator
             {
                 MessageBox.Show("Необходимо выбрать обоих игроков", "Выбор игроков", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            /*
-            int player1_id = comboBox1.SelectedIndex;
-            int player2_id = comboBox2.SelectedIndex;
-            if ((player1_id > 0) & (player2_id > 0))
-            {
-                Data.player1 = comboBox1.Text;
-                Data.player2 = comboBox2.Text;
-                Data.status = 0;
-                Data.rounds = Convert.ToInt32(comboBox3.Text);
-                double temp = Convert.ToDouble(Data.rounds) / 2.0;
-                Data.min_wins = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Data.rounds) / 2.0));
-                MessageBox.Show(Data.min_wins.ToString());
-                Form1 f1 = this.Owner as Form1;
-                if (f1 != null)
-                {
-                    f1.tableLayoutPanel1.Visible = true;
-                }
-                //f1.tableLayoutPanel1.Visible = true;
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Необходимо выбрать обоих игроков", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            */
         }
 
         private void form_pick_Load(object sender, EventArgs e)
         {
+            Data.fm_fp = true;
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
@@ -193,9 +158,7 @@ namespace enumerator
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.players_list();
-            //this.check_bd();
             timer1.Stop();
-            //timer2.Start();
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -203,10 +166,6 @@ namespace enumerator
             check_bd();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.check_bd();
-        }
         private void check_bd()
         {
             MySqlConnection connect = null;
@@ -252,17 +211,7 @@ namespace enumerator
                     comboBox1.Enabled = false;
                     comboBox2.Enabled = false;
                     comboBox3.Enabled = false;
-                    progressBar1.Style = ProgressBarStyle.Blocks;
-                    progressBar1.Value = 100;
-                    //MessageBox.Show("Игра найдена!","Поиск",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    //MessageBox.Show("Игра найдена!");
                 }
-                //else
-                //{
-                //   this.reset();
-                    //MessageBox.Show("Игра не найдена!", "Поиск", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //MessageBox.Show("Игра не найдена!");
-                //}
             }
             catch (MySqlException err)
             {
@@ -272,25 +221,14 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
         }
-        private void reset()
+
+        private void form_pick_FormClosed(object sender, FormClosedEventArgs e)
         {
-            comboBox1.Enabled = true;
-            comboBox2.Enabled = true;
-            comboBox3.Enabled = true;
-            Data.match = -1;
-            Data.tournament = -1;
-            comboBox1.SelectedIndex = 0;
-            comboBox2.SelectedIndex = 0;
-            progressBar1.Style = ProgressBarStyle.Marquee;
-            progressBar1.Value = 0;
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.reset();
+            Data.fm_fp = false;
         }
     }
 }

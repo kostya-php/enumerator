@@ -121,12 +121,30 @@ namespace enumerator
                             case 4:
                                 if (Data.button_4 == 0)
                                 {
+                                    if (Data.status == -1)
+                                    {
+                                        form_matches fm = new form_matches();
+                                        if (!Data.fm_fp)
+                                        {
+                                            fm.Owner = this;
+                                            fm.ShowDialog();
+                                        }
+                                    }
                                     Data.button_4 = 1;
                                 }
                                 break;
                             case 5:
                                 if (Data.button_5 == 0)
                                 {
+                                    if (Data.status == -1)
+                                    {
+                                        form_pick fp = new form_pick();
+                                        if (!Data.fm_fp)
+                                        {
+                                            fp.Owner = this;
+                                            fp.ShowDialog();
+                                        }
+                                    }
                                     Data.button_5 = 1;
                                 }
                                 break;
@@ -251,10 +269,15 @@ namespace enumerator
                     break;
 
                 case Keys.F5:
+                    //form_matches fm = new form_matches();
+                    //if(!fm.Visible)fm.ShowDialog();
+                    //matches();
+                    /*
                     SoundPlayer pl = new SoundPlayer();
                     pl.Stream = Properties.Resources.aplause;
                     pl.Play();
-                    e.Hooked = true;
+                    */
+                    //e.Hooked = true;
                     break;
 
                 case Keys.Space:
@@ -345,7 +368,18 @@ namespace enumerator
         {
             if (Data.status == 0)
             {
-                full_reset();
+                Data.x = 0;
+                Data.y = 0;
+                Data.xx = 0;
+                Data.yy = 0;
+                Data.status = 0;
+                Data.balance = false;
+                Data.reverse = false;
+                Data.inning_side = 0;
+                Data.query = "";
+                Data.history = "";
+                refresh();
+                set_inning();
                 info.Text = "Розыгрыш подачи";
                 //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
                 write_log("Розыгрыш подачи");
@@ -441,6 +475,7 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.fm_fp = false;
             //Data.start = DateTime.Now;
             //timer4.Start();
 
@@ -455,7 +490,7 @@ namespace enumerator
             Data.find_bd = Properties.Settings.Default.find_bd;
             Data.from_bd = true;
             timer2.Start();
-            timer3.Start();
+            //timer3.Start();
             //InitDevices();
             //thread = new Thread(UpdateJoystick);
             //thread.Start();
@@ -600,7 +635,7 @@ namespace enumerator
                         {
                             if (connect != null)
                             {
-                                connect.Close(); //safely close the connection
+                                connect.Close();
                             }
                         }
                     }
@@ -1138,7 +1173,7 @@ namespace enumerator
                     {
                         if (connect != null)
                         {
-                            connect.Close(); //safely close the connection
+                            connect.Close();
                         }
                     }
                 }
@@ -1199,7 +1234,7 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
             return rounds;
@@ -1230,7 +1265,7 @@ namespace enumerator
             {
                 if (connect != null)
                 {
-                    connect.Close(); //safely close the connection
+                    connect.Close();
                 }
             }
             return result;
@@ -1240,12 +1275,6 @@ namespace enumerator
         {
             if (Data.from_bd)
             {
-                // добавить запрос, делающий активную игру неактивной (а также диалог)
-                // UPDATE matches SET status='0', start=null, end=null, x=null, y=null WHERE id='$id'
-                // DELETE FROM rounds WHERE `match`='$id'
-                // ALTER TABLE rounds AUTO_INCREMENT=0;
-
-
                 MySqlConnection connect = null;
                 try
                 {
@@ -1271,13 +1300,27 @@ namespace enumerator
 
 
             }
+            timer4.Stop();
+            label_timer.Text = "00:00";
             Data.player1 = null;
             Data.player2 = null;
             Data.status = -1;
-            full_reset();
+            Data.match = -1;
+            Data.x = 0;
+            Data.y = 0;
+            Data.xx = 0;
+            Data.yy = 0;
+            Data.balance = false;
+            Data.reverse = false;
+            Data.inning_side = 0;
+            Data.query = "";
+            Data.history = "";
+            refresh();
+            set_inning();
             info.Text = "Ожидание встречи";
             завершитьВстречуToolStripMenuItem.Enabled = false;
             выбратьИгроковToolStripMenuItem.Enabled = true;
+            выбратьВстречуToolStripMenuItem.Enabled = true;
             настройкиToolStripMenuItem.Enabled = true;
             write_log("Встреча прервана");
         }
@@ -1302,12 +1345,6 @@ namespace enumerator
         {
 
         }
-        private void matches()
-        {
-            form_matches fm = new form_matches();
-            fm.Owner = this;
-            fm.ShowDialog();
-        }
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
 
@@ -1325,7 +1362,17 @@ namespace enumerator
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            matches();
+            form_matches fm = new form_matches();
+            if (!fm.Visible)
+            {
+                fm.Owner = this;
+                fm.ShowDialog();
+            }
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }
