@@ -54,7 +54,6 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.joystick_status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -101,7 +100,7 @@
             this.помощьToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 136);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // выбратьВстречуToolStripMenuItem
@@ -372,11 +371,6 @@
             this.joystick_status.Size = new System.Drawing.Size(104, 17);
             this.joystick_status.Text = "Joystick: offline";
             // 
-            // timer3
-            // 
-            this.timer3.Interval = 1000;
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
             // timer4
             // 
             this.timer4.Interval = 1000;
@@ -436,7 +430,6 @@
         private System.Windows.Forms.Label label_player1;
         private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.PictureBox inning1;
-        private System.Windows.Forms.Timer timer3;
         public System.Windows.Forms.ToolStripMenuItem выбратьИгроковToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem завершитьВстречуToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;

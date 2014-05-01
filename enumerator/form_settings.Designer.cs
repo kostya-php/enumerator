@@ -40,8 +40,6 @@
             this.button_OK = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
             this.button_test = new System.Windows.Forms.Button();
-            this.checkBox_find_bd = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.textBox_log_path = new System.Windows.Forms.TextBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.button_log_path = new System.Windows.Forms.Button();
@@ -143,30 +141,9 @@
             this.button_test.UseVisualStyleBackColor = true;
             this.button_test.Click += new System.EventHandler(this.button_test_Click);
             // 
-            // checkBox_find_bd
-            // 
-            this.checkBox_find_bd.AutoSize = true;
-            this.checkBox_find_bd.Location = new System.Drawing.Point(12, 90);
-            this.checkBox_find_bd.Name = "checkBox_find_bd";
-            this.checkBox_find_bd.Size = new System.Drawing.Size(217, 17);
-            this.checkBox_find_bd.TabIndex = 11;
-            this.checkBox_find_bd.Text = "Автоматически искать встречи в БД*";
-            this.checkBox_find_bd.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.Color.Gray;
-            this.label5.Location = new System.Drawing.Point(12, 211);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(236, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "*вступит в силу после перезапуска программы";
-            // 
             // textBox_log_path
             // 
-            this.textBox_log_path.Location = new System.Drawing.Point(12, 126);
+            this.textBox_log_path.Location = new System.Drawing.Point(12, 103);
             this.textBox_log_path.Name = "textBox_log_path";
             this.textBox_log_path.ReadOnly = true;
             this.textBox_log_path.Size = new System.Drawing.Size(206, 20);
@@ -180,7 +157,7 @@
             // 
             // button_log_path
             // 
-            this.button_log_path.Location = new System.Drawing.Point(223, 126);
+            this.button_log_path.Location = new System.Drawing.Point(224, 103);
             this.button_log_path.Name = "button_log_path";
             this.button_log_path.Size = new System.Drawing.Size(49, 20);
             this.button_log_path.TabIndex = 14;
@@ -191,7 +168,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 110);
+            this.label6.Location = new System.Drawing.Point(12, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 13);
             this.label6.TabIndex = 15;
@@ -205,8 +182,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button_log_path);
             this.Controls.Add(this.textBox_log_path);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox_find_bd);
             this.Controls.Add(this.button_test);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_OK);
@@ -246,8 +221,6 @@
         private System.Windows.Forms.Button button_OK;
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.Button button_test;
-        private System.Windows.Forms.CheckBox checkBox_find_bd;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_log_path;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button_log_path;

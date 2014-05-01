@@ -25,7 +25,6 @@ namespace enumerator
             textBox_database.Text = Properties.Settings.Default.database;
             textBox_user.Text = Properties.Settings.Default.user;
             textBox_password.Text = Properties.Settings.Default.password;
-            checkBox_find_bd.Checked = Properties.Settings.Default.find_bd;
             textBox_log_path.Text = Properties.Settings.Default.log_path;
             saveFileDialog1.FileName = Path.GetFileName(Properties.Settings.Default.log_path);
             string dir = Path.GetDirectoryName(Properties.Settings.Default.log_path);
@@ -61,7 +60,6 @@ namespace enumerator
                 form_console f2 = new form_console();
                 if (!Data.use_console) f2.Show();
             }
-            Properties.Settings.Default.find_bd = checkBox_find_bd.Checked;
             Properties.Settings.Default.log_path = textBox_log_path.Text;
             Properties.Settings.Default.Save();
         }

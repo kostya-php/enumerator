@@ -166,6 +166,7 @@ namespace enumerator
             Data.match = Convert.ToInt32(s[2]);
             // получаем текущие дату и время
             string start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            Data.start = Convert.ToDateTime(start);
             MySqlConnection connect = null;
             try
             {

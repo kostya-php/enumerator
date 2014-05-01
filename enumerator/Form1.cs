@@ -235,19 +235,23 @@ namespace enumerator
             switch (e.Keys)
             {
                 case Keys.Left:
-                    if (Data.status == 1)
-                    {
-                        add_point(Data.reverse, "xx");
-                        e.Hooked = true;
-                    }
+                    if (Data.status == 0) inning(1);
+                    else
+                        if (Data.status == 1)
+                        {
+                            add_point(Data.reverse, "xx");
+                            e.Hooked = true;
+                        }
                     break;
 
                 case Keys.Right:
-                    if (Data.status == 1)
-                    {
-                        add_point(Data.reverse, "yy");
-                        e.Hooked = true;
-                    }
+                    if (Data.status == 0) inning(2);
+                    else
+                        if (Data.status == 1)
+                        {
+                            add_point(Data.reverse, "yy");
+                            e.Hooked = true;
+                        }
                     break;
 
                 case Keys.F1:
@@ -293,13 +297,12 @@ namespace enumerator
                     if (Data.status == -1)
                     {
                         if (info.Text != "Ожидание встречи") write_log("Встреча окончена");
-                        Data.player1 = null;
-                        Data.player2 = null;
-                        Data.status = -1;
                         full_reset();
+                        label_timer.Text = "00:00";
                         info.Text = "Ожидание встречи";
                         завершитьВстречуToolStripMenuItem.Enabled = false;
                         выбратьИгроковToolStripMenuItem.Enabled = true;
+                        выбратьВстречуToolStripMenuItem.Enabled = true;
                         настройкиToolStripMenuItem.Enabled = true;
                     }
                     else
@@ -380,9 +383,10 @@ namespace enumerator
                 Data.history = "";
                 refresh();
                 set_inning();
+                Data.from_bd = true;
                 info.Text = "Розыгрыш подачи";
-                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
                 write_log("Розыгрыш подачи");
+                timer4.Start();
                 this.Focus();
             }
 
@@ -459,6 +463,11 @@ namespace enumerator
         // Полный сброс
         private void full_reset()
         {
+            Data.status = -1;
+            Data.player1 = null;
+            Data.player2 = null;
+            Data.player1_id = -1;
+            Data.player2_id = -1;
             Data.x = 0;
             Data.y = 0;
             Data.xx = 0;
@@ -470,15 +479,11 @@ namespace enumerator
             Data.history = "";
             refresh();
             set_inning();
-            Data.from_bd = true;
         }
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
             Data.fm_fp = false;
-            //Data.start = DateTime.Now;
-            //timer4.Start();
-
             Data.host = Properties.Settings.Default.host;
             Data.database = Properties.Settings.Default.database;
             Data.user = Properties.Settings.Default.user;
@@ -487,35 +492,7 @@ namespace enumerator
                 Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
             write_log("Запуск программы");
             Data.use_console = false;
-            Data.find_bd = Properties.Settings.Default.find_bd;
-            Data.from_bd = true;
             timer2.Start();
-            //timer3.Start();
-            //InitDevices();
-            //thread = new Thread(UpdateJoystick);
-            //thread.Start();
-            /*
-            if (Data.status == -1)
-            {
-                tableLayoutPanel1.Visible = false;
-                this.Hide();
-                form_pick fp = new form_pick();
-                fp.Owner = this;
-                fp.ShowDialog();
-            }
-            */
-            /*
-            if (Data.status == 0)
-            {
-                Data.query = "";
-                Data.inning_side = 0;
-                Data.history = "";
-                info.Text = "Розыгрыш подачи";
-                Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
-                if (Data.player1 == null) Data.player1 = "Игрок 1";
-                if (Data.player2 == null) Data.player2 = "Игрок 2";
-            }
-            */
         }
         /*
         private void start_game()
@@ -611,6 +588,7 @@ namespace enumerator
                         //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player2 + Environment.NewLine;
                         write_log("В этой встрече победил: " + Data.player2);
                     }
+                    timer4.Stop();
                     Data.status = -1;
                     Data.query += "UPDATE matches SET x='" + Data.x + "',y='" + Data.y + "',status='2',end='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE id='" + Data.match + "';";
                     //Data.console += Data.query + Environment.NewLine;
@@ -1034,10 +1012,9 @@ namespace enumerator
             }
             else
             {
+                abort_game();
                 write_log("Закрытие программы");
                 timer1.Stop();
-                //thread.Abort();
-                //thread.Join(500);
             }
         }
 
@@ -1099,7 +1076,7 @@ namespace enumerator
         {
             label_player2.Text = label_player2.Text.Replace(" ", "\r\n");
         }
-
+        /*
         private void timer3_Tick(object sender, EventArgs e)
         {
             bool find_bd = Properties.Settings.Default.find_bd;
@@ -1143,7 +1120,6 @@ namespace enumerator
                             {
                                 full_reset();
                                 info.Text = "Розыгрыш подачи";
-                                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Розыгрыш подачи" + Environment.NewLine;
                                 write_log("Розыгрыш подачи");
                             }
                             завершитьВстречуToolStripMenuItem.Enabled = true;
@@ -1154,13 +1130,11 @@ namespace enumerator
                         else
                             if ((Data.status != -1) & (match == -1) & (!Data.from_bd))
                             {
-                                Data.player1 = null;
-                                Data.player2 = null;
-                                Data.status = -1;
                                 full_reset();
                                 info.Text = "Ожидание встречи";
                                 завершитьВстречуToolStripMenuItem.Enabled = false;
                                 выбратьИгроковToolStripMenuItem.Enabled = true;
+                                выбратьВстречуToolStripMenuItem.Enabled = true;
                                 настройкиToolStripMenuItem.Enabled = true;
                             }
                     }
@@ -1179,7 +1153,7 @@ namespace enumerator
                 }
             }
         }
-
+        */
         private bool test()
         {
             bool result = false;
@@ -1270,8 +1244,7 @@ namespace enumerator
             }
             return result;
         }
-
-        private void завершитьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
+        private void abort_game()
         {
             if (Data.from_bd)
             {
@@ -1284,6 +1257,7 @@ namespace enumerator
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.ExecuteNonQuery();
                     connect.Close();
+                    Data.from_bd = false;
                 }
                 catch (MySqlException err)
                 {
@@ -1296,33 +1270,21 @@ namespace enumerator
                         connect.Close();
                     }
                 }
-
-
-
             }
             timer4.Stop();
+            full_reset();
             label_timer.Text = "00:00";
-            Data.player1 = null;
-            Data.player2 = null;
-            Data.status = -1;
-            Data.match = -1;
-            Data.x = 0;
-            Data.y = 0;
-            Data.xx = 0;
-            Data.yy = 0;
-            Data.balance = false;
-            Data.reverse = false;
-            Data.inning_side = 0;
-            Data.query = "";
-            Data.history = "";
-            refresh();
-            set_inning();
             info.Text = "Ожидание встречи";
             завершитьВстречуToolStripMenuItem.Enabled = false;
             выбратьИгроковToolStripMenuItem.Enabled = true;
             выбратьВстречуToolStripMenuItem.Enabled = true;
             настройкиToolStripMenuItem.Enabled = true;
             write_log("Встреча прервана");
+        }
+
+        private void завершитьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abort_game();
         }
 
         private void write_log(string s)

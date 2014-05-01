@@ -14,9 +14,6 @@
     <Setting Name="password" Type="System.String" Scope="User">
       <Value Profile="(Default)">tt_test123</Value>
     </Setting>
-    <Setting Name="find_bd" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="log_path" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\enumerator_logs.txt</Value>
     </Setting>

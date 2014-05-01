@@ -73,18 +73,6 @@ namespace enumerator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool find_bd {
-            get {
-                return ((bool)(this["find_bd"]));
-            }
-            set {
-                this["find_bd"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\enumerator_logs.txt")]
         public string log_path {
             get {

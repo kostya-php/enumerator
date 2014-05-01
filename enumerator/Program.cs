@@ -59,8 +59,6 @@ namespace enumerator
         public static int button_8 { get; set; }
         // Открыта ли консоль
         public static bool use_console { get; set; }
-        // Искать в бд или нет
-        public static bool find_bd { get; set; }
         // Используется встреча из БД или нет
         public static bool from_bd { get; set; }
         // Данные для подключения к БД
@@ -71,7 +69,7 @@ namespace enumerator
         public static string connectionString { get; set; }
         // Время начала и конца встречи
         public static DateTime start { get; set; }
-        public static DateTime end { get; set; }
+        //public static DateTime end { get; set; }
         // Открыта ли форма с выбором встречи или выбором игроков
         public static bool fm_fp { get; set; }
     }
