@@ -100,15 +100,14 @@
             this.помощьToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 136);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 158);
             // 
             // выбратьВстречуToolStripMenuItem
             // 
             this.выбратьВстречуToolStripMenuItem.Name = "выбратьВстречуToolStripMenuItem";
             this.выбратьВстречуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.выбратьВстречуToolStripMenuItem.Text = "Выбрать встречу";
-            this.выбратьВстречуToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.выбратьВстречуToolStripMenuItem.Click += new System.EventHandler(this.выбратьВстречуToolStripMenuItem_Click);
             // 
             // выбратьИгроковToolStripMenuItem
             // 
@@ -326,7 +325,6 @@
             this.info.TabIndex = 8;
             this.info.Text = "Ожидание встречи";
             this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.info.Click += new System.EventHandler(this.info_Click);
             // 
             // label_timer
             // 

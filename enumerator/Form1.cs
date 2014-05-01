@@ -32,10 +32,11 @@ namespace enumerator
         #region Джойстик
 
         Device joystick;
+        // Функция инициализации джойстика
         private void InitDevices()
         {
             joystick = null;
-            //create joystick device.
+            // Поиск джойстика
             foreach (
                 DeviceInstance di in
                 Manager.GetDevices(
@@ -47,7 +48,7 @@ namespace enumerator
             }
             if (joystick != null)
             {
-                //Set joystick axis ranges.
+                // Установка диапазона осей на джойстике
                 foreach (DeviceObjectInstance doi in joystick.Objects)
                 {
                     if ((doi.ObjectId & (int)DeviceObjectTypeFlags.Axis) != 0)
@@ -58,22 +59,27 @@ namespace enumerator
                             new InputRange(-5000, 5000));
                     }
                 }
-                //Set joystick axis mode absolute.
+                // Установка абсолютного режима осей на джойстике
                 joystick.Properties.AxisModeAbsolute = true;
                 joystick.SetCooperativeLevel(
                 this,
                 CooperativeLevelFlags.NonExclusive |
                 CooperativeLevelFlags.Background);
-                //Acquire devices for capturing.
+                // Acquire devices for capturing (хз че это)
                 joystick.Acquire();
+                // Остановка таймера, запускающего инициализацию
                 timer2.Stop();
+                // Запуск таймера, проверяющего состояние джойстика
                 timer1.Start();
+                // Надпись "Joystick: online" и зеленая картинка внизу окна программы (в оконном режиме)
                 joystick_status.Text = "Joystick: online";
                 Image img = Properties.Resources.online.ToBitmap();
                 joystick_status.Image = img;
+                // Запись изменения в лог
                 write_log("Joystick connected");
             }
         }
+        // Фукция проверки состояния джойстика и снятие показаний о нажатых кнопках
         private void UpdateJoystick()
         {
             try
@@ -216,15 +222,19 @@ namespace enumerator
                     }
                 }
             }
+            // Обработка исключения (например, если джойстик внезапно отключили)
             catch (Exception e)
             {
+                // Остановка таймера, проверяющего состояние джойстика
                 timer1.Stop();
+                // Запуск таймера, запускающиего инициализацию джойстика
                 timer2.Start();
+                // Надпись "Joystick: offline" и красная картинка внизу окна программы (в оконном режиме)
                 joystick_status.Text = "Joystick: offline";
                 Image img = Properties.Resources.offline;
                 joystick_status.Image = img;
-                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Джойстик был отключен. " + e.ToString() + Environment.NewLine;
-                write_log("Joystick disconnected");
+                // Запись в лог
+                write_log("Joystick disconnected "+e.ToString());
             }
         }
         #endregion
@@ -270,18 +280,6 @@ namespace enumerator
                         switch_inning();
                         e.Hooked = true;
                     }
-                    break;
-
-                case Keys.F5:
-                    //form_matches fm = new form_matches();
-                    //if(!fm.Visible)fm.ShowDialog();
-                    //matches();
-                    /*
-                    SoundPlayer pl = new SoundPlayer();
-                    pl.Stream = Properties.Resources.aplause;
-                    pl.Play();
-                    */
-                    //e.Hooked = true;
                     break;
 
                 case Keys.Space:
@@ -484,6 +482,7 @@ namespace enumerator
         private void Form1_Load(object sender, EventArgs e)
         {
             Data.fm_fp = false;
+            Data.from_bd = false;
             Data.host = Properties.Settings.Default.host;
             Data.database = Properties.Settings.Default.database;
             Data.user = Properties.Settings.Default.user;
@@ -494,25 +493,6 @@ namespace enumerator
             Data.use_console = false;
             timer2.Start();
         }
-        /*
-        private void start_game()
-        {
-            if (Data.status == 0)
-            {
-                Data.inning_side = 0;
-                Data.history = "";
-                info.Text = "Розыгрыш подачи";
-                //if (Data.player1 == null) Data.player1 = "Крамаренко Александр";
-                //if (Data.player2 == null) Data.player2 = "Салынский Иван";
-                label_player1.Text = Data.player1;
-                label_player2.Text = Data.player2;
-                Data.balance = false;
-                Data.reverse = false;
-                label_xx.Text = "0";
-                label_yy.Text = "0";
-            }
-        }
-         * */
         // Добавление истории
         private void history_add(string s)
         {
@@ -661,13 +641,6 @@ namespace enumerator
                     label_player2.Text = Data.player2.ToString();
                 if (win(Data.xx, Data.yy) != "")
                 {
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player1 + " - " + Data.player2 + Environment.NewLine;
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString() + Environment.NewLine;
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString() + Environment.NewLine;
-
-                    //write_log("Игроки: " + Data.player1 + " - " + Data.player2);
-                    //write_log("Результат: " + Data.xx.ToString() + ":" + Data.yy.ToString());
-                    //write_log("Счет по партиям: " + Data.x.ToString() + ":" + Data.y.ToString());
                     if (win(Data.xx, Data.yy) == "xx")
                     {
                         write_log("Эту партию выйграл игрок: " + Data.player1);
@@ -690,13 +663,6 @@ namespace enumerator
                 label_player2.Text = Data.player1.ToString();
                 if (win(Data.xx, Data.yy) != "")
                 {
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Игроки: " + Data.player2 + " - " + Data.player1 + Environment.NewLine;
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Результат: " + Data.yy.ToString() + ":" + Data.xx.ToString() + Environment.NewLine;
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - Счет по партиям: " + Data.y.ToString() + ":" + Data.x.ToString() + Environment.NewLine;
-
-                    //write_log("Игроки: " + Data.player2 + " - " + Data.player1);
-                    //write_log("Результат: " + Data.yy.ToString() + ":" + Data.xx.ToString());
-                    //write_log("Счет по партиям: " + Data.y.ToString() + ":" + Data.x.ToString());
                     if (win(Data.xx, Data.yy) == "xx")
                     {
                         write_log("Эту партию выйграл игрок: " + Data.player1);
@@ -936,8 +902,6 @@ namespace enumerator
                         }
                     }
             }
-
-            //MessageBox.Show(ost.ToString());
         }
         // Поменять подачи местами
         private void switch_inning()
@@ -979,7 +943,6 @@ namespace enumerator
                         break;
                 }
                 set_inning();
-                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало игры" + Environment.NewLine;
                 write_log("Начало игры: " + Data.player1 + " - " + Data.player2);
                 write_log("Из " + Data.rounds + "-х партий (до " + Data.min_wins + " побед)");
             }
@@ -994,13 +957,11 @@ namespace enumerator
         {
             if (Data.status == 0) inning(2);
         }
-
+        // Открывает окошко консоли
         private void открытьКонсольToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Task.Factory.StartNew(Data.Console);
             form_console f2 = new form_console();
             if (!Data.use_console) f2.Show();
-            //f2.Show();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -1012,12 +973,13 @@ namespace enumerator
             }
             else
             {
-                abort_game();
+                if((Data.player1!=null)&(Data.player2!=null))
+                    abort_game();
                 write_log("Закрытие программы");
                 timer1.Stop();
             }
         }
-
+        // Выбрать игроков вручную (из БД берутся только сами игроки)
         private void выбратьИгроковToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Data.status == -1)
@@ -1027,7 +989,7 @@ namespace enumerator
                 fp.ShowDialog();
             }
         }
-
+        // Окошко помощи :)
         private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -1041,7 +1003,7 @@ namespace enumerator
                 "(Enter) подтвердить победу игрока" + Environment.NewLine
                 , "Помощь", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        // Форма с настройками
         private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Data.status == -1)
@@ -1051,109 +1013,22 @@ namespace enumerator
                 fp.ShowDialog();
             }
         }
-
-        private void найтиДжойстикToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Периодический вызов функции проверки джойстика
         private void timer2_Tick(object sender, EventArgs e)
         {
             if (!timer1.Enabled) InitDevices();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player1_TextChanged(object sender, EventArgs e)
         {
             label_player1.Text = label_player1.Text.Replace(" ", "\r\n");
         }
-
+        // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player2_TextChanged(object sender, EventArgs e)
         {
             label_player2.Text = label_player2.Text.Replace(" ", "\r\n");
         }
-        /*
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-            bool find_bd = Properties.Settings.Default.find_bd;
-            if (find_bd)
-            {
-                if (test())
-                {
-                    MySqlConnection connect = null;
-                    try
-                    {
-                        connect = new MySqlConnection(Data.connectionString);
-                        connect.Open();
-                        string query = "SELECT * FROM matches WHERE status='1'";
-                        MySqlCommand cmd = new MySqlCommand(query, connect);
-                        MySqlDataReader dataReader = cmd.ExecuteReader();
-                        int match = -1;
-                        int tournament = -1;
-                        int player1 = 0;
-                        int player2 = 0;
-                        DateTime start = new DateTime();
-                        while (dataReader.Read())
-                        {
-                            match = Convert.ToInt32(dataReader["id"]);
-                            tournament = Convert.ToInt32(dataReader["tournament"]);
-                            player1 = Convert.ToInt32(dataReader["player1"]);
-                            player2 = Convert.ToInt32(dataReader["player2"]);
-                            start = Convert.ToDateTime(dataReader["start"]);
-                        }
-                        if ((match > 0) & (Data.status == -1))
-                        {
-                            Data.match = match;
-                            Data.tournament = tournament;
-                            Data.rounds = get_rounds(tournament);
-                            Data.player1 = player_name(player1);
-                            Data.player2 = player_name(player2);
-                            Data.start = start;
-                            Data.status = 0;
-                            double temp = Convert.ToDouble(Data.rounds) / 2.0;
-                            Data.min_wins = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Data.rounds) / 2.0));
-                            if (Data.status == 0)
-                            {
-                                full_reset();
-                                info.Text = "Розыгрыш подачи";
-                                write_log("Розыгрыш подачи");
-                            }
-                            завершитьВстречуToolStripMenuItem.Enabled = true;
-                            выбратьИгроковToolStripMenuItem.Enabled = false;
-                            настройкиToolStripMenuItem.Enabled = false;
-                            timer4.Start();
-                        }
-                        else
-                            if ((Data.status != -1) & (match == -1) & (!Data.from_bd))
-                            {
-                                full_reset();
-                                info.Text = "Ожидание встречи";
-                                завершитьВстречуToolStripMenuItem.Enabled = false;
-                                выбратьИгроковToolStripMenuItem.Enabled = true;
-                                выбратьВстречуToolStripMenuItem.Enabled = true;
-                                настройкиToolStripMenuItem.Enabled = true;
-                            }
-                    }
-                    catch (MySqlException err)
-                    {
-                        timer3.Stop();
-                        MessageBox.Show("Ошибка: " + err.ToString());
-                    }
-                    finally
-                    {
-                        if (connect != null)
-                        {
-                            connect.Close();
-                        }
-                    }
-                }
-            }
-        }
-        */
+        // Тестирование связи с БД
         private bool test()
         {
             bool result = false;
@@ -1169,7 +1044,6 @@ namespace enumerator
             }
             catch (MySqlException err)
             {
-                //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Ошибка: " + err.ToString() + Environment.NewLine;
                 write_log("Ошибка: " + err.ToString());
                 result = false;
             }
@@ -1182,6 +1056,7 @@ namespace enumerator
             }
             return result;
         }
+        // Получаем количество партий турнира по его id
         private int get_rounds(int id)
         {
             int rounds = 0;
@@ -1213,6 +1088,7 @@ namespace enumerator
             }
             return rounds;
         }
+        // Получаем имя игрока по его id
         private string player_name(int id)
         {
             string result = "NoName";
@@ -1244,6 +1120,7 @@ namespace enumerator
             }
             return result;
         }
+        // Функция прерывания текущей игры
         private void abort_game()
         {
             if (Data.from_bd)
@@ -1281,12 +1158,12 @@ namespace enumerator
             настройкиToolStripMenuItem.Enabled = true;
             write_log("Встреча прервана");
         }
-
+        // Прерывание текущей игры через контекстное меню
         private void завершитьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             abort_game();
         }
-
+        // Записываем в лог нужную строчку
         private void write_log(string s)
         {
             string log_path = @Properties.Settings.Default.log_path;
@@ -1302,16 +1179,7 @@ namespace enumerator
             }
             Data.console += log_line;
         }
-
-        private void info_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // Обновление таймера встречи
         private void timer4_Tick(object sender, EventArgs e)
         {
             DateTime start_datetime = Data.start;
@@ -1321,8 +1189,8 @@ namespace enumerator
             string time = delta.ToString(@"mm\:ss");
             label_timer.Text = time.ToString();
         }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        // Выбрать встречу (из БД)
+        private void выбратьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             form_matches fm = new form_matches();
             if (!fm.Visible)
@@ -1330,11 +1198,6 @@ namespace enumerator
                 fm.Owner = this;
                 fm.ShowDialog();
             }
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
         }
     }
 }
