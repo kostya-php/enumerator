@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace enumerator
 {
@@ -72,6 +73,40 @@ namespace enumerator
         //public static DateTime end { get; set; }
         // Открыта ли форма с выбором встречи или выбором игроков
         public static bool fm_fp { get; set; }
+        // Открыта ли форма с базой данных
+        public static bool main { get; set; }
+        // Получаем имя игрока по его id
+        public static string player_name(int id)
+        {
+            string result = "NoName";
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "SELECT * FROM players WHERE id='" + id.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = dataReader["player"].ToString();
+                }
+                dataReader.Close();
+                connect.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
     }
     static class Program
     {

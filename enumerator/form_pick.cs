@@ -135,7 +135,6 @@ namespace enumerator
                     f1.завершитьВстречуToolStripMenuItem.Enabled = true;
                     f1.выбратьИгроковToolStripMenuItem.Enabled = false;
                     f1.выбратьВстречуToolStripMenuItem.Enabled = false;
-                    f1.настройкиToolStripMenuItem.Enabled = false;
                     f1.pick();
                 }
                 this.Hide();

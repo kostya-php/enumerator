@@ -166,7 +166,6 @@ namespace enumerator
                                         завершитьВстречуToolStripMenuItem.Enabled = false;
                                         выбратьИгроковToolStripMenuItem.Enabled = true;
                                         выбратьВстречуToolStripMenuItem.Enabled = true;
-                                        настройкиToolStripMenuItem.Enabled = true;
                                     }
                                     else
                                         if (Data.status == 2)
@@ -313,7 +312,6 @@ namespace enumerator
                         завершитьВстречуToolStripMenuItem.Enabled = false;
                         выбратьИгроковToolStripMenuItem.Enabled = true;
                         выбратьВстречуToolStripMenuItem.Enabled = true;
-                        настройкиToolStripMenuItem.Enabled = true;
                     }
                     else
                         if (Data.status == 2)
@@ -344,6 +342,7 @@ namespace enumerator
             if (fullscreen)
             {
                 statusStrip1.Visible = false;
+                menuStrip1.Visible = false;
                 this.WindowState = FormWindowState.Normal;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
@@ -352,6 +351,7 @@ namespace enumerator
             else
             {
                 statusStrip1.Visible = true;
+                menuStrip1.Visible = true;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 this.WindowState = FormWindowState.Normal;
                 change_font_size();
@@ -502,6 +502,7 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.main = false;
             Data.fm_fp = false;
             Data.from_bd = false;
             Data.host = Properties.Settings.Default.host;
@@ -971,11 +972,6 @@ namespace enumerator
             if (Data.status == 0) inning(2);
         }
         // Открывает окошко консоли
-        private void открытьКонсольToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            form_console f2 = new form_console();
-            if (!Data.use_console) f2.Show();
-        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1003,29 +999,7 @@ namespace enumerator
             }
         }
         // Окошко помощи :)
-        private void помощьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(
-                "(F1) войти в режим полного экрана" + Environment.NewLine +
-                "(F2) выйти из режима полного экрана" + Environment.NewLine +
-                "(F4) поменять подачи местами" + Environment.NewLine +
-                "(<-) присвоить очко игроку 1" + Environment.NewLine +
-                "(->) присвоить очко игроку 2" + Environment.NewLine +
-                "(Esc) отменить присвоение очка игроку" + Environment.NewLine +
-                "(Space) поменять игроков местами" + Environment.NewLine +
-                "(Enter) подтвердить победу игрока" + Environment.NewLine
-                , "Помощь", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
         // Форма с настройками
-        private void настройкиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Data.status == -1)
-            {
-                form_settings fp = new form_settings();
-                fp.Owner = this;
-                fp.ShowDialog();
-            }
-        }
         // Периодический вызов функции проверки джойстика
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -1168,7 +1142,6 @@ namespace enumerator
             завершитьВстречуToolStripMenuItem.Enabled = false;
             выбратьИгроковToolStripMenuItem.Enabled = true;
             выбратьВстречуToolStripMenuItem.Enabled = true;
-            настройкиToolStripMenuItem.Enabled = true;
             write_log("Встреча прервана");
         }
         // Прерывание текущей игры через контекстное меню
@@ -1211,6 +1184,42 @@ namespace enumerator
                 fm.Owner = this;
                 fm.ShowDialog();
             }
+        }
+
+        private void базаДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Main m = new Main();
+            if (!Data.main) m.Show();
+        }
+
+        private void настройкиToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (Data.status == -1)
+            {
+                form_settings fp = new form_settings();
+                fp.Owner = this;
+                fp.ShowDialog();
+            }
+        }
+
+        private void помощьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                "(F1) войти в режим полного экрана" + Environment.NewLine +
+                "(F2) выйти из режима полного экрана" + Environment.NewLine +
+                "(F4) поменять подачи местами" + Environment.NewLine +
+                "(<-) присвоить очко игроку 1" + Environment.NewLine +
+                "(->) присвоить очко игроку 2" + Environment.NewLine +
+                "(Esc) отменить присвоение очка игроку" + Environment.NewLine +
+                "(Space) поменять игроков местами" + Environment.NewLine +
+                "(Enter) подтвердить победу игрока" + Environment.NewLine
+                , "Помощь", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void консольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            form_console f2 = new form_console();
+            if (!Data.use_console) f2.Show();
         }
     }
 }
