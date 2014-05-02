@@ -116,7 +116,7 @@ namespace enumerator
                             case 3:
                                 if (Data.button_3 == 0)
                                 {
-                                    if (Data.status == 1)
+                                    if ((Data.status == 1)|(Data.status == 0))
                                     {
                                         reverse();
                                         switch_inning();
@@ -157,14 +157,26 @@ namespace enumerator
                             case 6:
                                 if (Data.button_6 == 0)
                                 {
-                                    if (Data.status == 2)
+                                    if (Data.status == -1)
                                     {
-                                        Data.query += "INSERT INTO rounds VALUES (null,'" + Data.match + "','" + (Data.x + Data.y).ToString() + "','" + Data.xx + "','" + Data.yy + "');";
-                                        Data.status = 3;
-                                        info.Text = "";
-                                        Data.history = "";
-                                        reset_score();
+                                        if (info.Text != "Ожидание встречи") write_log("Встреча окончена");
+                                        full_reset();
+                                        label_timer.Text = "00:00";
+                                        info.Text = "Ожидание встречи";
+                                        завершитьВстречуToolStripMenuItem.Enabled = false;
+                                        выбратьИгроковToolStripMenuItem.Enabled = true;
+                                        выбратьВстречуToolStripMenuItem.Enabled = true;
+                                        настройкиToolStripMenuItem.Enabled = true;
                                     }
+                                    else
+                                        if (Data.status == 2)
+                                        {
+                                            Data.query += "INSERT INTO rounds VALUES (null,'" + Data.match + "','" + (Data.x + Data.y).ToString() + "','" + Data.xx + "','" + Data.yy + "');";
+                                            Data.status = 3;
+                                            info.Text = "";
+                                            Data.history = "";
+                                            reset_score();
+                                        }
                                     Data.button_6 = 1;
                                 }
                                 break;
@@ -181,7 +193,7 @@ namespace enumerator
                             case 8:
                                 if (Data.button_8 == 0)
                                 {
-                                    if (Data.status == 0) inning(1);
+                                    if (Data.status == 0) inning(2);
                                     else
                                         if (Data.status == 1)
                                             add_point(Data.reverse, "yy");
@@ -234,7 +246,7 @@ namespace enumerator
                 Image img = Properties.Resources.offline;
                 joystick_status.Image = img;
                 // Запись в лог
-                write_log("Joystick disconnected "+e.ToString());
+                write_log("Joystick disconnected " + e.ToString());
             }
         }
         #endregion
@@ -311,8 +323,8 @@ namespace enumerator
                             info.Text = "";
                             Data.history = "";
                             reset_score();
-                            e.Hooked = true;
                         }
+                    e.Hooked = true;
                     break;
 
                 case Keys.Escape:
@@ -351,14 +363,14 @@ namespace enumerator
             double font_size = this.Size.Width * 0.45 / Convert.ToDouble(2);
             label_xx.Font = new Font(label_xx.Font.FontFamily, Convert.ToInt32(font_size), label_xx.Font.Unit);
             label_yy.Font = new Font(label_xx.Font.FontFamily, Convert.ToInt32(font_size), label_yy.Font.Unit);
-            font_size = this.Size.Width * 0.3 / Convert.ToDouble(12);
+            font_size = this.Size.Width * 0.3 / Convert.ToDouble(8);
             label_player1.Font = new Font(label_player1.Font.FontFamily, Convert.ToInt32(font_size), label_player1.Font.Unit);
             label_player2.Font = new Font(label_player2.Font.FontFamily, Convert.ToInt32(font_size), label_player2.Font.Unit);
 
             label_x.Font = new Font(label_x.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_x.Font.Unit);
             label_y.Font = new Font(label_y.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_y.Font.Unit);
 
-            info.Font = new Font(info.Font.FontFamily, Convert.ToInt32(font_size), info.Font.Unit);
+            info.Font = new Font(info.Font.FontFamily, Convert.ToInt32(font_size-5), info.Font.Unit);
             label_timer.Font = new Font(label_timer.Font.FontFamily, Convert.ToInt32(font_size), label_timer.Font.Unit);
             int size = Convert.ToInt32(this.Size.Width * 0.3 / Convert.ToDouble(3));
             inning1.Size = new Size(size, size);
@@ -381,9 +393,14 @@ namespace enumerator
                 Data.history = "";
                 refresh();
                 set_inning();
-                Data.from_bd = true;
+                //Data.from_bd = true;
                 info.Text = "Розыгрыш подачи";
                 write_log("Розыгрыш подачи");
+                if (!Data.from_bd)
+                {
+                    string start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    Data.start = Convert.ToDateTime(start);
+                }
                 timer4.Start();
                 this.Focus();
             }
@@ -475,6 +492,10 @@ namespace enumerator
             Data.inning_side = 0;
             Data.query = "";
             Data.history = "";
+
+            Data.start = new DateTime();
+            timer4.Stop();
+
             refresh();
             set_inning();
         }
@@ -513,13 +534,11 @@ namespace enumerator
                             Data.xx++;
                             label_xx.Text = Data.xx.ToString();
                             history_add("xx");
-                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
                             write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player1 + " заработал очко)");
                             break;
                         case "yy":
                             Data.yy++;
                             label_yy.Text = Data.yy.ToString();
-                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
                             write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player2 + " заработал очко)");
                             history_add("yy");
                             break;
@@ -533,14 +552,12 @@ namespace enumerator
                             Data.yy++;
                             label_xx.Text = Data.yy.ToString();
                             history_add("yy");
-                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player2 + " заработал очко" + Environment.NewLine;
                             write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player2 + " заработал очко)");
                             break;
                         case "yy":
                             Data.xx++;
                             label_yy.Text = Data.xx.ToString();
                             history_add("xx");
-                            //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Игрок " + Data.player1 + " заработал очко" + Environment.NewLine;
                             write_log(Data.xx + ":" + Data.yy + " (игрок " + Data.player1 + " заработал очко)");
                             break;
                     }
@@ -559,19 +576,16 @@ namespace enumerator
                     if (Data.x > Data.y)
                     {
                         info.Text = "Победитель: " + Data.player1;
-                        //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player1 + Environment.NewLine;
                         write_log("В этой встрече победил: " + Data.player1);
                     }
                     if (Data.y > Data.x)
                     {
                         info.Text = "Победитель: " + Data.player2;
-                        //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Победитель: " + Data.player2 + Environment.NewLine;
                         write_log("В этой встрече победил: " + Data.player2);
                     }
                     timer4.Stop();
                     Data.status = -1;
                     Data.query += "UPDATE matches SET x='" + Data.x + "',y='" + Data.y + "',status='2',end='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE id='" + Data.match + "';";
-                    //Data.console += Data.query + Environment.NewLine;
                     // Записать в лог-файл выполняемый запрос
                     //write_log(Data.query);
                     if (Data.match > 0)
@@ -600,7 +614,6 @@ namespace enumerator
                 }
                 else
                 {
-                    //Data.console += DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + " - " + "Начало следующей партии" + Environment.NewLine;
                     write_log("Начало следующей партии");
                     Data.xx = 0;
                     Data.yy = 0;
@@ -684,12 +697,12 @@ namespace enumerator
                 case "x":
                     Data.x++;
                     history_add("x");
-                    info.Text = "Эту партию выйграл игрок: " + Data.player1 + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
+                    info.Text = "Эту партию выйграл игрок: " + Data.player1;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
                 case "y":
                     Data.y++;
                     history_add("y");
-                    info.Text = "Эту партию выйграл игрок: " + Data.player2 + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
+                    info.Text = "Эту партию выйграл игрок: " + Data.player2;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
             }
             Data.status = 2;
@@ -973,7 +986,7 @@ namespace enumerator
             }
             else
             {
-                if((Data.player1!=null)&(Data.player2!=null))
+                if ((Data.player1 != null) & (Data.player2 != null))
                     abort_game();
                 write_log("Закрытие программы");
                 timer1.Stop();

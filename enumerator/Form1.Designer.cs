@@ -83,10 +83,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 575);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
@@ -100,7 +99,7 @@
             this.помощьToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 136);
             // 
             // выбратьВстречуToolStripMenuItem
             // 
@@ -150,12 +149,12 @@
             this.label_xx.BackColor = System.Drawing.Color.MediumBlue;
             this.label_xx.Cursor = System.Windows.Forms.Cursors.Default;
             this.label_xx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_xx.Font = new System.Drawing.Font("Arial Black", 180F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_xx.Font = new System.Drawing.Font("Arial Black", 182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_xx.ForeColor = System.Drawing.Color.White;
-            this.label_xx.Location = new System.Drawing.Point(0, 172);
+            this.label_xx.Location = new System.Drawing.Point(0, 201);
             this.label_xx.Margin = new System.Windows.Forms.Padding(0);
             this.label_xx.Name = "label_xx";
-            this.label_xx.Size = new System.Drawing.Size(397, 316);
+            this.label_xx.Size = new System.Drawing.Size(397, 287);
             this.label_xx.TabIndex = 0;
             this.label_xx.Text = "0";
             this.label_xx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -164,12 +163,12 @@
             // 
             this.label_yy.BackColor = System.Drawing.Color.DarkRed;
             this.label_yy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_yy.Font = new System.Drawing.Font("Arial Black", 180F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_yy.Font = new System.Drawing.Font("Arial Black", 182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_yy.ForeColor = System.Drawing.Color.White;
-            this.label_yy.Location = new System.Drawing.Point(397, 172);
+            this.label_yy.Location = new System.Drawing.Point(397, 201);
             this.label_yy.Margin = new System.Windows.Forms.Padding(0);
             this.label_yy.Name = "label_yy";
-            this.label_yy.Size = new System.Drawing.Size(397, 316);
+            this.label_yy.Size = new System.Drawing.Size(397, 287);
             this.label_yy.TabIndex = 1;
             this.label_yy.Text = "0";
             this.label_yy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -191,7 +190,7 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(397, 86);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(397, 115);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // label_player2
@@ -199,13 +198,13 @@
             this.label_player2.AutoSize = true;
             this.label_player2.BackColor = System.Drawing.Color.Transparent;
             this.label_player2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_player2.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_player2.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_player2.ForeColor = System.Drawing.Color.White;
             this.label_player2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label_player2.Location = new System.Drawing.Point(39, 0);
             this.label_player2.Margin = new System.Windows.Forms.Padding(0);
             this.label_player2.Name = "label_player2";
-            this.label_player2.Size = new System.Drawing.Size(273, 86);
+            this.label_player2.Size = new System.Drawing.Size(273, 115);
             this.label_player2.TabIndex = 4;
             this.label_player2.Text = "Игрок\r\n2";
             this.label_player2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,12 +217,12 @@
             this.label_y.BackColor = System.Drawing.Color.Transparent;
             this.label_y.Cursor = System.Windows.Forms.Cursors.Default;
             this.label_y.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_y.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_y.Font = new System.Drawing.Font("Arial Black", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_y.ForeColor = System.Drawing.Color.White;
             this.label_y.Location = new System.Drawing.Point(0, 0);
             this.label_y.Margin = new System.Windows.Forms.Padding(0);
             this.label_y.Name = "label_y";
-            this.label_y.Size = new System.Drawing.Size(39, 86);
+            this.label_y.Size = new System.Drawing.Size(39, 115);
             this.label_y.TabIndex = 2;
             this.label_y.Text = "0";
             this.label_y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -233,7 +232,7 @@
             this.inning2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.inning2.Image = global::enumerator.Properties.Resources.ball2;
             this.inning2.InitialImage = null;
-            this.inning2.Location = new System.Drawing.Point(317, 3);
+            this.inning2.Location = new System.Drawing.Point(317, 17);
             this.inning2.Margin = new System.Windows.Forms.Padding(0);
             this.inning2.Name = "inning2";
             this.inning2.Size = new System.Drawing.Size(80, 80);
@@ -259,7 +258,7 @@
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 86);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 115);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
             // label_player1
@@ -267,13 +266,13 @@
             this.label_player1.AutoSize = true;
             this.label_player1.BackColor = System.Drawing.Color.Transparent;
             this.label_player1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_player1.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_player1.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_player1.ForeColor = System.Drawing.Color.White;
             this.label_player1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label_player1.Location = new System.Drawing.Point(83, 0);
             this.label_player1.Margin = new System.Windows.Forms.Padding(0);
             this.label_player1.Name = "label_player1";
-            this.label_player1.Size = new System.Drawing.Size(273, 86);
+            this.label_player1.Size = new System.Drawing.Size(273, 115);
             this.label_player1.TabIndex = 3;
             this.label_player1.Text = "Игрок\r\n1";
             this.label_player1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -286,12 +285,12 @@
             this.label_x.BackColor = System.Drawing.Color.Transparent;
             this.label_x.Cursor = System.Windows.Forms.Cursors.Default;
             this.label_x.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_x.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_x.Font = new System.Drawing.Font("Arial Black", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_x.ForeColor = System.Drawing.Color.White;
             this.label_x.Location = new System.Drawing.Point(356, 0);
             this.label_x.Margin = new System.Windows.Forms.Padding(0);
             this.label_x.Name = "label_x";
-            this.label_x.Size = new System.Drawing.Size(41, 86);
+            this.label_x.Size = new System.Drawing.Size(41, 115);
             this.label_x.TabIndex = 1;
             this.label_x.Text = "0";
             this.label_x.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -301,7 +300,7 @@
             this.inning1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.inning1.Image = global::enumerator.Properties.Resources.ball2;
             this.inning1.InitialImage = null;
-            this.inning1.Location = new System.Drawing.Point(0, 3);
+            this.inning1.Location = new System.Drawing.Point(0, 17);
             this.inning1.Margin = new System.Windows.Forms.Padding(0);
             this.inning1.Name = "inning1";
             this.inning1.Size = new System.Drawing.Size(80, 80);
@@ -316,7 +315,7 @@
             this.info.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.SetColumnSpan(this.info, 2);
             this.info.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.info.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.info.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.info.ForeColor = System.Drawing.Color.White;
             this.info.Location = new System.Drawing.Point(0, 488);
             this.info.Margin = new System.Windows.Forms.Padding(0);
@@ -332,7 +331,7 @@
             this.label_timer.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel1.SetColumnSpan(this.label_timer, 2);
             this.label_timer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_timer.Font = new System.Drawing.Font("Arial Black", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.label_timer.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_timer.ForeColor = System.Drawing.Color.White;
             this.label_timer.Location = new System.Drawing.Point(0, 0);
             this.label_timer.Margin = new System.Windows.Forms.Padding(0);
