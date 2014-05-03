@@ -67,6 +67,12 @@
     <Compile Include="form_console.Designer.cs">
       <DependentUpon>form_console.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_add_edit_player.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_add_edit_player.Designer.cs">
+      <DependentUpon>form_add_edit_player.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_matches.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form_console.resx">
       <DependentUpon>form_console.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_add_edit_player.resx">
+      <DependentUpon>form_add_edit_player.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form_matches.resx">
       <DependentUpon>form_matches.cs</DependentUpon>
@@ -159,6 +168,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ball_64x64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_group_8863.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_user_2193.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_user_7629.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

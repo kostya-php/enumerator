@@ -16,23 +16,9 @@ namespace enumerator
         {
             InitializeComponent();
         }
-
-        private void Main_Load(object sender, EventArgs e)
+        public void grid_update()
         {
-            Data.main = true;
-            TableLayoutPanel tlp = new TableLayoutPanel();
-            tlp.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tlp.ColumnCount = 3;
-            //ColumnStyle cs = new ColumnStyle(SizeType.Absolute, 50);
-            //tlp.ColumnStyles.Add(cs);
-            //tlp.ColumnStyles[0].Width = 100;
-            //tlp.ColumnStyles[1].Width = 200;
-            //tlp.ColumnStyles[5].Width = 100;
-            tlp.Dock = DockStyle.Fill;
-            tlp.AutoScroll = true;
-            tabPlayers.Controls.Add(tlp);
-            tlp.Margin = new Padding(50, 50, 50, 50);
-
+            dataPlayers.Rows.Clear();
             MySqlConnection connect = null;
             try
             {
@@ -44,55 +30,22 @@ namespace enumerator
                 query = "SELECT * FROM players ORDER BY id ASC";
                 cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                Label[] lbl_id = new Label[n+1];
-                Label[] lbl_name = new Label[n + 1];
-                Label[] lbl_birthday = new Label[n + 1];
-                // заголовок
-                lbl_id[0] = new Label()
+                string id, player, birthday;
+                DateTime dt = new DateTime();
+                while (dataReader.Read())
                 {
-                    Text = "id"
-                };
-                tlp.Controls.Add(lbl_id[0]);
-                lbl_name[0] = new Label()
-                {
-                    Text = "Игрок"
-                };
-                tlp.Controls.Add(lbl_name[0]);
-                lbl_birthday[0] = new Label()
-                {
-                    Text = "Дата рождения"
-                };
-                tlp.Controls.Add(lbl_birthday[0]);
-                for (int i = 1; i <= n; i++)
-                {
-                    dataReader.Read();
-                    // id
-                    lbl_id[i] = new Label()
-                    {
-                        Text = dataReader["id"].ToString()
-                    };
-                    tlp.Controls.Add(lbl_id[i]);
-                    // player
-                    lbl_name[i] = new Label()
-                    {
-                        Text = dataReader["player"].ToString()
-                    };
-                    tlp.Controls.Add(lbl_name[i]);
-                    // birthday
-                    string birthday = "-";
-                    DateTime dt = new DateTime();
+                    id = dataReader["id"].ToString();
+                    player = dataReader["player"].ToString();
                     if (dataReader["birthday"].ToString() != "")
                     {
                         dt = Convert.ToDateTime(dataReader["birthday"]);
                         birthday = dt.ToString("dd MMMM yyyy");
                     }
-                    //string birthday = String.Format("{0:MM.dd.yyyy}", dt);
-                    //string birthday = dt.ToString("MM.dd.yyyy");
-                    lbl_birthday[i] = new Label()
+                    else
                     {
-                        Text = birthday
-                    };
-                    tlp.Controls.Add(lbl_birthday[i]);
+                        birthday = "?";
+                    }
+                    dataPlayers.Rows.Add(id, player, birthday);
                 }
                 dataReader.Close();
 
@@ -109,10 +62,64 @@ namespace enumerator
                 }
             }
         }
+        private void Main_Load(object sender, EventArgs e)
+        {
+            Data.main = true;
+            Data.edited_player = -1;
+            grid_update();
+        }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Data.main = false;
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            Data.edited_player = -1;
+            form_add_edit_player form_aep = new form_add_edit_player();
+            form_aep.Owner = this;
+            form_aep.ShowDialog();
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            int index = dataPlayers.CurrentRow.Index;
+            Data.edited_player = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
+            form_add_edit_player form_aep = new form_add_edit_player();
+            form_aep.Owner = this;
+            form_aep.ShowDialog();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            int index = dataPlayers.CurrentRow.Index;
+            int id = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
+            DialogResult dr = MessageBox.Show(Data.player_name(id) + Environment.NewLine + "Вы действительно хотите удалить этого игрока?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                MySqlConnection connect = null;
+                try
+                {
+                    connect = new MySqlConnection(Data.connectionString);
+                    connect.Open();
+                    string query = "DELETE FROM players WHERE id='"+id+"'";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException err)
+                {
+                    MessageBox.Show("Ошибка: " + err.ToString());
+                }
+                finally
+                {
+                    if (connect != null)
+                    {
+                        connect.Close();
+                    }
+                }
+                grid_update();
+            }
         }
     }
 }

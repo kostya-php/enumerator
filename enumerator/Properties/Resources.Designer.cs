@@ -61,6 +61,16 @@ namespace enumerator.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon add_group_8863 {
+            get {
+                object obj = ResourceManager.GetObject("add_group_8863", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.IO.UnmanagedMemoryStream, аналогичного System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream aplause {
@@ -106,6 +116,26 @@ namespace enumerator.Properties {
             get {
                 object obj = ResourceManager.GetObject("ball21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon delete_user_2193 {
+            get {
+                object obj = ResourceManager.GetObject("delete_user_2193", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon edit_user_7629 {
+            get {
+                object obj = ResourceManager.GetObject("edit_user_7629", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

@@ -322,7 +322,6 @@ namespace enumerator
                             Data.history = "";
                             reset_score();
                         }
-                    e.Hooked = true;
                     break;
 
                 case Keys.Escape:
@@ -502,6 +501,7 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.prepareTranslit();
             Data.main = false;
             Data.fm_fp = false;
             Data.from_bd = false;
