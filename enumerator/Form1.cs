@@ -392,7 +392,6 @@ namespace enumerator
                 Data.history = "";
                 refresh();
                 set_inning();
-                //Data.from_bd = true;
                 info.Text = "Розыгрыш подачи";
                 write_log("Розыгрыш подачи");
                 if (!Data.from_bd)
@@ -501,16 +500,9 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
-            Data.prepareTranslit();
             Data.main = false;
             Data.fm_fp = false;
             Data.from_bd = false;
-            Data.host = Properties.Settings.Default.host;
-            Data.database = Properties.Settings.Default.database;
-            Data.user = Properties.Settings.Default.user;
-            Data.password = Properties.Settings.Default.password;
-            Data.connectionString = "SERVER=" + Data.host + ";" + "DATABASE=" +
-                Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
             write_log("Запуск программы");
             Data.use_console = false;
             timer2.Start();
@@ -975,6 +967,7 @@ namespace enumerator
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /*
             DialogResult reply = MessageBox.Show("Вы действительно хотите закрыть счетчик?", "Закрыть", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (reply == DialogResult.No)
             {
@@ -987,6 +980,9 @@ namespace enumerator
                 write_log("Закрытие программы");
                 timer1.Stop();
             }
+            */
+            e.Cancel = true;
+            this.Visible = false;
         }
         // Выбрать игроков вручную (из БД берутся только сами игроки)
         private void выбратьИгроковToolStripMenuItem_Click(object sender, EventArgs e)

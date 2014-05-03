@@ -39,10 +39,13 @@
             this.player = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonOpenEnumerator1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -52,11 +55,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 575);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -69,14 +74,14 @@
             this.groupBox1.Controls.Add(this.dataPlayers);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(391, 569);
+            this.groupBox1.Size = new System.Drawing.Size(391, 454);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Игроки";
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(310, 19);
+            this.buttonDelete.Location = new System.Drawing.Point(310, 425);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 3;
@@ -86,7 +91,7 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(148, 19);
+            this.buttonEdit.Location = new System.Drawing.Point(148, 425);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(95, 23);
             this.buttonEdit.TabIndex = 2;
@@ -96,7 +101,7 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(6, 19);
+            this.buttonAdd.Location = new System.Drawing.Point(9, 425);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(75, 23);
             this.buttonAdd.TabIndex = 1;
@@ -115,7 +120,7 @@
             this.id,
             this.player,
             this.birthday});
-            this.dataPlayers.Location = new System.Drawing.Point(6, 48);
+            this.dataPlayers.Location = new System.Drawing.Point(6, 19);
             this.dataPlayers.MultiSelect = false;
             this.dataPlayers.Name = "dataPlayers";
             this.dataPlayers.ReadOnly = true;
@@ -123,7 +128,7 @@
             this.dataPlayers.RowHeadersWidth = 20;
             this.dataPlayers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataPlayers.Size = new System.Drawing.Size(379, 512);
+            this.dataPlayers.Size = new System.Drawing.Size(379, 400);
             this.dataPlayers.TabIndex = 0;
             // 
             // groupBox2
@@ -131,7 +136,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(400, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(391, 569);
+            this.groupBox2.Size = new System.Drawing.Size(391, 454);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Турниры";
@@ -169,6 +174,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "В разработке";
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.buttonOpenEnumerator1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 463);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(788, 109);
+            this.panel1.TabIndex = 2;
+            // 
+            // buttonOpenEnumerator1
+            // 
+            this.buttonOpenEnumerator1.Location = new System.Drawing.Point(7, 35);
+            this.buttonOpenEnumerator1.Name = "buttonOpenEnumerator1";
+            this.buttonOpenEnumerator1.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenEnumerator1.TabIndex = 0;
+            this.buttonOpenEnumerator1.Text = "Счетчик 1";
+            this.buttonOpenEnumerator1.UseVisualStyleBackColor = true;
+            this.buttonOpenEnumerator1.Click += new System.EventHandler(this.buttonOpenEnumerator1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +216,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -207,6 +234,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn player;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonOpenEnumerator1;
 
 
     }

@@ -121,5 +121,10 @@ namespace enumerator
                 grid_update();
             }
         }
+
+        private void buttonOpenEnumerator1_Click(object sender, EventArgs e)
+        {
+            if (!Data.f1.Visible) Data.f1.Visible = true;
+        }
     }
 }

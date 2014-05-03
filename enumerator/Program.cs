@@ -199,6 +199,8 @@ namespace enumerator
         }
         // Редактируемый игрок
         public static int edited_player { get; set; }
+
+        public static Form1 f1 { get; set; }
     }
     static class Program
     {
@@ -213,7 +215,16 @@ namespace enumerator
             Data.status = -1;
             Data.match = -1;
             Data.tournament = -1;
-            Application.Run(new Form1());
+            Data.prepareTranslit();
+            Data.host = Properties.Settings.Default.host;
+            Data.database = Properties.Settings.Default.database;
+            Data.user = Properties.Settings.Default.user;
+            Data.password = Properties.Settings.Default.password;
+            Data.connectionString = "SERVER=" + Data.host + ";" + "DATABASE=" +
+                Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
+            Data.f1 = new Form1();
+            //Application.Run(new Form1());
+            Application.Run(new Main());
         }
     }
 }
