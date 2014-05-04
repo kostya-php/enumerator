@@ -500,6 +500,8 @@ namespace enumerator
         // Загрузка формы
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.update_info();
+
             Data.main = false;
             Data.fm_fp = false;
             Data.from_bd = false;
@@ -615,12 +617,10 @@ namespace enumerator
                     switch (Data.inning_side)
                     {
                         case 1:
-                            Data.inning = false;
                             inning1.Visible = true;
                             inning2.Visible = false;
                             break;
                         case 2:
-                            Data.inning = true;
                             inning2.Visible = true;
                             inning1.Visible = false;
                             break;
@@ -1071,38 +1071,6 @@ namespace enumerator
             }
             return rounds;
         }
-        // Получаем имя игрока по его id
-        private string player_name(int id)
-        {
-            string result = "NoName";
-            MySqlConnection connect = null;
-            try
-            {
-                connect = new MySqlConnection(Data.connectionString);
-                connect.Open();
-                string query = "SELECT * FROM players WHERE id='" + id.ToString() + "'";
-                MySqlCommand cmd = new MySqlCommand(query, connect);
-                MySqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    result = dataReader["player"].ToString();
-                }
-                dataReader.Close();
-                connect.Close();
-            }
-            catch (MySqlException err)
-            {
-                MessageBox.Show("Ошибка: " + err.ToString());
-            }
-            finally
-            {
-                if (connect != null)
-                {
-                    connect.Close();
-                }
-            }
-            return result;
-        }
         // Функция прерывания текущей игры
         private void abort_game()
         {
@@ -1118,6 +1086,7 @@ namespace enumerator
                     cmd.ExecuteNonQuery();
                     connect.Close();
                     Data.from_bd = false;
+                    Data.update_info();
                 }
                 catch (MySqlException err)
                 {

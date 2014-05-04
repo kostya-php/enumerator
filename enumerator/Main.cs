@@ -72,6 +72,8 @@ namespace enumerator
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Data.main = false;
+            //if ((Data.player1 != null) & (Data.player2 != null))
+            //    abort_game();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

@@ -204,6 +204,8 @@ namespace enumerator
                     f1.выбратьВстречуToolStripMenuItem.Enabled = false;
                     f1.pick();
                 }
+                Data.from_bd = true;
+                Data.update_info();
                 this.Close();
             }
             catch (MySqlException err)

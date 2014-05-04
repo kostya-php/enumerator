@@ -45,7 +45,6 @@
             this.label_player1 = new System.Windows.Forms.Label();
             this.label_x = new System.Windows.Forms.Label();
             this.inning1 = new System.Windows.Forms.PictureBox();
-            this.info = new System.Windows.Forms.Label();
             this.label_timer = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
@@ -59,6 +58,8 @@
             this.консольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.info = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -67,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.inning1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -80,8 +82,8 @@
             this.tableLayoutPanel1.Controls.Add(this.label_yy, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.info, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label_timer, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -290,22 +292,6 @@
             this.inning1.TabStop = false;
             this.inning1.Visible = false;
             // 
-            // info
-            // 
-            this.info.AutoSize = true;
-            this.info.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanel1.SetColumnSpan(this.info, 2);
-            this.info.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.info.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.info.ForeColor = System.Drawing.Color.White;
-            this.info.Location = new System.Drawing.Point(0, 488);
-            this.info.Margin = new System.Windows.Forms.Padding(0);
-            this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(794, 87);
-            this.info.TabIndex = 8;
-            this.info.Text = "Ожидание встречи";
-            this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label_timer
             // 
             this.label_timer.AutoSize = true;
@@ -409,6 +395,32 @@
             this.помощьToolStripMenuItem1.Text = "Помощь";
             this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem1_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.info);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 488);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(794, 87);
+            this.panel1.TabIndex = 10;
+            // 
+            // info
+            // 
+            this.info.BackColor = System.Drawing.Color.Black;
+            this.info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.info.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.info.ForeColor = System.Drawing.Color.White;
+            this.info.Location = new System.Drawing.Point(0, 0);
+            this.info.Margin = new System.Windows.Forms.Padding(0);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(794, 87);
+            this.info.TabIndex = 9;
+            this.info.Text = "Ожидание встречи";
+            this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,6 +453,7 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -450,7 +463,6 @@
 
         private System.Windows.Forms.Label label_xx;
         private System.Windows.Forms.Label label_yy;
-        private System.Windows.Forms.Label info;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Timer timer2;
@@ -477,6 +489,8 @@
         private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem консольToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Label info;
 
     }
 }
