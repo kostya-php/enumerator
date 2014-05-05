@@ -72,7 +72,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(794, 575);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 562);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // label_yy
@@ -82,10 +82,10 @@
             this.label_yy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_yy.Font = new System.Drawing.Font("Arial Black", 182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_yy.ForeColor = System.Drawing.Color.White;
-            this.label_yy.Location = new System.Drawing.Point(0, 201);
+            this.label_yy.Location = new System.Drawing.Point(0, 196);
             this.label_yy.Margin = new System.Windows.Forms.Padding(0);
             this.label_yy.Name = "label_yy";
-            this.label_yy.Size = new System.Drawing.Size(397, 287);
+            this.label_yy.Size = new System.Drawing.Size(392, 281);
             this.label_yy.TabIndex = 0;
             this.label_yy.Text = "0";
             this.label_yy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -96,10 +96,10 @@
             this.label_xx.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_xx.Font = new System.Drawing.Font("Arial Black", 182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_xx.ForeColor = System.Drawing.Color.White;
-            this.label_xx.Location = new System.Drawing.Point(397, 201);
+            this.label_xx.Location = new System.Drawing.Point(392, 196);
             this.label_xx.Margin = new System.Windows.Forms.Padding(0);
             this.label_xx.Name = "label_xx";
-            this.label_xx.Size = new System.Drawing.Size(397, 287);
+            this.label_xx.Size = new System.Drawing.Size(392, 281);
             this.label_xx.TabIndex = 1;
             this.label_xx.Text = "0";
             this.label_xx.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -115,13 +115,13 @@
             this.tableLayoutPanel4.Controls.Add(this.label_x, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.inning1, 2, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(397, 86);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(392, 84);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(397, 115);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 112);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
             // label_player1
@@ -135,7 +135,7 @@
             this.label_player1.Location = new System.Drawing.Point(39, 0);
             this.label_player1.Margin = new System.Windows.Forms.Padding(0);
             this.label_player1.Name = "label_player1";
-            this.label_player1.Size = new System.Drawing.Size(273, 115);
+            this.label_player1.Size = new System.Drawing.Size(270, 112);
             this.label_player1.TabIndex = 4;
             this.label_player1.Text = "Игрок\r\n1";
             this.label_player1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -153,7 +153,7 @@
             this.label_x.Location = new System.Drawing.Point(0, 0);
             this.label_x.Margin = new System.Windows.Forms.Padding(0);
             this.label_x.Name = "label_x";
-            this.label_x.Size = new System.Drawing.Size(39, 115);
+            this.label_x.Size = new System.Drawing.Size(39, 112);
             this.label_x.TabIndex = 2;
             this.label_x.Text = "0";
             this.label_x.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,7 +163,7 @@
             this.inning1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.inning1.Image = global::enumerator.Properties.Resources.ball2;
             this.inning1.InitialImage = null;
-            this.inning1.Location = new System.Drawing.Point(317, 17);
+            this.inning1.Location = new System.Drawing.Point(312, 16);
             this.inning1.Margin = new System.Windows.Forms.Padding(0);
             this.inning1.Name = "inning1";
             this.inning1.Size = new System.Drawing.Size(80, 80);
@@ -183,13 +183,13 @@
             this.tableLayoutPanel5.Controls.Add(this.label_y, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.inning2, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 86);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 84);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(397, 115);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(392, 112);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
             // label_player2
@@ -200,10 +200,10 @@
             this.label_player2.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_player2.ForeColor = System.Drawing.Color.White;
             this.label_player2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label_player2.Location = new System.Drawing.Point(83, 0);
+            this.label_player2.Location = new System.Drawing.Point(82, 0);
             this.label_player2.Margin = new System.Windows.Forms.Padding(0);
             this.label_player2.Name = "label_player2";
-            this.label_player2.Size = new System.Drawing.Size(273, 115);
+            this.label_player2.Size = new System.Drawing.Size(270, 112);
             this.label_player2.TabIndex = 3;
             this.label_player2.Text = "Игрок\r\n2";
             this.label_player2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,10 +218,10 @@
             this.label_y.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_y.Font = new System.Drawing.Font("Arial Black", 46F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
             this.label_y.ForeColor = System.Drawing.Color.White;
-            this.label_y.Location = new System.Drawing.Point(356, 0);
+            this.label_y.Location = new System.Drawing.Point(352, 0);
             this.label_y.Margin = new System.Windows.Forms.Padding(0);
             this.label_y.Name = "label_y";
-            this.label_y.Size = new System.Drawing.Size(41, 115);
+            this.label_y.Size = new System.Drawing.Size(40, 112);
             this.label_y.TabIndex = 1;
             this.label_y.Text = "0";
             this.label_y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -231,7 +231,7 @@
             this.inning2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.inning2.Image = global::enumerator.Properties.Resources.ball2;
             this.inning2.InitialImage = null;
-            this.inning2.Location = new System.Drawing.Point(0, 17);
+            this.inning2.Location = new System.Drawing.Point(0, 16);
             this.inning2.Margin = new System.Windows.Forms.Padding(0);
             this.inning2.Name = "inning2";
             this.inning2.Size = new System.Drawing.Size(80, 80);
@@ -251,7 +251,7 @@
             this.label_timer.Location = new System.Drawing.Point(0, 0);
             this.label_timer.Margin = new System.Windows.Forms.Padding(0);
             this.label_timer.Name = "label_timer";
-            this.label_timer.Size = new System.Drawing.Size(794, 86);
+            this.label_timer.Size = new System.Drawing.Size(784, 84);
             this.label_timer.TabIndex = 9;
             this.label_timer.Text = "00:00";
             this.label_timer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,10 +262,10 @@
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
             this.panel1.Controls.Add(this.info);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 488);
+            this.panel1.Location = new System.Drawing.Point(0, 477);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 87);
+            this.panel1.Size = new System.Drawing.Size(784, 85);
             this.panel1.TabIndex = 10;
             // 
             // info
@@ -277,7 +277,7 @@
             this.info.Location = new System.Drawing.Point(0, 0);
             this.info.Margin = new System.Windows.Forms.Padding(0);
             this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(794, 87);
+            this.info.Size = new System.Drawing.Size(784, 85);
             this.info.TabIndex = 9;
             this.info.Text = "Ожидание встречи";
             this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -286,7 +286,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 575);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

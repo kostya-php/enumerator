@@ -251,7 +251,7 @@ namespace enumerator
             Main form_aep = this.Owner as Main;
             if (form_aep != null)
             {
-                form_aep.grid_update();
+                form_aep.players_update();
             }
             this.Close();
         }

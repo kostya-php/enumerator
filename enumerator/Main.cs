@@ -18,7 +18,7 @@ namespace enumerator
         {
             InitializeComponent();
         }
-        public void grid_update()
+        public void players_update()
         {
             int index = 0;
             if (dataPlayers.RowCount > 0)
@@ -70,11 +70,48 @@ namespace enumerator
             }
             dataPlayers.Rows[index].Cells[0].Selected = true;
         }
+        public void tournaments_update()
+        {
+            dataTournaments.Rows.Clear();
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "SELECT Count(*) FROM tournaments";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                int n = Convert.ToInt32(cmd.ExecuteScalar());
+                query = "SELECT * FROM tournaments ORDER BY id ASC";
+                cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                string id, name, date;
+                while (dataReader.Read())
+                {
+                    id = dataReader["id"].ToString();
+                    name = dataReader["name"].ToString();
+                    date = Convert.ToDateTime(dataReader["date"]).ToString("dd MMMM yyyy");
+                    dataTournaments.Rows.Add(id, name, date);
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+        }
         private void Main_Load(object sender, EventArgs e)
         {
             Data.main = true;
             Data.edited_player = -1;
-            grid_update();
+            players_update();
+            tournaments_update();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -84,7 +121,7 @@ namespace enumerator
                 Data.abort_game();
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void buttonAddPlayer_Click(object sender, EventArgs e)
         {
             Data.edited_player = -1;
             form_add_edit_player form_aep = new form_add_edit_player();
@@ -92,7 +129,7 @@ namespace enumerator
             form_aep.ShowDialog();
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private void buttonEditPlayer_Click(object sender, EventArgs e)
         {
             int index = dataPlayers.CurrentRow.Index;
             Data.edited_player = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
@@ -128,7 +165,7 @@ namespace enumerator
                         connect.Close();
                     }
                 }
-                grid_update();
+                players_update();
             }
         }
 
@@ -146,6 +183,13 @@ namespace enumerator
         private void buttonOpenEnumerator2_Click(object sender, EventArgs e)
         {
             if (!Data.f2.Visible) Data.f2.Visible = true;
+        }
+
+        private void buttonAddTournament_Click(object sender, EventArgs e)
+        {
+            form_add_tournament form_at = new form_add_tournament();
+            form_at.Owner = this;
+            form_at.ShowDialog();
         }
     }
 }

@@ -19,54 +19,54 @@ namespace enumerator
         // Имена игроков
         public static string player1 { get; set; }
         public static string player2 { get; set; }
-        
+
         // Номера игроков
         public static int player1_id { get; set; }
         public static int player2_id { get; set; }
-        
+
         // Опции
         public static bool balance { get; set; } // баланс
         public static bool reverse { get; set; } // игроки поменяны местами или нет
-        
+
         // Статус игры
         // 0 - розыгрыш
         // 1 - идет игра
         // 2 - конец игры
         // 3 - перезапуск игры
         public static int status { get; set; }
-        
+
         // Счет по очкам
         public static int xx { get; set; }
         public static int yy { get; set; }
-        
+
         // Счет по партиям
         public static int x { get; set; }
         public static int y { get; set; }
-        
+
         // Количество партий
         public static int rounds { get; set; }
-        
+
         // Минимальное количество побед для выйгрыша встречи
         public static int min_wins { get; set; }
-        
+
         // Подача (какая сторона подает первая)
         public static int inning_side { get; set; }
-        
+
         // История (необходимо для отмены последнего засчитанного очка)
         public static string history { get; set; }
-        
+
         // Консоль (текст консоли)
         public static string console { get; set; }
-        
+
         // Запрос
         public static string query { get; set; }
-        
+
         // Номер игры (если игра из базы данных)
         public static int match { get; set; }
-        
+
         // Номер турнира (если игра из базы данных)
         public static int tournament { get; set; }
-        
+
         // Переменные для того, что-бы определить - зажата ли кнопка
         public static int button_1 { get; set; }
         public static int button_2 { get; set; }
@@ -76,26 +76,26 @@ namespace enumerator
         public static int button_6 { get; set; }
         public static int button_7 { get; set; }
         public static int button_8 { get; set; }
-        
+
         // Открыта ли консоль
         public static bool use_console { get; set; }
-        
+
         // Используется встреча из БД или нет
         public static bool from_bd { get; set; }
-        
+
         // Данные для подключения к БД
         public static string host { get; set; }
         public static string database { get; set; }
         public static string user { get; set; }
         public static string password { get; set; }
         public static string connectionString { get; set; }
-        
+
         // Время начала встречи
         public static string start { get; set; }
-                
+
         // Открыта ли форма с выбором встречи или выбором игроков
         public static bool fm_fp { get; set; }
-        
+
         // Открыта ли форма с базой данных
         public static bool main { get; set; }
 
@@ -131,7 +131,73 @@ namespace enumerator
             }
             return result;
         }
+        // Получаем id игрока по его имени
+        public static int player_id(string player)
+        {
+            int result = -1;
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM players WHERE player='" + player + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = Convert.ToInt32(dataReader["id"]);
+                }
+                dataReader.Close();
+                connect.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
+        // Получаем список игроков (например, элемента comboBox)
+        public static List<string> player_list()
+        {
+            List<string> list = new List<string>();
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query1 = "SELECT Count(*) FROM players";
+                MySqlCommand cmd1 = new MySqlCommand(query1, connect);
+                int Count = int.Parse(cmd1.ExecuteScalar() + "");
 
+                string query = "SELECT * FROM players ORDER BY id ASC";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    list.Add(dataReader["player"].ToString());
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return list;
+        }
         // Транслит
         private static Dictionary<string, string> transliter = new Dictionary<string, string>();
         public static void prepareTranslit()

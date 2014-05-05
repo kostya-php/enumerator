@@ -42,3 +42,4 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.csprojResolveA
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_matches.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_add_edit_player.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.Form2.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Debug\enumerator.form_add_tournament.resources
