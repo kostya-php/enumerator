@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Hooks;
+
 namespace enumerator
 {
     public partial class Main : Form
@@ -78,8 +80,8 @@ namespace enumerator
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Data.main = false;
-            //if ((Data.player1 != null) & (Data.player2 != null))
-            //    abort_game();
+            if ((Data.player1 != null) & (Data.player2 != null))
+                Data.abort_game();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -133,6 +135,12 @@ namespace enumerator
         private void buttonOpenEnumerator1_Click(object sender, EventArgs e)
         {
             if (!Data.f1.Visible) Data.f1.Visible = true;
+        }
+
+        // При закрытии формы какая-то хрень нужна
+        private void Main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            KBDHook.UnInstallHook(); // Обязательно !!!
         }
     }
 }

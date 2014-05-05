@@ -166,7 +166,7 @@ namespace enumerator
             Data.match = Convert.ToInt32(s[2]);
             // получаем текущие дату и время
             string start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            Data.start = Convert.ToDateTime(start);
+            Data.start = start;
             MySqlConnection connect = null;
             try
             {
@@ -202,7 +202,7 @@ namespace enumerator
                     f1.завершитьВстречуToolStripMenuItem.Enabled = true;
                     f1.выбратьИгроковToolStripMenuItem.Enabled = false;
                     f1.выбратьВстречуToolStripMenuItem.Enabled = false;
-                    f1.pick();
+                    Data.pick();
                 }
                 Data.from_bd = true;
                 Data.update_info();

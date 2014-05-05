@@ -46,6 +46,8 @@
             this.label_x = new System.Windows.Forms.Label();
             this.inning1 = new System.Windows.Forms.PictureBox();
             this.label_timer = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.info = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -58,17 +60,15 @@
             this.консольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.помощьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.info = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inning2)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inning1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -308,6 +308,32 @@
             this.label_timer.Text = "00:00";
             this.label_timer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.info);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 488);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(794, 87);
+            this.panel1.TabIndex = 10;
+            // 
+            // info
+            // 
+            this.info.BackColor = System.Drawing.Color.Black;
+            this.info.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.info.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
+            this.info.ForeColor = System.Drawing.Color.White;
+            this.info.Location = new System.Drawing.Point(0, 0);
+            this.info.Margin = new System.Windows.Forms.Padding(0);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(794, 87);
+            this.info.TabIndex = 9;
+            this.info.Text = "Ожидание встречи";
+            this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // timer1
             // 
             this.timer1.Interval = 15;
@@ -365,61 +391,35 @@
             // базаДанныхToolStripMenuItem
             // 
             this.базаДанныхToolStripMenuItem.Name = "базаДанныхToolStripMenuItem";
-            this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.базаДанныхToolStripMenuItem.Text = "База данных";
             this.базаДанныхToolStripMenuItem.Click += new System.EventHandler(this.базаДанныхToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem1
             // 
             this.настройкиToolStripMenuItem1.Name = "настройкиToolStripMenuItem1";
-            this.настройкиToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.настройкиToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.настройкиToolStripMenuItem1.Text = "Настройки";
             this.настройкиToolStripMenuItem1.Click += new System.EventHandler(this.настройкиToolStripMenuItem1_Click);
             // 
             // консольToolStripMenuItem
             // 
             this.консольToolStripMenuItem.Name = "консольToolStripMenuItem";
-            this.консольToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.консольToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.консольToolStripMenuItem.Text = "Консоль";
             this.консольToolStripMenuItem.Click += new System.EventHandler(this.консольToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // помощьToolStripMenuItem1
             // 
             this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.помощьToolStripMenuItem1.Text = "Помощь";
             this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem1_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
-            this.panel1.Controls.Add(this.info);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 488);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 87);
-            this.panel1.TabIndex = 10;
-            // 
-            // info
-            // 
-            this.info.BackColor = System.Drawing.Color.Black;
-            this.info.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.info.Font = new System.Drawing.Font("Arial Black", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(204)));
-            this.info.ForeColor = System.Drawing.Color.White;
-            this.info.Location = new System.Drawing.Point(0, 0);
-            this.info.Margin = new System.Windows.Forms.Padding(0);
-            this.info.Name = "info";
-            this.info.Size = new System.Drawing.Size(794, 87);
-            this.info.TabIndex = 9;
-            this.info.Text = "Ожидание встречи";
-            this.info.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -438,7 +438,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Счетчик 1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -449,11 +448,11 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inning1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,36 +460,36 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label_xx;
-        private System.Windows.Forms.Label label_yy;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel joystick_status;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label_player2;
-        private System.Windows.Forms.Label label_y;
-        private System.Windows.Forms.PictureBox inning2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label_player1;
-        private System.Windows.Forms.Label label_x;
-        private System.Windows.Forms.PictureBox inning1;
         public System.Windows.Forms.ToolStripMenuItem выбратьИгроковToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem завершитьВстречуToolStripMenuItem;
-        private System.Windows.Forms.Label label_timer;
-        private System.Windows.Forms.Timer timer4;
         public System.Windows.Forms.ToolStripMenuItem выбратьВстречуToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem базаДанныхToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem консольToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Label info;
+        public System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Timer timer2;
+        public System.Windows.Forms.ToolStripStatusLabel joystick_status;
+        public System.Windows.Forms.Label label_xx;
+        public System.Windows.Forms.Label label_yy;
+        public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        public System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.Label label_player2;
+        public System.Windows.Forms.Label label_y;
+        public System.Windows.Forms.PictureBox inning2;
+        public System.Windows.Forms.Label label_player1;
+        public System.Windows.Forms.Label label_x;
+        public System.Windows.Forms.PictureBox inning1;
+        public System.Windows.Forms.Label label_timer;
+        public System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem базаДанныхToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem1;
+        public System.Windows.Forms.ToolStripMenuItem помощьToolStripMenuItem1;
+        public System.Windows.Forms.ToolStripMenuItem консольToolStripMenuItem;
+        public System.Windows.Forms.Timer timer4;
 
     }
 }
