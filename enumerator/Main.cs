@@ -18,6 +18,11 @@ namespace enumerator
         }
         public void grid_update()
         {
+            int index = 0;
+            if (dataPlayers.RowCount > 0)
+            {
+                index = dataPlayers.CurrentRow.Index;
+            }
             dataPlayers.Rows.Clear();
             MySqlConnection connect = null;
             try
@@ -61,6 +66,7 @@ namespace enumerator
                     connect.Close();
                 }
             }
+            dataPlayers.Rows[index].Cells[0].Selected = true;
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -105,7 +111,7 @@ namespace enumerator
                 {
                     connect = new MySqlConnection(Data.connectionString);
                     connect.Open();
-                    string query = "DELETE FROM players WHERE id='"+id+"'";
+                    string query = "DELETE FROM players WHERE id='" + id + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.ExecuteNonQuery();
                 }

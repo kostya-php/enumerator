@@ -32,6 +32,14 @@ namespace enumerator
         private void textBox_player_TextChanged(object sender, EventArgs e)
         {
             textBox_translit_name.Text = Data.GetTranslit(textBox_player.Text);
+            if (textBox_player.Text.Length > 5)
+            {
+                button_OK.Enabled = true;
+            }
+            else
+            {
+                button_OK.Enabled = false;
+            }
         }
 
         private void form_edit_player_Load(object sender, EventArgs e)
@@ -47,13 +55,16 @@ namespace enumerator
                     string query = "SELECT * FROM players WHERE id='" + Data.edited_player.ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    string player, reg, base_rating, birthday, note;
+                    string player, reg, base_rating, birthday, note, photo;
                     dataReader.Read();
                     player = dataReader["player"].ToString();
                     reg = dataReader["reg"].ToString();
                     base_rating = dataReader["base_rating"].ToString();
                     birthday = dataReader["birthday"].ToString();
                     note = dataReader["note"].ToString();
+
+                    photo = dataReader["photo"].ToString();
+
                     dataReader.Close();
                     this.Text = player;
                     textBox_player.Text = player;
@@ -79,6 +90,19 @@ namespace enumerator
                         dateTimePicker_birthday.Checked = false;
                     }
                     textBox_note.Text = note;
+                    if (photo != "")
+                    {
+                        if (photo[0] == '/')
+                            textBox_photo.Text = "http://mckay.farline.net" + photo;
+                        else textBox_photo.Text = photo;
+                        checkBox_photo.Checked = true;
+                        //pictureBox1.Load(textBox_photo.Text);
+                    }
+                    else
+                    {
+                        checkBox_photo.Checked = false;
+                        update_photo();
+                    }
                 }
                 catch (MySqlException err)
                 {
@@ -98,9 +122,10 @@ namespace enumerator
                     this.Icon = Properties.Resources.add_group_8863;
                     this.Text = "Добавить игрока";
                     dateTimePicker_reg.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
-                    dateTimePicker_reg.Checked = false;
+                    dateTimePicker_reg.Checked = true;
                     dateTimePicker_birthday.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
                     dateTimePicker_birthday.Checked = false;
+                    update_photo();
                 }
         }
 
@@ -123,7 +148,7 @@ namespace enumerator
                 {
                     connect = new MySqlConnection(Data.connectionString);
                     connect.Open();
-                    string player, reg, base_rating, birthday, note, translit_name;
+                    string player, reg, base_rating, birthday, note, translit_name, photo;
                     player = textBox_player.Text;
                     if (dateTimePicker_reg.Checked)
                     {
@@ -144,7 +169,17 @@ namespace enumerator
                     }
                     note = textBox_note.Text;
                     translit_name = textBox_translit_name.Text;
-                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "' WHERE id='" + Data.edited_player.ToString() + "'";
+
+                    if (checkBox_photo.Checked)
+                    {
+                        photo = "'" + textBox_photo.Text + "'";
+                    }
+                    else
+                    {
+                        photo = "NULL";
+                    }
+
+                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + " WHERE id='" + Data.edited_player.ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.ExecuteNonQuery();
                 }
@@ -168,7 +203,7 @@ namespace enumerator
                     {
                         connect = new MySqlConnection(Data.connectionString);
                         connect.Open();
-                        string player, reg, base_rating, birthday, note, translit_name;
+                        string player, reg, base_rating, birthday, note, translit_name, photo;
                         player = textBox_player.Text;
                         if (dateTimePicker_reg.Checked)
                         {
@@ -189,7 +224,15 @@ namespace enumerator
                         }
                         note = textBox_note.Text;
                         translit_name = textBox_translit_name.Text;
-                        string query = "INSERT INTO players VALUES(null,'"+player+"',"+reg+",'"+base_rating+"',"+birthday+",'"+note+"',null,'"+translit_name+"',null)";
+                        if (checkBox_photo.Checked)
+                        {
+                            photo = "'" + textBox_photo.Text + "'";
+                        }
+                        else
+                        {
+                            photo = "null";
+                        }
+                        string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + ")";
                         MySqlCommand cmd = new MySqlCommand(query, connect);
                         cmd.ExecuteNonQuery();
                     }
@@ -211,6 +254,36 @@ namespace enumerator
                 form_aep.grid_update();
             }
             this.Close();
+        }
+
+        private void checkBox_photo_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox_photo.Enabled = checkBox_photo.Checked;
+            update_photo();
+        }
+
+        private void textBox_photo_TextChanged(object sender, EventArgs e)
+        {
+            update_photo();
+        }
+        private void update_photo()
+        {
+            try
+            {
+                if (checkBox_photo.Checked)
+                {
+                    pictureBox1.Load(textBox_photo.Text);
+                }
+                else
+                {
+                    pictureBox1.Load("http://mckay.farline.net/rating/photos/nophoto.jpg");
+                }
+            }
+            catch
+            {
+                pictureBox1.Load("http://mckay.farline.net/rating/photos/nophoto.jpg");
+            }
+
         }
     }
 }
