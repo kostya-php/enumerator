@@ -17,9 +17,9 @@ using System.IO;
 
 namespace enumerator
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
             //System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
@@ -29,8 +29,6 @@ namespace enumerator
         {
             if (fullscreen)
             {
-                statusStrip1.Visible = false;
-                menuStrip1.Visible = false;
                 this.WindowState = FormWindowState.Normal;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
@@ -38,8 +36,6 @@ namespace enumerator
             }
             else
             {
-                statusStrip1.Visible = true;
-                menuStrip1.Visible = true;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 this.WindowState = FormWindowState.Normal;
                 change_font_size();
@@ -49,32 +45,25 @@ namespace enumerator
         private void change_font_size()
         {
             double font_size = this.Size.Width * 0.45 / Convert.ToDouble(2);
-            label_xx.Font = new Font(label_xx.Font.FontFamily, Convert.ToInt32(font_size), label_xx.Font.Unit);
-            label_yy.Font = new Font(label_xx.Font.FontFamily, Convert.ToInt32(font_size), label_yy.Font.Unit);
+            label_yy.Font = new Font(label_yy.Font.FontFamily, Convert.ToInt32(font_size), label_yy.Font.Unit);
+            label_xx.Font = new Font(label_yy.Font.FontFamily, Convert.ToInt32(font_size), label_xx.Font.Unit);
             font_size = this.Size.Width * 0.3 / Convert.ToDouble(8);
-            label_player1.Font = new Font(label_player1.Font.FontFamily, Convert.ToInt32(font_size), label_player1.Font.Unit);
             label_player2.Font = new Font(label_player2.Font.FontFamily, Convert.ToInt32(font_size), label_player2.Font.Unit);
+            label_player1.Font = new Font(label_player1.Font.FontFamily, Convert.ToInt32(font_size), label_player1.Font.Unit);
 
-            label_x.Font = new Font(label_x.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_x.Font.Unit);
             label_y.Font = new Font(label_y.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_y.Font.Unit);
+            label_x.Font = new Font(label_x.Font.FontFamily, Convert.ToInt32(font_size * 1.5), label_x.Font.Unit);
 
             info.Font = new Font(info.Font.FontFamily, Convert.ToInt32(font_size-5), info.Font.Unit);
             label_timer.Font = new Font(label_timer.Font.FontFamily, Convert.ToInt32(font_size), label_timer.Font.Unit);
             int size = Convert.ToInt32(this.Size.Width * 0.3 / Convert.ToDouble(3));
-            inning1.Size = new Size(size, size);
             inning2.Size = new Size(size, size);
+            inning1.Size = new Size(size, size);
         }
         // Загрузка формы
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
-            Data.update_info();
 
-            Data.main = false;
-            Data.fm_fp = false;
-            Data.from_bd = false;
-            Data.write_log("Запуск программы");
-            Data.use_console = false;
-            timer2.Start();
         }
         // Таймер (хз, может пригодится)
         private void timer1_Tick(object sender, EventArgs e)
@@ -94,7 +83,7 @@ namespace enumerator
         }
         // Открывает окошко консоли
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             /*
             DialogResult reply = MessageBox.Show("Вы действительно хотите закрыть счетчик?", "Закрыть", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -123,22 +112,15 @@ namespace enumerator
                 fp.ShowDialog();
             }
         }
-        // Окошко помощи :)
-        // Форма с настройками
-        // Периодический вызов функции проверки джойстика
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            if (!timer1.Enabled) Data.InitDevices();
-        }
         // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player1_TextChanged(object sender, EventArgs e)
         {
-            label_player1.Text = label_player1.Text.Replace(" ", "\r\n");
+            label_player2.Text = label_player2.Text.Replace(" ", "\r\n");
         }
         // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player2_TextChanged(object sender, EventArgs e)
         {
-            label_player2.Text = label_player2.Text.Replace(" ", "\r\n");
+            label_player1.Text = label_player1.Text.Replace(" ", "\r\n");
         }
         // Прерывание текущей игры через контекстное меню
         private void завершитьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,7 +136,6 @@ namespace enumerator
             TimeSpan delta = end_datetime - start_datetime;
             string time = delta.ToString(@"mm\:ss");
             label_timer.Text = time.ToString();
-            Data.f2.label_timer.Text = time.ToString();
         }
         // Выбрать встречу (из БД)
         private void выбратьВстречуToolStripMenuItem_Click(object sender, EventArgs e)

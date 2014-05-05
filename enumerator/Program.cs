@@ -225,6 +225,7 @@ namespace enumerator
         public static int edited_player { get; set; }
 
         public static Form1 f1 { get; set; }
+        public static Form2 f2 { get; set; }
 
         public static void update_info()
         {
@@ -315,6 +316,7 @@ namespace enumerator
                         if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
                         full_reset();
                         f1.label_timer.Text = "00:00";
+                        f2.label_timer.Text = "00:00";
                         f1.info.Text = "Ожидание встречи";
                         f1.завершитьВстречуToolStripMenuItem.Enabled = false;
                         f1.выбратьИгроковToolStripMenuItem.Enabled = true;
@@ -470,6 +472,7 @@ namespace enumerator
                                         if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
                                         full_reset();
                                         f1.label_timer.Text = "00:00";
+                                        f2.label_timer.Text = "00:00";
                                         f1.info.Text = "Ожидание встречи";
                                         f1.завершитьВстречуToolStripMenuItem.Enabled = false;
                                         f1.выбратьИгроковToolStripMenuItem.Enabled = true;
@@ -717,13 +720,15 @@ namespace enumerator
                     {
                         case "xx":
                             xx++;
-                            f1.label_xx.Text = xx.ToString();
+                            //f1.label_xx.Text = xx.ToString();
+                            //f2.label_xx.Text = xx.ToString();
                             history_add("xx");
                             write_log(xx + ":" + yy + " (игрок " + player1 + " заработал очко)");
                             break;
                         case "yy":
                             yy++;
-                            f1.label_yy.Text = yy.ToString();
+                            //f1.label_yy.Text = yy.ToString();
+                            //f2.label_yy.Text = yy.ToString();
                             write_log(xx + ":" + yy + " (игрок " + player2 + " заработал очко)");
                             history_add("yy");
                             break;
@@ -735,13 +740,15 @@ namespace enumerator
                     {
                         case "xx":
                             yy++;
-                            f1.label_xx.Text = yy.ToString();
+                            //f1.label_xx.Text = yy.ToString();
+                            //f2.label_xx.Text = yy.ToString();
                             history_add("yy");
                             write_log(xx + ":" + yy + " (игрок " + player2 + " заработал очко)");
                             break;
                         case "yy":
                             xx++;
-                            f1.label_yy.Text = xx.ToString();
+                            //f1.label_yy.Text = xx.ToString();
+                            //f2.label_yy.Text = xx.ToString();
                             history_add("xx");
                             write_log(xx + ":" + yy + " (игрок " + player1 + " заработал очко)");
                             break;
@@ -749,6 +756,7 @@ namespace enumerator
                 }
                 check_xxyy();
             }
+            refresh();
             set_inning();
         }
         // Сброс результата и начало новой партии
@@ -829,12 +837,27 @@ namespace enumerator
                 f1.label_yy.Text = yy.ToString();
                 f1.label_x.Text = x.ToString();
                 f1.label_y.Text = y.ToString();
+
+
+                f2.label_xx.Text = xx.ToString();
+                f2.label_yy.Text = yy.ToString();
+                f2.label_x.Text = x.ToString();
+                f2.label_y.Text = y.ToString();
+
                 if (player1 == null) f1.label_player1.Text = "Игрок 1";
                 else
                     f1.label_player1.Text = player1.ToString();
                 if (player2 == null) f1.label_player2.Text = "Игрок 2";
                 else
                     f1.label_player2.Text = player2.ToString();
+
+                if (player1 == null) f2.label_player1.Text = "Игрок 1";
+                else
+                    f2.label_player1.Text = player1.ToString();
+                if (player2 == null) f2.label_player2.Text = "Игрок 2";
+                else
+                    f2.label_player2.Text = player2.ToString();
+
                 if (win(xx, yy) != "")
                 {
                     if (win(xx, yy) == "xx")
@@ -855,8 +878,27 @@ namespace enumerator
                 f1.label_yy.Text = xx.ToString();
                 f1.label_x.Text = y.ToString();
                 f1.label_y.Text = x.ToString();
-                f1.label_player1.Text = player2.ToString();
-                f1.label_player2.Text = player1.ToString();
+
+
+                f2.label_xx.Text = yy.ToString();
+                f2.label_yy.Text = xx.ToString();
+                f2.label_x.Text = y.ToString();
+                f2.label_y.Text = x.ToString();
+
+                if (player1 == null) f1.label_player1.Text = "Игрок 2";
+                else
+                    f1.label_player1.Text = player2.ToString();
+                if (player2 == null) f1.label_player2.Text = "Игрок 1";
+                else
+                    f1.label_player2.Text = player1.ToString();
+
+                if (player1 == null) f2.label_player1.Text = "Игрок 2";
+                else
+                    f2.label_player1.Text = player2.ToString();
+                if (player2 == null) f2.label_player2.Text = "Игрок 1";
+                else
+                    f2.label_player2.Text = player1.ToString();
+
                 if (win(xx, yy) != "")
                 {
                     if (win(xx, yy) == "xx")
@@ -974,11 +1016,15 @@ namespace enumerator
                         case 0:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = false;
+                            f2.inning1.Visible = false;
+                            f2.inning2.Visible = false;
                             if (status == 0) f1.info.Text = "Розыгрыш подачи";
                             break;
                         case 1:
                             f1.inning1.Visible = true;
                             f1.inning2.Visible = false;
+                            f2.inning1.Visible = true;
+                            f2.inning2.Visible = false;
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player2;
@@ -989,6 +1035,8 @@ namespace enumerator
                         case 2:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = true;
+                            f2.inning1.Visible = false;
+                            f2.inning2.Visible = true;
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player1;
@@ -1006,11 +1054,15 @@ namespace enumerator
                             case 0:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = false;
+                                f2.inning1.Visible = false;
+                                f2.inning2.Visible = false;
                                 if (status == 0) f1.info.Text = "Розыгрыш подачи";
                                 break;
                             case 1:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = true;
+                                f2.inning1.Visible = false;
+                                f2.inning2.Visible = true;
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player1;
@@ -1021,6 +1073,8 @@ namespace enumerator
                             case 2:
                                 f1.inning1.Visible = true;
                                 f1.inning2.Visible = false;
+                                f2.inning1.Visible = true;
+                                f2.inning2.Visible = false;
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player2;
@@ -1041,11 +1095,15 @@ namespace enumerator
                         case 0:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = false;
+                            f2.inning1.Visible = false;
+                            f2.inning2.Visible = false;
                             if (status == 0) f1.info.Text = "Розыгрыш подачи";
                             break;
                         case 1:
                             f1.inning1.Visible = true;
                             f1.inning2.Visible = false;
+                            f2.inning1.Visible = true;
+                            f2.inning2.Visible = false;
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player2;
@@ -1056,6 +1114,8 @@ namespace enumerator
                         case 2:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = true;
+                            f2.inning1.Visible = false;
+                            f2.inning2.Visible = true;
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player1;
@@ -1073,11 +1133,15 @@ namespace enumerator
                             case 0:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = false;
+                                f2.inning1.Visible = false;
+                                f2.inning2.Visible = false;
                                 if (status == 0) f1.info.Text = "Розыгрыш подачи";
                                 break;
                             case 1:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = true;
+                                f2.inning1.Visible = false;
+                                f2.inning2.Visible = true;
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player1;
@@ -1088,6 +1152,8 @@ namespace enumerator
                             case 2:
                                 f1.inning1.Visible = true;
                                 f1.inning2.Visible = false;
+                                f2.inning1.Visible = true;
+                                f2.inning2.Visible = false;
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player2;
@@ -1206,6 +1272,7 @@ namespace enumerator
             f1.timer4.Stop();
             full_reset();
             f1.label_timer.Text = "00:00";
+            f2.label_timer.Text = "00:00";
             f1.info.Text = "Ожидание встречи";
             f1.завершитьВстречуToolStripMenuItem.Enabled = false;
             f1.выбратьИгроковToolStripMenuItem.Enabled = true;
@@ -1267,6 +1334,7 @@ namespace enumerator
             Data.connectionString = "SERVER=" + Data.host + ";" + "DATABASE=" +
                 Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
             Data.f1 = new Form1();
+            Data.f2 = new Form2();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);
             KBDHook.LocalHook = false;
             KBDHook.InstallHook();

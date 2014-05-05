@@ -142,5 +142,10 @@ namespace enumerator
         {
             KBDHook.UnInstallHook(); // Обязательно !!!
         }
+
+        private void buttonOpenEnumerator2_Click(object sender, EventArgs e)
+        {
+            if (!Data.f2.Visible) Data.f2.Visible = true;
+        }
     }
 }

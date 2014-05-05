@@ -40,6 +40,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonOpenEnumerator2 = new System.Windows.Forms.Button();
             this.buttonOpenEnumerator1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -178,6 +179,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.buttonOpenEnumerator2);
             this.panel1.Controls.Add(this.buttonOpenEnumerator1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 463);
@@ -185,13 +187,23 @@
             this.panel1.Size = new System.Drawing.Size(788, 109);
             this.panel1.TabIndex = 2;
             // 
+            // buttonOpenEnumerator2
+            // 
+            this.buttonOpenEnumerator2.Location = new System.Drawing.Point(344, 55);
+            this.buttonOpenEnumerator2.Name = "buttonOpenEnumerator2";
+            this.buttonOpenEnumerator2.Size = new System.Drawing.Size(100, 23);
+            this.buttonOpenEnumerator2.TabIndex = 1;
+            this.buttonOpenEnumerator2.Text = "Счетчик (реверс)";
+            this.buttonOpenEnumerator2.UseVisualStyleBackColor = true;
+            this.buttonOpenEnumerator2.Click += new System.EventHandler(this.buttonOpenEnumerator2_Click);
+            // 
             // buttonOpenEnumerator1
             // 
-            this.buttonOpenEnumerator1.Location = new System.Drawing.Point(7, 35);
+            this.buttonOpenEnumerator1.Location = new System.Drawing.Point(355, 26);
             this.buttonOpenEnumerator1.Name = "buttonOpenEnumerator1";
             this.buttonOpenEnumerator1.Size = new System.Drawing.Size(75, 23);
             this.buttonOpenEnumerator1.TabIndex = 0;
-            this.buttonOpenEnumerator1.Text = "Счетчик 1";
+            this.buttonOpenEnumerator1.Text = "Счетчик";
             this.buttonOpenEnumerator1.UseVisualStyleBackColor = true;
             this.buttonOpenEnumerator1.Click += new System.EventHandler(this.buttonOpenEnumerator1_Click);
             // 
@@ -237,6 +249,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonOpenEnumerator1;
+        private System.Windows.Forms.Button buttonOpenEnumerator2;
 
 
     }
