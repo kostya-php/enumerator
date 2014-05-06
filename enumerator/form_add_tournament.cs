@@ -156,6 +156,7 @@ namespace enumerator
             if (form_at != null)
             {
                 form_at.tournaments_update();
+                form_at.matches_update();
             }
             this.Close();
         }

@@ -29,8 +29,8 @@ namespace enumerator
         {
             if (fullscreen)
             {
-                statusStrip1.Visible = false;
-                menuStrip1.Visible = false;
+                //statusStrip1.Visible = false;
+                //menuStrip1.Visible = false;
                 this.WindowState = FormWindowState.Normal;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
@@ -38,8 +38,8 @@ namespace enumerator
             }
             else
             {
-                statusStrip1.Visible = true;
-                menuStrip1.Visible = true;
+                //statusStrip1.Visible = true;
+                //menuStrip1.Visible = true;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 this.WindowState = FormWindowState.Normal;
                 change_font_size();

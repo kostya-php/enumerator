@@ -292,6 +292,7 @@ namespace enumerator
 
         public static Form1 f1 { get; set; }
         public static Form2 f2 { get; set; }
+        public static Main fm { get; set; }
 
         public static void update_info()
         {
@@ -311,6 +312,7 @@ namespace enumerator
                 dataReader.Close();
                 connect.Close();
                 f1.info.Text = result;
+                f2.info.Text = result;
             }
             catch (MySqlException err)
             {
@@ -359,7 +361,17 @@ namespace enumerator
                     e.Hooked = true;
                     break;
 
+                case Keys.F3:
+                    f2.GoFullscreen(true);
+                    e.Hooked = true;
+                    break;
+
                 case Keys.F4:
+                    f2.GoFullscreen(false);
+                    e.Hooked = true;
+                    break;
+
+                case Keys.F5:
                     if (status == 1)
                     {
                         switch_inning();
@@ -379,21 +391,21 @@ namespace enumerator
                 case Keys.Enter:
                     if (status == -1)
                     {
-                        if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
+                        //if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
                         full_reset();
                         f1.label_timer.Text = "00:00";
                         f2.label_timer.Text = "00:00";
-                        f1.info.Text = "Ожидание встречи";
-                        f1.завершитьВстречуToolStripMenuItem.Enabled = false;
-                        f1.выбратьИгроковToolStripMenuItem.Enabled = true;
-                        f1.выбратьВстречуToolStripMenuItem.Enabled = true;
+                        //f1.info.Text = "Ожидание встречи";
+                        //f1.завершитьВстречуToolStripMenuItem.Enabled = false;
+                        //f1.выбратьИгроковToolStripMenuItem.Enabled = true;
+                        //f1.выбратьВстречуToolStripMenuItem.Enabled = true;
                     }
                     else
                         if (status == 2)
                         {
                             query += "INSERT INTO rounds VALUES (null,'" + match + "','" + (x + y).ToString() + "','" + xx + "','" + yy + "');";
                             status = 3;
-                            f1.info.Text = "";
+                            //f1.info.Text = "";
                             history = "";
                             reset_score();
                         }
@@ -503,6 +515,7 @@ namespace enumerator
                             case 4:
                                 if (button_4 == 0)
                                 {
+                                    /*
                                     if (status == -1)
                                     {
                                         form_matches fm = new form_matches();
@@ -512,12 +525,14 @@ namespace enumerator
                                             fm.ShowDialog();
                                         }
                                     }
+                                    */
                                     button_4 = 1;
                                 }
                                 break;
                             case 5:
                                 if (button_5 == 0)
                                 {
+                                    /*
                                     if (status == -1)
                                     {
                                         form_pick fp = new form_pick();
@@ -527,29 +542,31 @@ namespace enumerator
                                             fp.ShowDialog();
                                         }
                                     }
+                                    */
                                     button_5 = 1;
                                 }
                                 break;
                             case 6:
                                 if (button_6 == 0)
                                 {
+                                    /*
                                     if (status == -1)
                                     {
-                                        if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
+                                        //if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
                                         full_reset();
                                         f1.label_timer.Text = "00:00";
                                         f2.label_timer.Text = "00:00";
-                                        f1.info.Text = "Ожидание встречи";
-                                        f1.завершитьВстречуToolStripMenuItem.Enabled = false;
-                                        f1.выбратьИгроковToolStripMenuItem.Enabled = true;
-                                        f1.выбратьВстречуToolStripMenuItem.Enabled = true;
+                                        //f1.info.Text = "Ожидание встречи";
+                                        //f1.завершитьВстречуToolStripMenuItem.Enabled = false;
+                                        //f1.выбратьИгроковToolStripMenuItem.Enabled = true;
+                                        //f1.выбратьВстречуToolStripMenuItem.Enabled = true;
                                     }
-                                    else
+                                    else*/
                                         if (status == 2)
                                         {
                                             query += "INSERT INTO rounds VALUES (null,'" + match + "','" + (x + y).ToString() + "','" + xx + "','" + yy + "');";
                                             status = 3;
-                                            f1.info.Text = "";
+                                            //f1.info.Text = "";
                                             history = "";
                                             reset_score();
                                         }
@@ -661,7 +678,7 @@ namespace enumerator
                 history = "";
                 refresh();
                 set_inning();
-                f1.info.Text = "Розыгрыш подачи";
+                //f1.info.Text = "Розыгрыш подачи";
                 write_log("Розыгрыш подачи");
                 if (!from_bd)
                 {
@@ -729,7 +746,7 @@ namespace enumerator
                     }
                 }
                 if ((balance) & ((xx < 10) | (yy < 10))) balance = false;
-                f1.info.Text = history;
+                //f1.info.Text = history;
                 refresh();
                 set_inning();
                 if (a == "xx")
@@ -830,16 +847,19 @@ namespace enumerator
         {
             if (status == 3)
             {
+                // Окончательная победа
                 if ((x == min_wins) | (y == min_wins))
                 {
+                    Data.fm.buttonStartMatch.Enabled = false;
+                    Data.fm.buttonCancelMatch.Enabled = false;
                     if (x > y)
                     {
-                        f1.info.Text = "Победитель: " + player1;
+                        //f1.info.Text = "Победитель: " + player1;
                         write_log("В этой встрече победил: " + player1);
                     }
                     if (y > x)
                     {
-                        f1.info.Text = "Победитель: " + player2;
+                        //f1.info.Text = "Победитель: " + player2;
                         write_log("В этой встрече победил: " + player2);
                     }
                     f1.timer4.Stop();
@@ -870,6 +890,11 @@ namespace enumerator
                             }
                         }
                     }
+                    full_reset();
+                    f1.label_timer.Text = "00:00";
+                    f2.label_timer.Text = "00:00";
+                    Data.fm.buttonStartMatch.Enabled = true;
+                    Data.fm.buttonCancelMatch.Enabled = false;
                 }
                 else
                 {
@@ -988,12 +1013,12 @@ namespace enumerator
                 case "x":
                     x++;
                     history_add("x");
-                    f1.info.Text = "Эту партию выйграл игрок: " + player1;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
+                    //f1.info.Text = "Эту партию выйграл игрок: " + player1;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
                 case "y":
                     y++;
                     history_add("y");
-                    f1.info.Text = "Эту партию выйграл игрок: " + player2;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
+                    //f1.info.Text = "Эту партию выйграл игрок: " + player2;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
             }
             status = 2;
@@ -1084,31 +1109,35 @@ namespace enumerator
                             f1.inning2.Visible = false;
                             f2.inning1.Visible = false;
                             f2.inning2.Visible = false;
-                            if (status == 0) f1.info.Text = "Розыгрыш подачи";
+                            //if (status == 0) f1.info.Text = "Розыгрыш подачи";
                             break;
                         case 1:
                             f1.inning1.Visible = true;
                             f1.inning2.Visible = false;
                             f2.inning1.Visible = true;
                             f2.inning2.Visible = false;
+                            /*
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player2;
                                 else
                                     f1.info.Text = "Подает: " + player1;
                             }
+                            */
                             break;
                         case 2:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = true;
                             f2.inning1.Visible = false;
                             f2.inning2.Visible = true;
+                            /*
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player1;
                                 else
                                     f1.info.Text = "Подает: " + player2;
                             }
+                            */
                             break;
                     }
                 }
@@ -1122,31 +1151,35 @@ namespace enumerator
                                 f1.inning2.Visible = false;
                                 f2.inning1.Visible = false;
                                 f2.inning2.Visible = false;
-                                if (status == 0) f1.info.Text = "Розыгрыш подачи";
+                                //if (status == 0) f1.info.Text = "Розыгрыш подачи";
                                 break;
                             case 1:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = true;
                                 f2.inning1.Visible = false;
                                 f2.inning2.Visible = true;
+                                /*
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player1;
                                     else
                                         f1.info.Text = "Подает: " + player2;
                                 }
+                                */
                                 break;
                             case 2:
                                 f1.inning1.Visible = true;
                                 f1.inning2.Visible = false;
                                 f2.inning1.Visible = true;
                                 f2.inning2.Visible = false;
+                                /*
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player2;
                                     else
                                         f1.info.Text = "Подает: " + player1;
                                 }
+                                */
                                 break;
                         }
                     }
@@ -1163,31 +1196,35 @@ namespace enumerator
                             f1.inning2.Visible = false;
                             f2.inning1.Visible = false;
                             f2.inning2.Visible = false;
-                            if (status == 0) f1.info.Text = "Розыгрыш подачи";
+                            //if (status == 0) f1.info.Text = "Розыгрыш подачи";
                             break;
                         case 1:
                             f1.inning1.Visible = true;
                             f1.inning2.Visible = false;
                             f2.inning1.Visible = true;
                             f2.inning2.Visible = false;
+                            /*
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player2;
                                 else
                                     f1.info.Text = "Подает: " + player1;
                             }
+                            */
                             break;
                         case 2:
                             f1.inning1.Visible = false;
                             f1.inning2.Visible = true;
                             f2.inning1.Visible = false;
                             f2.inning2.Visible = true;
+                            /*
                             if (status == 1)
                             {
                                 if (reverse) f1.info.Text = "Подает: " + player1;
                                 else
                                     f1.info.Text = "Подает: " + player2;
                             }
+                            */
                             break;
                     }
                 }
@@ -1201,31 +1238,35 @@ namespace enumerator
                                 f1.inning2.Visible = false;
                                 f2.inning1.Visible = false;
                                 f2.inning2.Visible = false;
-                                if (status == 0) f1.info.Text = "Розыгрыш подачи";
+                                //if (status == 0) f1.info.Text = "Розыгрыш подачи";
                                 break;
                             case 1:
                                 f1.inning1.Visible = false;
                                 f1.inning2.Visible = true;
                                 f2.inning1.Visible = false;
                                 f2.inning2.Visible = true;
+                                /*
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player1;
                                     else
                                         f1.info.Text = "Подает: " + player2;
                                 }
+                                */
                                 break;
                             case 2:
                                 f1.inning1.Visible = true;
                                 f1.inning2.Visible = false;
                                 f2.inning1.Visible = true;
                                 f2.inning2.Visible = false;
+                                /*
                                 if (status == 1)
                                 {
                                     if (reverse) f1.info.Text = "Подает: " + player2;
                                     else
                                         f1.info.Text = "Подает: " + player1;
                                 }
+                                */
                                 break;
                         }
                     }
@@ -1339,10 +1380,10 @@ namespace enumerator
             full_reset();
             f1.label_timer.Text = "00:00";
             f2.label_timer.Text = "00:00";
-            f1.info.Text = "Ожидание встречи";
-            f1.завершитьВстречуToolStripMenuItem.Enabled = false;
-            f1.выбратьИгроковToolStripMenuItem.Enabled = true;
-            f1.выбратьВстречуToolStripMenuItem.Enabled = true;
+            //f1.info.Text = "Ожидание встречи";
+            //f1.завершитьВстречуToolStripMenuItem.Enabled = false;
+            //f1.выбратьИгроковToolStripMenuItem.Enabled = true;
+            //f1.выбратьВстречуToolStripMenuItem.Enabled = true;
             write_log("Встреча прервана");
         }
         // Выставляем стартовую подачу
@@ -1351,7 +1392,7 @@ namespace enumerator
             if ((side == 1) | (side == 2))
             {
                 status = 1;
-                f1.info.Text = "";
+                //f1.info.Text = "";
                 switch (side)
                 {
                     case 1:
@@ -1401,10 +1442,12 @@ namespace enumerator
                 Data.database + ";" + "UID=" + Data.user + ";" + "PASSWORD=" + Data.password + ";CharSet=utf8;";
             Data.f1 = new Form1();
             Data.f2 = new Form2();
+            Data.fm = new Main();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);
             KBDHook.LocalHook = false;
             KBDHook.InstallHook();
-            Application.Run(new Main());
+            //Application.Run(new Main());
+            Application.Run(Data.fm);
         }
     }
 }

@@ -98,24 +98,27 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.Enabled = false;
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.выбратьВстречуToolStripMenuItem,
             this.выбратьИгроковToolStripMenuItem,
             this.завершитьВстречуToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(175, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(182, 92);
             // 
             // выбратьВстречуToolStripMenuItem
             // 
+            this.выбратьВстречуToolStripMenuItem.Enabled = false;
             this.выбратьВстречуToolStripMenuItem.Name = "выбратьВстречуToolStripMenuItem";
-            this.выбратьВстречуToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.выбратьВстречуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.выбратьВстречуToolStripMenuItem.Text = "Выбрать встречу";
             this.выбратьВстречуToolStripMenuItem.Click += new System.EventHandler(this.выбратьВстречуToolStripMenuItem_Click);
             // 
             // выбратьИгроковToolStripMenuItem
             // 
+            this.выбратьИгроковToolStripMenuItem.Enabled = false;
             this.выбратьИгроковToolStripMenuItem.Name = "выбратьИгроковToolStripMenuItem";
-            this.выбратьИгроковToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.выбратьИгроковToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.выбратьИгроковToolStripMenuItem.Text = "Выбрать игроков";
             this.выбратьИгроковToolStripMenuItem.Click += new System.EventHandler(this.выбратьИгроковToolStripMenuItem_Click);
             // 
@@ -123,7 +126,7 @@
             // 
             this.завершитьВстречуToolStripMenuItem.Enabled = false;
             this.завершитьВстречуToolStripMenuItem.Name = "завершитьВстречуToolStripMenuItem";
-            this.завершитьВстречуToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.завершитьВстречуToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.завершитьВстречуToolStripMenuItem.Text = "Завершить встречу";
             this.завершитьВстречуToolStripMenuItem.Click += new System.EventHandler(this.завершитьВстречуToolStripMenuItem_Click);
             // 
@@ -172,7 +175,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 112);
             this.tableLayoutPanel4.TabIndex = 6;
             // 
@@ -240,7 +243,7 @@
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(392, 112);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
@@ -353,6 +356,7 @@
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.Visible = false;
             // 
             // joystick_status
             // 
@@ -375,6 +379,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.Visible = false;
             // 
             // открытьToolStripMenuItem
             // 
@@ -391,33 +396,33 @@
             // базаДанныхToolStripMenuItem
             // 
             this.базаДанныхToolStripMenuItem.Name = "базаДанныхToolStripMenuItem";
-            this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.базаДанныхToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.базаДанныхToolStripMenuItem.Text = "База данных";
             this.базаДанныхToolStripMenuItem.Click += new System.EventHandler(this.базаДанныхToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem1
             // 
             this.настройкиToolStripMenuItem1.Name = "настройкиToolStripMenuItem1";
-            this.настройкиToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.настройкиToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.настройкиToolStripMenuItem1.Text = "Настройки";
             this.настройкиToolStripMenuItem1.Click += new System.EventHandler(this.настройкиToolStripMenuItem1_Click);
             // 
             // консольToolStripMenuItem
             // 
             this.консольToolStripMenuItem.Name = "консольToolStripMenuItem";
-            this.консольToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.консольToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.консольToolStripMenuItem.Text = "Консоль";
             this.консольToolStripMenuItem.Click += new System.EventHandler(this.консольToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // помощьToolStripMenuItem1
             // 
             this.помощьToolStripMenuItem1.Name = "помощьToolStripMenuItem1";
-            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
+            this.помощьToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.помощьToolStripMenuItem1.Text = "Помощь";
             this.помощьToolStripMenuItem1.Click += new System.EventHandler(this.помощьToolStripMenuItem1_Click);
             // 
