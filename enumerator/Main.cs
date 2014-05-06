@@ -112,6 +112,17 @@ namespace enumerator
             Data.edited_player = -1;
             players_update();
             tournaments_update();
+            if (dataTournaments.Rows.Count > 0)
+            {
+                if ((dataTournaments.CurrentRow.Index + 1) == dataTournaments.Rows.Count)
+                {
+                    buttonDelTournament.Enabled = true;
+                }
+                else
+                {
+                    buttonDelTournament.Enabled = false;
+                }
+            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -138,7 +149,7 @@ namespace enumerator
             form_aep.ShowDialog();
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void buttonDelPlayer_Click(object sender, EventArgs e)
         {
             int index = dataPlayers.CurrentRow.Index;
             int id = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
@@ -190,6 +201,89 @@ namespace enumerator
             form_add_tournament form_at = new form_add_tournament();
             form_at.Owner = this;
             form_at.ShowDialog();
+        }
+
+        private void buttonDelTournament_Click(object sender, EventArgs e)
+        {
+            int index = dataTournaments.CurrentRow.Index;
+            int id = Convert.ToInt32(dataTournaments[0, index].Value);
+            DialogResult dr = MessageBox.Show(dataTournaments[1, index].Value.ToString() + Environment.NewLine + "Вы действительно хотите удалить этот турнир? " + id, "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                MySqlConnection connect = null;
+                try
+                {
+                    connect = new MySqlConnection(Data.connectionString);
+                    connect.Open();
+                    // Удаляем турнир
+                    string query = "DELETE FROM tournaments WHERE id='" + id.ToString() + "'";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    query = "ALTER TABLE tournaments AUTO_INCREMENT=0";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    // Удаляем игроков с турнира
+                    query = "DELETE FROM in_tournament WHERE tournament='" + id.ToString() + "'";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    query = "ALTER TABLE in_tournament AUTO_INCREMENT=0";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    // Делаем выборку игр
+                    query = "SELECT * FROM matches WHERE tournament='" + id.ToString() + "'";
+                    cmd = new MySqlCommand(query, connect);
+                    MySqlDataReader dataReader2 = cmd.ExecuteReader();
+                    // И удаляем партии
+                    int match;
+                    string queries = "";
+                    while (dataReader2.Read())
+                    {
+                        match = Convert.ToInt32(dataReader2["id"]);
+                        queries += "DELETE FROM rounds WHERE `match`='" + match.ToString() + "';";
+                    }
+                    dataReader2.Close();
+                    cmd = new MySqlCommand(queries, connect);
+                    cmd.ExecuteNonQuery();
+                    query = "ALTER TABLE rounds AUTO_INCREMENT=0";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    // Удаляем игры
+                    query = "DELETE FROM matches WHERE tournament='" + id.ToString() + "'";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                    query = "ALTER TABLE matches AUTO_INCREMENT=0";
+                    cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException err)
+                {
+                    MessageBox.Show("Ошибка: " + err.ToString());
+                }
+                finally
+                {
+                    if (connect != null)
+                    {
+                        connect.Close();
+                    }
+                }
+                tournaments_update();
+            }
+        }
+
+        private void dataTournaments_SelectionChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(dataTournaments.CurrentRow.Index.ToString() + " " + dataTournaments.Rows.Count.ToString());
+            if (dataTournaments.Rows.Count > 0)
+            {
+                if ((dataTournaments.CurrentRow.Index + 1) == dataTournaments.Rows.Count)
+                {
+                    buttonDelTournament.Enabled = true;
+                }
+                else
+                {
+                    buttonDelTournament.Enabled = false;
+                }
+            }
         }
     }
 }
