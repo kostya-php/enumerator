@@ -186,7 +186,10 @@ namespace enumerator
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Data.main = true;
+            label1.Text = "";
+            label2.Text = "Стол свободен";
+            Data.use_console = false;
+            Data.from_bd = false;
             Data.edited_player = -1;
             players_update();
             tournaments_update();
@@ -202,11 +205,11 @@ namespace enumerator
                 }
             }
             matches_update();
+            timer_InitDevices.Start();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Data.main = false;
             if ((Data.player1 != null) & (Data.player2 != null))
                 Data.abort_game();
         }
@@ -230,6 +233,9 @@ namespace enumerator
 
         private void buttonDelPlayer_Click(object sender, EventArgs e)
         {
+            buttonDelPlayer.Enabled = false;
+            MessageBox.Show("Удаление игроков отключено в целях безопасности", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            /*
             int index = dataPlayers.CurrentRow.Index;
             int id = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
             DialogResult dr = MessageBox.Show(Data.player_name(id) + Environment.NewLine + "Вы действительно хотите удалить этого игрока?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -257,6 +263,7 @@ namespace enumerator
                 }
                 players_update();
             }
+            */
         }
 
         private void buttonOpenEnumerator1_Click(object sender, EventArgs e)
@@ -286,7 +293,7 @@ namespace enumerator
         {
             int index = dataTournaments.CurrentRow.Index;
             int id = Convert.ToInt32(dataTournaments[0, index].Value);
-            DialogResult dr = MessageBox.Show(dataTournaments[1, index].Value.ToString() + Environment.NewLine + "Вы действительно хотите удалить этот турнир? " + id, "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dr = MessageBox.Show("\"" + dataTournaments[1, index].Value.ToString() + "\"" + Environment.NewLine + "Вы действительно хотите удалить этот турнир?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
             {
                 MySqlConnection connect = null;
@@ -365,8 +372,7 @@ namespace enumerator
                 }
             }
         }
-
-        private void buttonStartMatch_Click(object sender, EventArgs e)
+        public void start_match()
         {
             if (dataMatches.Rows.Count > 0)
             {
@@ -421,6 +427,10 @@ namespace enumerator
                     Data.update_info();
                     matches_update();
                     buttonCancelMatch.Enabled = true;
+                    Data.f1.label_timer.Text = "00:00";
+                    Data.f2.label_timer.Text = "00:00";
+                    label1.Text = Data.player1;
+                    label2.Text = Data.player2;
                 }
                 catch (MySqlException err)
                 {
@@ -437,6 +447,10 @@ namespace enumerator
                 }
             }
         }
+        private void buttonStartMatch_Click(object sender, EventArgs e)
+        {
+            start_match();
+        }
 
         private void buttonCancelMatch_Click(object sender, EventArgs e)
         {
@@ -444,6 +458,30 @@ namespace enumerator
             Data.abort_game();
             matches_update();
             buttonStartMatch.Enabled = true;
+            label1.Text = "";
+            label2.Text = "Стол свободен";
+        }
+
+        private void timer_UpdateJoystick_Tick(object sender, EventArgs e)
+        {
+            if (Data.joystick != null)
+                Data.UpdateJoystick();
+        }
+
+        private void timer_InitDevices_Tick(object sender, EventArgs e)
+        {
+            if (!Data.fm.timer_UpdateJoystick.Enabled) Data.InitDevices();
+        }
+
+        private void timer_Enumerator_Tick(object sender, EventArgs e)
+        {
+            DateTime start_datetime = Convert.ToDateTime(Data.start);
+            string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime end_datetime = Convert.ToDateTime(now);
+            TimeSpan delta = end_datetime - start_datetime;
+            string time = delta.ToString(@"mm\:ss");
+            Data.f1.label_timer.Text = time.ToString();
+            Data.f2.label_timer.Text = time.ToString();
         }
     }
 }

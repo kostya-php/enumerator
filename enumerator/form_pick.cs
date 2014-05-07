@@ -132,9 +132,6 @@ namespace enumerator
                 Form1 f1 = this.Owner as Form1;
                 if (f1 != null)
                 {
-                    f1.завершитьВстречуToolStripMenuItem.Enabled = true;
-                    f1.выбратьИгроковToolStripMenuItem.Enabled = false;
-                    f1.выбратьВстречуToolStripMenuItem.Enabled = false;
                     Data.pick();
                 }
                 this.Hide();
@@ -147,7 +144,6 @@ namespace enumerator
 
         private void form_pick_Load(object sender, EventArgs e)
         {
-            Data.fm_fp = true;
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 0;
             comboBox3.SelectedIndex = 0;
@@ -227,7 +223,7 @@ namespace enumerator
 
         private void form_pick_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Data.fm_fp = false;
+
         }
     }
 }

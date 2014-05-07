@@ -150,8 +150,7 @@ namespace enumerator
 
         private void базаДанныхToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Main m = new Main();
-            if (!Data.main) m.Show();
+
         }
 
         private void настройкиToolStripMenuItem1_Click(object sender, EventArgs e)

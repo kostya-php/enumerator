@@ -93,12 +93,6 @@ namespace enumerator
         // Время начала встречи
         public static string start { get; set; }
 
-        // Открыта ли форма с выбором встречи или выбором игроков
-        public static bool fm_fp { get; set; }
-
-        // Открыта ли форма с базой данных
-        public static bool main { get; set; }
-
         // Получаем имя игрока по его id
         public static string player_name(int id)
         {
@@ -456,13 +450,15 @@ namespace enumerator
                 // Acquire devices for capturing (хз че это)
                 joystick.Acquire();
                 // Остановка таймера, запускающего инициализацию
-                f1.timer2.Stop();
+                //f1.timer2.Stop();
+                fm.timer_InitDevices.Stop();
                 // Запуск таймера, проверяющего состояние джойстика
-                f1.timer1.Start();
+                //f1.timer1.Start();
+                fm.timer_UpdateJoystick.Start();
                 // Надпись "Joystick: online" и зеленая картинка внизу окна программы (в оконном режиме)
-                f1.joystick_status.Text = "Joystick: online";
+                fm.joystick_status.Text = "Joystick: online";
                 Image img = Properties.Resources.online.ToBitmap();
-                f1.joystick_status.Image = img;
+                fm.joystick_status.Image = img;
                 // Запись изменения в лог
                 write_log("Joystick connected");
             }
@@ -549,19 +545,17 @@ namespace enumerator
                             case 6:
                                 if (button_6 == 0)
                                 {
-                                    /*
                                     if (status == -1)
                                     {
-                                        //if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
-                                        full_reset();
-                                        f1.label_timer.Text = "00:00";
-                                        f2.label_timer.Text = "00:00";
-                                        //f1.info.Text = "Ожидание встречи";
-                                        //f1.завершитьВстречуToolStripMenuItem.Enabled = false;
-                                        //f1.выбратьИгроковToolStripMenuItem.Enabled = true;
-                                        //f1.выбратьВстречуToolStripMenuItem.Enabled = true;
+                                        if (fm.dataMatches.Rows.Count > 0)
+                                        {
+                                            fm.dataMatches.Rows[0].Selected = true;
+                                            fm.dataMatches.Rows[0].Cells[0].Selected = true;
+                                            //fm.dataMatches.Refresh();
+                                            fm.start_match();
+                                        }
                                     }
-                                    else*/
+                                    else
                                         if (status == 2)
                                         {
                                             query += "INSERT INTO rounds VALUES (null,'" + match + "','" + (x + y).ToString() + "','" + xx + "','" + yy + "');";
@@ -631,13 +625,15 @@ namespace enumerator
             catch (Exception e)
             {
                 // Остановка таймера, проверяющего состояние джойстика
-                f1.timer1.Stop();
+                //f1.timer1.Stop();
+                fm.timer_UpdateJoystick.Stop();
                 // Запуск таймера, запускающиего инициализацию джойстика
-                f1.timer2.Start();
+                //f1.timer2.Start();
+                fm.timer_InitDevices.Start();
                 // Надпись "Joystick: offline" и красная картинка внизу окна программы (в оконном режиме)
-                f1.joystick_status.Text = "Joystick: offline";
+                fm.joystick_status.Text = "Joystick: offline";
                 Image img = Properties.Resources.offline;
-                f1.joystick_status.Image = img;
+                fm.joystick_status.Image = img;
                 // Запись в лог
                 write_log("Joystick disconnected " + e.ToString());
             }
@@ -685,7 +681,8 @@ namespace enumerator
                     start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     //start = Convert.ToDateTime(start);
                 }
-                f1.timer4.Start();
+                fm.timer_Enumerator.Start();
+                //f1.timer4.Start();
                 //this.Focus();
             }
 
@@ -779,7 +776,8 @@ namespace enumerator
             history = "";
 
             start = "";
-            f1.timer4.Stop();
+            fm.timer_Enumerator.Stop();
+            //f1.timer4.Stop();
 
             refresh();
             set_inning();
@@ -862,7 +860,8 @@ namespace enumerator
                         //f1.info.Text = "Победитель: " + player2;
                         write_log("В этой встрече победил: " + player2);
                     }
-                    f1.timer4.Stop();
+                    //fm.timer_Enumerator.Stop();
+                    //f1.timer4.Stop();
                     status = -1;
                     query += "UPDATE matches SET x='" + x + "',y='" + y + "',status='2',end='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE id='" + match + "';";
                     // Записать в лог-файл выполняемый запрос
@@ -891,8 +890,8 @@ namespace enumerator
                         }
                     }
                     full_reset();
-                    f1.label_timer.Text = "00:00";
-                    f2.label_timer.Text = "00:00";
+                    //f1.label_timer.Text = "00:00";
+                    //f2.label_timer.Text = "00:00";
                     Data.fm.buttonStartMatch.Enabled = true;
                     Data.fm.buttonCancelMatch.Enabled = false;
                 }
@@ -1376,7 +1375,12 @@ namespace enumerator
                     }
                 }
             }
-            f1.timer4.Stop();
+            else
+            {
+                MessageBox.Show("atata");
+            }
+            fm.timer_Enumerator.Stop();
+            //f1.timer4.Stop();
             full_reset();
             f1.label_timer.Text = "00:00";
             f2.label_timer.Text = "00:00";

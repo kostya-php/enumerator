@@ -94,7 +94,6 @@ namespace enumerator
         // отображаем несыгранные встречи на форме
         private void form_matches_Load(object sender, EventArgs e)
         {
-            Data.fm_fp = true;
             //this.ControlBox = false;
             MySqlConnection connect = null;
             try
@@ -199,9 +198,6 @@ namespace enumerator
                 Form1 f1 = this.Owner as Form1;
                 if (f1 != null)
                 {
-                    f1.завершитьВстречуToolStripMenuItem.Enabled = true;
-                    f1.выбратьИгроковToolStripMenuItem.Enabled = false;
-                    f1.выбратьВстречуToolStripMenuItem.Enabled = false;
                     Data.pick();
                 }
                 Data.from_bd = true;
@@ -228,7 +224,7 @@ namespace enumerator
 
         private void form_matches_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Data.fm_fp = false;
+
         }
     }
 
