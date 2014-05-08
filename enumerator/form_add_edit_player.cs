@@ -93,7 +93,7 @@ namespace enumerator
                     if (photo != "")
                     {
                         if (photo[0] == '/')
-                            textBox_photo.Text = "http://mckay.farline.net" + photo;
+                            textBox_photo.Text = "http://rating.t-t.pp.ua" + photo;
                         else textBox_photo.Text = photo;
                         checkBox_photo.Checked = true;
                         //pictureBox1.Load(textBox_photo.Text);
@@ -276,12 +276,12 @@ namespace enumerator
                 }
                 else
                 {
-                    pictureBox1.Load("http://mckay.farline.net/rating/photos/nophoto.jpg");
+                    pictureBox1.Load("http://rating.t-t.pp.ua/photos/nophoto.jpg");
                 }
             }
             catch
             {
-                pictureBox1.Load("http://mckay.farline.net/rating/photos/nophoto.jpg");
+                pictureBox1.Load("http://rating.t-t.pp.ua/photos/nophoto.jpg");
             }
 
         }
