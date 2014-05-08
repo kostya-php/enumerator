@@ -483,5 +483,44 @@ namespace enumerator
             Data.f1.label_timer.Text = time.ToString();
             Data.f2.label_timer.Text = time.ToString();
         }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            form_settings fs = new form_settings();
+            fs.ShowDialog();
+        }
+
+        private void ControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string control =
+                "Для начала счета необходимо выбрать одну из доступных встреч и назначить первоначальную подачу стрелками (<-)/(->) или кнопками джойстика (7)/(8)." + Environment.NewLine +
+                "Клавиатура:" + Environment.NewLine +
+                "(<-)/(->) - присвоить очко игроку" + Environment.NewLine +
+                "(Esc) - отменить последнее присвоенное очко" + Environment.NewLine +
+                "(F5) - сменить первоначальную подачу" + Environment.NewLine +
+                "(Space) - поменять игроков местами" + Environment.NewLine +
+                "(Enter) - подтвердить результат партии/вызвать следующих игроков" + Environment.NewLine +
+                "(F1)/(F2) - вкл/выкл полноэкранный режим для Счетчика" + Environment.NewLine +
+                "(F3)/(F4) - вкл/выкл полноэкранный режим для Счетчика (реверс)" + Environment.NewLine +
+                "Джойстик:" + Environment.NewLine +
+                "(7)/(8) - присвоить очко игроку" + Environment.NewLine +
+                "(1) - отменить последнее присвоенное очко" + Environment.NewLine +
+                "(2) - сменить первоначальную подачу" + Environment.NewLine +
+                "(3) - поменять игроков местами" + Environment.NewLine +
+                "(6) - подтвердить результат партии/вызвать следующих игроков" + Environment.NewLine;
+            MessageBox.Show(control, "Управление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string about =
+                "Программа выводит интерактивный счетчик для настольного тенниса, а также автоматизирует добавление данных о турнире, встречах и их результатах.";
+            MessageBox.Show(about, "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

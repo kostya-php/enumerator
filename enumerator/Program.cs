@@ -385,6 +385,26 @@ namespace enumerator
                 case Keys.Enter:
                     if (status == -1)
                     {
+                        if (fm.dataMatches.Rows.Count > 0)
+                        {
+                            fm.dataMatches.Rows[0].Selected = true;
+                            fm.dataMatches.Rows[0].Cells[0].Selected = true;
+                            //fm.dataMatches.Refresh();
+                            fm.start_match();
+                        }
+                    }
+                    else
+                        if (status == 2)
+                        {
+                            query += "INSERT INTO rounds VALUES (null,'" + match + "','" + (x + y).ToString() + "','" + xx + "','" + yy + "');";
+                            status = 3;
+                            //f1.info.Text = "";
+                            history = "";
+                            reset_score();
+                        }
+                    /*
+                    if (status == -1)
+                    {
                         //if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
                         full_reset();
                         f1.label_timer.Text = "00:00";
@@ -403,6 +423,7 @@ namespace enumerator
                             history = "";
                             reset_score();
                         }
+                    */
                     break;
 
                 case Keys.Escape:
