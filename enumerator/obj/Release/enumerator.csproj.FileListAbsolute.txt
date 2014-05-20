@@ -15,3 +15,5 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_tou
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_edit_player.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_matches.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form2.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\System.Data.SQLite.dll
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csprojResolveAssemblyReference.cache
