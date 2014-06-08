@@ -16,9 +16,6 @@ namespace enumerator
 {
     public class Data
     {
-        // БД SQLite
-        public static string databaseName { get; set; }
-
         // Имена игроков
         public static string player1 { get; set; }
         public static string player2 { get; set; }

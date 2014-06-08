@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Hooks;
-using System.Data.SQLite;
-using System.IO;
 
 namespace enumerator
 {
@@ -188,11 +186,6 @@ namespace enumerator
 
         private void Main_Load(object sender, EventArgs e)
         {
-            if (!File.Exists(Data.databaseName))
-            {
-                MessageBox.Show("Файл с Базой Данных не найден!");
-                Application.Exit();
-            }
             label1.Text = "";
             label2.Text = "Стол свободен";
             Data.use_console = false;
@@ -528,17 +521,6 @@ namespace enumerator
             string about =
                 "Программа выводит интерактивный счетчик для настольного тенниса, а также автоматизирует добавление данных о турнире, встречах и их результатах.";
             MessageBox.Show(about, "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            const string databaseName = @"tt.db3";
-            SQLiteConnection connection =
-                new SQLiteConnection(string.Format("Data Source={0};", databaseName));
-            connection.Open();
-            SQLiteCommand command = new SQLiteCommand("INSERT INTO 'tournaments' VALUES (null,'atata','2014-05-20','0.1','atata123','1','atata','3');", connection);
-            command.ExecuteNonQuery();
-            connection.Close();
         }
     }
 }
