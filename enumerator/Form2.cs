@@ -56,6 +56,7 @@ namespace enumerator
 
             info.Font = new Font(info.Font.FontFamily, Convert.ToInt32(font_size-5), info.Font.Unit);
             label_timer.Font = new Font(label_timer.Font.FontFamily, Convert.ToInt32(font_size), label_timer.Font.Unit);
+            label1.Font = new Font(label1.Font.FontFamily, Convert.ToInt32(font_size), label1.Font.Unit);
             int size = Convert.ToInt32(this.Size.Width * 0.3 / Convert.ToDouble(3));
             inning2.Size = new Size(size, size);
             inning1.Size = new Size(size, size);

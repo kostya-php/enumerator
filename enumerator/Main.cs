@@ -360,6 +360,7 @@ namespace enumerator
         private void dataTournaments_SelectionChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(dataTournaments.CurrentRow.Index.ToString() + " " + dataTournaments.Rows.Count.ToString());
+            /*
             if (dataTournaments.Rows.Count > 0)
             {
                 if ((dataTournaments.CurrentRow.Index + 1) == dataTournaments.Rows.Count)
@@ -371,6 +372,7 @@ namespace enumerator
                     buttonDelTournament.Enabled = false;
                 }
             }
+            */
         }
         public void start_match()
         {
@@ -521,6 +523,16 @@ namespace enumerator
             string about =
                 "Программа выводит интерактивный счетчик для настольного тенниса, а также автоматизирует добавление данных о турнире, встречах и их результатах.";
             MessageBox.Show(about, "О программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://rating.t-t.pp.ua/");
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://rating.t-t.pp.ua/update/");
         }
     }
 }

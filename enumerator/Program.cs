@@ -294,6 +294,7 @@ namespace enumerator
             try
             {
                 string result = "Готовятся: ";
+                string result2 = "";
                 connect = new MySqlConnection(connectionString);
                 connect.Open();
                 string query = "SELECT * FROM matches WHERE status='0'";
@@ -301,12 +302,24 @@ namespace enumerator
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.Read())
                 {
-                    result += player_name(Convert.ToInt32(dataReader["player1"])) + " - " + player_name(Convert.ToInt32(dataReader["player2"]));
+                    result2 += player_name(Convert.ToInt32(dataReader["player1"])) + " - " + player_name(Convert.ToInt32(dataReader["player2"]));
                 }
                 dataReader.Close();
                 connect.Close();
-                f1.info.Text = result;
-                f2.info.Text = result;
+                if (result2 != "")
+                {
+                    //f1.tableLayoutPanel1.Visible = true;
+                    //f2.tableLayoutPanel1.Visible = true;
+                    f1.info.Text = result + result2;
+                    f2.info.Text = result + result2;
+                }
+                else
+                {
+                    //f1.tableLayoutPanel1.Visible = false;
+                    //f2.tableLayoutPanel1.Visible = false;
+                    f1.info.Text = "ICE-PONG";
+                    f2.info.Text = "ICE-PONG";
+                }
             }
             catch (MySqlException err)
             {
