@@ -55,7 +55,7 @@ namespace enumerator
                     string query = "SELECT * FROM players WHERE id='" + Data.edited_player.ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     MySqlDataReader dataReader = cmd.ExecuteReader();
-                    string player, reg, base_rating, birthday, note, photo;
+                    string player, reg, base_rating, birthday, note, photo, gender;
                     dataReader.Read();
                     player = dataReader["player"].ToString();
                     reg = dataReader["reg"].ToString();
@@ -64,6 +64,8 @@ namespace enumerator
                     note = dataReader["note"].ToString();
 
                     photo = dataReader["photo"].ToString();
+
+                    gender = dataReader["gender"].ToString();
 
                     dataReader.Close();
                     this.Text = player;
@@ -102,6 +104,26 @@ namespace enumerator
                     {
                         checkBox_photo.Checked = false;
                         update_photo();
+                    }
+                    if (gender != "")
+                    {
+                        switch (gender)
+                        {
+                            case "male":
+                                {
+                                    comboBox_gender.SelectedIndex = 0;
+                                    break;
+                                }
+                            case "female":
+                                {
+                                    comboBox_gender.SelectedIndex = 1;
+                                    break;
+                                }
+                        }
+                    }
+                    else
+                    {
+                        comboBox_gender.SelectedIndex = -1;
                     }
                 }
                 catch (MySqlException err)
@@ -148,7 +170,7 @@ namespace enumerator
                 {
                     connect = new MySqlConnection(Data.connectionString);
                     connect.Open();
-                    string player, reg, base_rating, birthday, note, translit_name, photo;
+                    string player, reg, base_rating, birthday, note, translit_name, photo, gender;
                     player = textBox_player.Text;
                     if (dateTimePicker_reg.Checked)
                     {
@@ -178,8 +200,28 @@ namespace enumerator
                     {
                         photo = "NULL";
                     }
-
-                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + " WHERE id='" + Data.edited_player.ToString() + "'";
+                    gender = "''";
+                    if (comboBox_gender.SelectedIndex != -1)
+                    {
+                        switch (comboBox_gender.SelectedIndex)
+                        {
+                            case 0:
+                                {
+                                    gender = "'male'";
+                                    break;
+                                }
+                            case 1:
+                                {
+                                    gender = "'female'";
+                                    break;
+                                }
+                        }
+                    }
+                    else
+                    {
+                        gender = "NULL";
+                    }
+                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + ",gender=" + gender + " WHERE id='" + Data.edited_player.ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.ExecuteNonQuery();
                 }
@@ -203,7 +245,7 @@ namespace enumerator
                     {
                         connect = new MySqlConnection(Data.connectionString);
                         connect.Open();
-                        string player, reg, base_rating, birthday, note, translit_name, photo;
+                        string player, reg, base_rating, birthday, note, translit_name, photo, gender;
                         player = textBox_player.Text;
                         if (dateTimePicker_reg.Checked)
                         {
@@ -232,7 +274,28 @@ namespace enumerator
                         {
                             photo = "null";
                         }
-                        string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + ")";
+                        gender = "''";
+                        if (comboBox_gender.SelectedIndex != -1)
+                        {
+                            switch (comboBox_gender.SelectedIndex)
+                            {
+                                case 0:
+                                    {
+                                        gender = "'male'";
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        gender = "'female'";
+                                        break;
+                                    }
+                            }
+                        }
+                        else
+                        {
+                            gender = "NULL";
+                        }
+                        string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + "," + gender + ")";
                         MySqlCommand cmd = new MySqlCommand(query, connect);
                         cmd.ExecuteNonQuery();
                     }

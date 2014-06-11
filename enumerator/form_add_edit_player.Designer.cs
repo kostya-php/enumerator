@@ -44,6 +44,8 @@
             this.checkBox_photo = new System.Windows.Forms.CheckBox();
             this.textBox_photo = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBox_gender = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +78,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(196, 74);
+            this.label4.Location = new System.Drawing.Point(165, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 13);
             this.label4.TabIndex = 6;
@@ -84,14 +86,15 @@
             // 
             // textBox_base_rating
             // 
-            this.textBox_base_rating.Location = new System.Drawing.Point(199, 90);
+            this.textBox_base_rating.Location = new System.Drawing.Point(168, 90);
             this.textBox_base_rating.Name = "textBox_base_rating";
             this.textBox_base_rating.Size = new System.Drawing.Size(100, 20);
             this.textBox_base_rating.TabIndex = 7;
+            this.textBox_base_rating.Text = "100";
             // 
             // dateTimePicker_birthday
             // 
-            this.dateTimePicker_birthday.Location = new System.Drawing.Point(332, 90);
+            this.dateTimePicker_birthday.Location = new System.Drawing.Point(274, 90);
             this.dateTimePicker_birthday.Name = "dateTimePicker_birthday";
             this.dateTimePicker_birthday.ShowCheckBox = true;
             this.dateTimePicker_birthday.Size = new System.Drawing.Size(150, 20);
@@ -100,7 +103,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(329, 74);
+            this.label5.Location = new System.Drawing.Point(271, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
             this.label5.TabIndex = 9;
@@ -189,11 +192,33 @@
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
+            // comboBox_gender
+            // 
+            this.comboBox_gender.FormattingEnabled = true;
+            this.comboBox_gender.Items.AddRange(new object[] {
+            "м",
+            "ж"});
+            this.comboBox_gender.Location = new System.Drawing.Point(430, 89);
+            this.comboBox_gender.Name = "comboBox_gender";
+            this.comboBox_gender.Size = new System.Drawing.Size(52, 21);
+            this.comboBox_gender.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(427, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Пол:";
+            // 
             // form_add_edit_player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 575);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox_gender);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox_photo);
             this.Controls.Add(this.checkBox_photo);
@@ -242,5 +267,7 @@
         private System.Windows.Forms.CheckBox checkBox_photo;
         private System.Windows.Forms.TextBox textBox_photo;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox comboBox_gender;
+        private System.Windows.Forms.Label label1;
     }
 }
