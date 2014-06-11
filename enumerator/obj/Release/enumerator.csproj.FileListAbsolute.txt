@@ -2,7 +2,6 @@ C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.exe.config
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.exe
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\MySql.Data.dll
-C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\System.Data.SQLite.dll
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form1.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_tournament.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_console.resources
