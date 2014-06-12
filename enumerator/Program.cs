@@ -125,6 +125,37 @@ namespace enumerator
             }
             return result;
         }
+        // Получаем id игрока по его номеру в определенном турнире
+        public static int get_player(int n, int t)
+        {
+            int result = 0;
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM in_tournament WHERE tournament='" + t.ToString() + "' AND number='" + n.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = Convert.ToInt32(dataReader["player"]);
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
         // Получаем id игрока по его имени
         public static int player_id(string player)
         {

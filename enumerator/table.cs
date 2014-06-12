@@ -74,7 +74,7 @@ namespace enumerator
                 g.DrawString("М", drawFont, drawBrush, new Point(p_width + 15 + (50 * (players + 2)), 65), drawFormat);
 
                 string[] pl = new string[players];
-                query = "SELECT * FROM in_tournament WHERE tournament='"+t.ToString()+"' ORDER BY number ASC";
+                query = "SELECT * FROM in_tournament WHERE tournament='" + t.ToString() + "' ORDER BY number ASC";
                 cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 int k = 0;
@@ -83,14 +83,7 @@ namespace enumerator
                     pl[k] = Data.player_name(Convert.ToInt32(dataReader["player"]));
                     k++;
                 }
-                /*
-                pl[0] = "Салынский Иван";
-                pl[1] = "Охмак Николай";
-                pl[2] = "Шипка Роман";
-                pl[3] = "Янина Надежда";
-                pl[4] = "Пришвин Константин";
-                pl[5] = "Ткаченко Александр";
-                */
+                dataReader.Close();
                 for (int i = 1; i <= players; i++)
                 {
                     g.DrawString(pl[i - 1], new Font("Arial", 14), drawBrush, new Point(50, 65 + (res_size * i)), drawFormat);
@@ -105,11 +98,52 @@ namespace enumerator
                         {
                             g.DrawString("-", new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
                         }
+                        if (j > i)
+                        {
+                            int player1 = Data.get_player(j, t);
+                            int player2 = Data.get_player(i, t);
+                            // выборка 1
+                            query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND (player1='" + player1.ToString() + "' AND player2='" + player2.ToString() + "')";
+                            cmd = new MySqlCommand(query, connect);
+                            dataReader = cmd.ExecuteReader();
+                            if (dataReader.Read())
+                            {
+                                g.DrawString(dataReader["x"].ToString()+":"+dataReader["y"].ToString(), new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
+                            }
+                            dataReader.Close();
+                            // выборка 2
+                            query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND (player1='" + player2.ToString() + "' AND player2='" + player1.ToString() + "')";
+                            cmd = new MySqlCommand(query, connect);
+                            dataReader = cmd.ExecuteReader();
+                            if (dataReader.Read())
+                            {
+                                g.DrawString(dataReader["y"].ToString() + ":" + dataReader["x"].ToString(), new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
+                            }
+                            dataReader.Close();
+                        }
                         if (i > j)
                         {
-                            g.DrawString(j.ToString()+":"+i.ToString(), new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
+                            int player1 = Data.get_player(j, t);
+                            int player2 = Data.get_player(i, t);
+                            // выборка 1
+                            query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND (player1='" + player1.ToString() + "' AND player2='" + player2.ToString() + "')";
+                            cmd = new MySqlCommand(query, connect);
+                            dataReader = cmd.ExecuteReader();
+                            if (dataReader.Read())
+                            {
+                                g.DrawString(dataReader["x"].ToString() + ":" + dataReader["y"].ToString(), new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
+                            }
+                            dataReader.Close();
+                            // выборка 2
+                            query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND (player1='" + player2.ToString() + "' AND player2='" + player1.ToString() + "')";
+                            cmd = new MySqlCommand(query, connect);
+                            dataReader = cmd.ExecuteReader();
+                            if (dataReader.Read())
+                            {
+                                g.DrawString(dataReader["y"].ToString() + ":" + dataReader["x"].ToString(), new Font("Arial", 14), drawBrush, new Point(15 + p_width + (50 * i), 65 + (50 * j)), drawFormat);
+                            }
+                            dataReader.Close();
                         }
-
                     }
                 }
                 pen1.Dispose();
