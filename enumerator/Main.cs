@@ -536,5 +536,10 @@ namespace enumerator
         {
             System.Diagnostics.Process.Start("http://rating.t-t.pp.ua/update/");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            matches_update();
+        }
     }
 }

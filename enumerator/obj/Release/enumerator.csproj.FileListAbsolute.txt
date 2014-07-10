@@ -17,4 +17,3 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.exe
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csprojResolveAssemblyReference.cache
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.table.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\System.Data.SQLite.dll
