@@ -65,7 +65,7 @@ namespace enumerator
 
                     photo = dataReader["photo"].ToString();
 
-                    gender = dataReader["gender"].ToString();
+                    //gender = dataReader["gender"].ToString();
 
                     dataReader.Close();
                     this.Text = player;
@@ -105,6 +105,7 @@ namespace enumerator
                         checkBox_photo.Checked = false;
                         update_photo();
                     }
+                    /*
                     if (gender != "")
                     {
                         switch (gender)
@@ -125,6 +126,7 @@ namespace enumerator
                     {
                         comboBox_gender.SelectedIndex = -1;
                     }
+                    */
                 }
                 catch (MySqlException err)
                 {
@@ -200,6 +202,7 @@ namespace enumerator
                     {
                         photo = "NULL";
                     }
+                    /*
                     gender = "''";
                     if (comboBox_gender.SelectedIndex != -1)
                     {
@@ -221,7 +224,9 @@ namespace enumerator
                     {
                         gender = "NULL";
                     }
-                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + ",gender=" + gender + " WHERE id='" + Data.edited_player.ToString() + "'";
+                    */
+                    //string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + ",gender=" + gender + " WHERE id='" + Data.edited_player.ToString() + "'";
+                    string query = "UPDATE players SET player='" + player + "',reg=" + reg + ",base_rating='" + base_rating + "',birthday=" + birthday + ",note='" + note + "',translit_name='" + translit_name + "',photo=" + photo + " WHERE id='" + Data.edited_player.ToString() + "'";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.ExecuteNonQuery();
                 }
@@ -274,6 +279,7 @@ namespace enumerator
                         {
                             photo = "null";
                         }
+                        /*
                         gender = "''";
                         if (comboBox_gender.SelectedIndex != -1)
                         {
@@ -295,7 +301,9 @@ namespace enumerator
                         {
                             gender = "NULL";
                         }
-                        string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + "," + gender + ")";
+                        */
+                        //string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + "," + gender + ")";
+                        string query = "INSERT INTO players VALUES(null,'" + player + "'," + reg + ",'" + base_rating + "'," + birthday + ",'" + note + "',null,'" + translit_name + "'," + photo + ")";
                         MySqlCommand cmd = new MySqlCommand(query, connect);
                         cmd.ExecuteNonQuery();
                     }
