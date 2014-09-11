@@ -131,11 +131,11 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="table.cs">
+    <Compile Include="start_dialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="table.Designer.cs">
-      <DependentUpon>table.cs</DependentUpon>
+    <Compile Include="start_dialog.Designer.cs">
+      <DependentUpon>start_dialog.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -169,8 +169,8 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="table.resx">
-      <DependentUpon>table.cs</DependentUpon>
+    <EmbeddedResource Include="start_dialog.resx">
+      <DependentUpon>start_dialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

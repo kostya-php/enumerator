@@ -206,8 +206,6 @@ namespace enumerator
             }
             matches_update();
             timer_InitDevices.Start();
-            table t = new table();
-            t.Show();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -435,6 +433,8 @@ namespace enumerator
                     Data.f2.label_timer.Text = "00:00";
                     label1.Text = Data.player1;
                     label2.Text = Data.player2;
+                    button_techpor1.Visible = true;
+                    button_techpor2.Visible = true;
                 }
                 catch (MySqlException err)
                 {
@@ -464,6 +464,8 @@ namespace enumerator
             buttonStartMatch.Enabled = true;
             label1.Text = "";
             label2.Text = "Стол свободен";
+            button_techpor1.Visible = false;
+            button_techpor2.Visible = false;
         }
 
         private void timer_UpdateJoystick_Tick(object sender, EventArgs e)
@@ -540,6 +542,77 @@ namespace enumerator
         private void button1_Click(object sender, EventArgs e)
         {
             matches_update();
+        }
+
+        private void techpor(int id,int p)
+        {
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "";
+                if (p == 1)
+                {
+                    query = "UPDATE matches SET status='3', start=null, end=null, x='" + Data.min_wins.ToString() + "', y='0' WHERE id='" + id.ToString() + "'";
+                }
+                if (p == 2)
+                {
+                    query = "UPDATE matches SET status='3', start=null, end=null, x='0', y='" + Data.min_wins.ToString() + "' WHERE id='" + id.ToString() + "'";
+                }
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                cmd.ExecuteNonQuery();
+                timer_Enumerator.Stop();
+                Data.full_reset();
+                Data.f1.label_timer.Text = "00:00";
+                Data.f2.label_timer.Text = "00:00";
+                buttonCancelMatch.Enabled = false;
+                buttonStartMatch.Enabled = true;
+                label1.Text = "";
+                label2.Text = "Стол свободен";
+                button_techpor1.Visible = false;
+                button_techpor2.Visible = false;
+                matches_update();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+                buttonCancelMatch.Enabled = false;
+                buttonStartMatch.Enabled = true;
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+        }
+
+        private void button_techpor1_Click(object sender, EventArgs e)
+        {
+            if ((Data.status == 0)||(Data.status == 1))
+            {
+                DialogResult res = MessageBox.Show("Назначить игроку " + Data.player1.ToString() + " техническое поражение?", "Подтверждение", MessageBoxButtons.OKCancel);
+                if (res == DialogResult.OK)
+                {
+                    int id = Data.match;
+                    this.techpor(id, 1);
+                }
+            }
+        }
+
+        private void button_techpor2_Click(object sender, EventArgs e)
+        {
+            if ((Data.status == 0) || (Data.status == 1))
+            {
+                DialogResult res = MessageBox.Show("Назначить игроку " + Data.player1.ToString() + " техническое поражение?", "Подтверждение", MessageBoxButtons.OKCancel);
+                if (res == DialogResult.OK)
+                {
+                    int id = Data.match;
+                    this.techpor(id, 2);
+                }
+            }
         }
     }
 }
