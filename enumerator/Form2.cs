@@ -47,7 +47,7 @@ namespace enumerator
             double font_size = this.Size.Width * 0.45 / Convert.ToDouble(2);
             label_yy.Font = new Font(label_yy.Font.FontFamily, Convert.ToInt32(font_size), label_yy.Font.Unit);
             label_xx.Font = new Font(label_yy.Font.FontFamily, Convert.ToInt32(font_size), label_xx.Font.Unit);
-            font_size = this.Size.Width * 0.3 / Convert.ToDouble(8);
+            font_size = this.Size.Width * 0.25 / Convert.ToDouble(8);
             label_player2.Font = new Font(label_player2.Font.FontFamily, Convert.ToInt32(font_size), label_player2.Font.Unit);
             label_player1.Font = new Font(label_player1.Font.FontFamily, Convert.ToInt32(font_size), label_player1.Font.Unit);
 

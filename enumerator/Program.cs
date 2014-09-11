@@ -324,7 +324,7 @@ namespace enumerator
             MySqlConnection connect = null;
             try
             {
-                string result = "Готовятся: ";
+                string result = "Готовятся: "+Environment.NewLine;
                 string result2 = "";
                 connect = new MySqlConnection(connectionString);
                 connect.Open();
@@ -825,6 +825,10 @@ namespace enumerator
         // Полный сброс
         public static void full_reset()
         {
+            fm.label1.Text = "";
+            fm.label2.Text = "Стол свободен";
+            fm.button_techpor1.Visible = false;
+            fm.button_techpor2.Visible = false;
             status = -1;
             player1 = null;
             player2 = null;

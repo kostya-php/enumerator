@@ -206,6 +206,7 @@ namespace enumerator
             }
             matches_update();
             timer_InitDevices.Start();
+            Data.update_info();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
