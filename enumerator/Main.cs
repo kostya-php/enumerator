@@ -70,6 +70,7 @@ namespace enumerator
             }
             dataPlayers.Rows[index].Cells[0].Selected = true;
             groupBox1.Text = "Игроки (" + dataPlayers.Rows.Count.ToString() + ")";
+            dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
         }
         public void tournaments_update()
         {

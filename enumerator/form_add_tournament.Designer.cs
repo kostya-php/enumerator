@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,14 +44,23 @@
             this.button_OK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBox_translit_name = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataPlayersInTournament = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.player = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAddPlayerInTournament = new System.Windows.Forms.Button();
             this.buttonDelPlayerInTournament = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.buttonDelPlayer = new System.Windows.Forms.Button();
+            this.buttonEditPlayer = new System.Windows.Forms.Button();
+            this.buttonAddPlayer = new System.Windows.Forms.Button();
+            this.dataPlayers = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayersInTournament)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +76,7 @@
             // 
             this.textBox_name.Location = new System.Drawing.Point(12, 25);
             this.textBox_name.Name = "textBox_name";
-            this.textBox_name.Size = new System.Drawing.Size(312, 20);
+            this.textBox_name.Size = new System.Drawing.Size(325, 20);
             this.textBox_name.TabIndex = 1;
             this.textBox_name.TextChanged += new System.EventHandler(this.textBox_name_TextChanged);
             // 
@@ -127,7 +139,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 113);
+            this.label5.Location = new System.Drawing.Point(340, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 13);
             this.label5.TabIndex = 8;
@@ -135,16 +147,16 @@
             // 
             // textBox_note
             // 
-            this.textBox_note.Location = new System.Drawing.Point(12, 129);
+            this.textBox_note.Location = new System.Drawing.Point(343, 25);
             this.textBox_note.Multiline = true;
             this.textBox_note.Name = "textBox_note";
-            this.textBox_note.Size = new System.Drawing.Size(312, 155);
+            this.textBox_note.Size = new System.Drawing.Size(379, 85);
             this.textBox_note.TabIndex = 9;
             // 
             // button_OK
             // 
             this.button_OK.Enabled = false;
-            this.button_OK.Location = new System.Drawing.Point(12, 290);
+            this.button_OK.Location = new System.Drawing.Point(12, 384);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 10;
@@ -154,7 +166,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(507, 290);
+            this.buttonCancel.Location = new System.Drawing.Point(657, 384);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 11;
@@ -167,18 +179,8 @@
             this.textBox_translit_name.Location = new System.Drawing.Point(12, 51);
             this.textBox_translit_name.Name = "textBox_translit_name";
             this.textBox_translit_name.ReadOnly = true;
-            this.textBox_translit_name.Size = new System.Drawing.Size(312, 20);
+            this.textBox_translit_name.Size = new System.Drawing.Size(325, 20);
             this.textBox_translit_name.TabIndex = 12;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(330, 263);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(170, 21);
-            this.comboBox1.TabIndex = 13;
             // 
             // dataPlayersInTournament
             // 
@@ -190,7 +192,7 @@
             this.dataPlayersInTournament.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.player});
-            this.dataPlayersInTournament.Location = new System.Drawing.Point(330, 25);
+            this.dataPlayersInTournament.Location = new System.Drawing.Point(12, 129);
             this.dataPlayersInTournament.MultiSelect = false;
             this.dataPlayersInTournament.Name = "dataPlayersInTournament";
             this.dataPlayersInTournament.ReadOnly = true;
@@ -198,7 +200,7 @@
             this.dataPlayersInTournament.RowHeadersWidth = 20;
             this.dataPlayersInTournament.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataPlayersInTournament.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataPlayersInTournament.Size = new System.Drawing.Size(252, 232);
+            this.dataPlayersInTournament.Size = new System.Drawing.Size(252, 249);
             this.dataPlayersInTournament.TabIndex = 14;
             // 
             // id
@@ -219,45 +221,161 @@
             // 
             // buttonAddPlayerInTournament
             // 
+            this.buttonAddPlayerInTournament.AutoSize = true;
             this.buttonAddPlayerInTournament.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddPlayerInTournament.Location = new System.Drawing.Point(506, 263);
+            this.buttonAddPlayerInTournament.Image = global::enumerator.Properties.Resources.addplayer;
+            this.buttonAddPlayerInTournament.Location = new System.Drawing.Point(270, 169);
             this.buttonAddPlayerInTournament.Name = "buttonAddPlayerInTournament";
-            this.buttonAddPlayerInTournament.Size = new System.Drawing.Size(35, 23);
+            this.buttonAddPlayerInTournament.Size = new System.Drawing.Size(70, 59);
             this.buttonAddPlayerInTournament.TabIndex = 15;
-            this.buttonAddPlayerInTournament.Text = "+";
             this.buttonAddPlayerInTournament.UseVisualStyleBackColor = true;
             this.buttonAddPlayerInTournament.Click += new System.EventHandler(this.buttonAddPlayerInTournament_Click);
             // 
             // buttonDelPlayerInTournament
             // 
+            this.buttonDelPlayerInTournament.AutoSize = true;
             this.buttonDelPlayerInTournament.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(547, 263);
+            this.buttonDelPlayerInTournament.Image = global::enumerator.Properties.Resources.delplayer;
+            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(270, 234);
             this.buttonDelPlayerInTournament.Name = "buttonDelPlayerInTournament";
-            this.buttonDelPlayerInTournament.Size = new System.Drawing.Size(35, 23);
+            this.buttonDelPlayerInTournament.Size = new System.Drawing.Size(70, 59);
             this.buttonDelPlayerInTournament.TabIndex = 16;
-            this.buttonDelPlayerInTournament.Text = "-";
             this.buttonDelPlayerInTournament.UseVisualStyleBackColor = true;
             this.buttonDelPlayerInTournament.Click += new System.EventHandler(this.buttonDelPlayerInTournament_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(327, 9);
+            this.label6.Location = new System.Drawing.Point(9, 113);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.Size = new System.Drawing.Size(120, 13);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Игроки (0):";
+            this.label6.Text = "Игроки на турнире (0):";
+            // 
+            // buttonDelPlayer
+            // 
+            this.buttonDelPlayer.Enabled = false;
+            this.buttonDelPlayer.Location = new System.Drawing.Point(305, 220);
+            this.buttonDelPlayer.Name = "buttonDelPlayer";
+            this.buttonDelPlayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelPlayer.TabIndex = 21;
+            this.buttonDelPlayer.Text = "Удалить";
+            this.buttonDelPlayer.UseVisualStyleBackColor = true;
+            this.buttonDelPlayer.Click += new System.EventHandler(this.buttonDelPlayer_Click);
+            // 
+            // buttonEditPlayer
+            // 
+            this.buttonEditPlayer.Location = new System.Drawing.Point(87, 220);
+            this.buttonEditPlayer.Name = "buttonEditPlayer";
+            this.buttonEditPlayer.Size = new System.Drawing.Size(95, 23);
+            this.buttonEditPlayer.TabIndex = 20;
+            this.buttonEditPlayer.Text = "Редактировать";
+            this.buttonEditPlayer.UseVisualStyleBackColor = true;
+            this.buttonEditPlayer.Click += new System.EventHandler(this.buttonEditPlayer_Click);
+            // 
+            // buttonAddPlayer
+            // 
+            this.buttonAddPlayer.Location = new System.Drawing.Point(6, 220);
+            this.buttonAddPlayer.Name = "buttonAddPlayer";
+            this.buttonAddPlayer.Size = new System.Drawing.Size(75, 23);
+            this.buttonAddPlayer.TabIndex = 19;
+            this.buttonAddPlayer.Text = "Добавить";
+            this.buttonAddPlayer.UseVisualStyleBackColor = true;
+            this.buttonAddPlayer.Click += new System.EventHandler(this.buttonAddPlayer_Click);
+            // 
+            // dataPlayers
+            // 
+            this.dataPlayers.AllowUserToAddRows = false;
+            this.dataPlayers.AllowUserToDeleteRows = false;
+            this.dataPlayers.AllowUserToResizeColumns = false;
+            this.dataPlayers.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.birthday});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataPlayers.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataPlayers.Location = new System.Drawing.Point(6, 19);
+            this.dataPlayers.MultiSelect = false;
+            this.dataPlayers.Name = "dataPlayers";
+            this.dataPlayers.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataPlayers.RowHeadersVisible = false;
+            this.dataPlayers.RowHeadersWidth = 20;
+            this.dataPlayers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataPlayers.Size = new System.Drawing.Size(379, 195);
+            this.dataPlayers.TabIndex = 18;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataPlayers);
+            this.groupBox1.Controls.Add(this.buttonDelPlayer);
+            this.groupBox1.Controls.Add(this.buttonAddPlayer);
+            this.groupBox1.Controls.Add(this.buttonEditPlayer);
+            this.groupBox1.Location = new System.Drawing.Point(346, 129);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(386, 249);
+            this.groupBox1.TabIndex = 23;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Игроки";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "#";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Игрок";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // birthday
+            // 
+            this.birthday.HeaderText = "Дата рождения";
+            this.birthday.Name = "birthday";
+            this.birthday.ReadOnly = true;
+            this.birthday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.birthday.Width = 127;
             // 
             // form_add_tournament
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 325);
+            this.ClientSize = new System.Drawing.Size(744, 419);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.buttonDelPlayerInTournament);
             this.Controls.Add(this.buttonAddPlayerInTournament);
             this.Controls.Add(this.dataPlayersInTournament);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox_translit_name);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.button_OK);
@@ -279,6 +397,8 @@
             this.Text = "Добавить турнир";
             this.Load += new System.EventHandler(this.form_add_tournament_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayersInTournament)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,12 +419,19 @@
         private System.Windows.Forms.Button button_OK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBox_translit_name;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataPlayersInTournament;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn player;
         private System.Windows.Forms.Button buttonAddPlayerInTournament;
         private System.Windows.Forms.Button buttonDelPlayerInTournament;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button buttonDelPlayer;
+        private System.Windows.Forms.Button buttonEditPlayer;
+        private System.Windows.Forms.Button buttonAddPlayer;
+        private System.Windows.Forms.DataGridView dataPlayers;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
     }
 }

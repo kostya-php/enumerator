@@ -16,4 +16,3 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csproj.Gener
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.exe
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csprojResolveAssemblyReference.cache
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.start_dialog.resources

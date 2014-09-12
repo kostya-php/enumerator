@@ -28,6 +28,61 @@ namespace enumerator
             }
         }
 
+        public void players_update()
+        {
+            int index = 0;
+            if (dataPlayers.RowCount > 0)
+            {
+                index = dataPlayers.CurrentRow.Index;
+            }
+            dataPlayers.Rows.Clear();
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "SELECT Count(*) FROM players";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                int n = Convert.ToInt32(cmd.ExecuteScalar());
+                query = "SELECT * FROM players ORDER BY id ASC";
+                cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                string id, player, birthday;
+                DateTime dt = new DateTime();
+                while (dataReader.Read())
+                {
+                    id = dataReader["id"].ToString();
+                    player = dataReader["player"].ToString();
+                    if (dataReader["birthday"].ToString() != "")
+                    {
+                        dt = Convert.ToDateTime(dataReader["birthday"]);
+                        birthday = dt.ToString("dd MMMM yyyy");
+                    }
+                    else
+                    {
+                        birthday = "?";
+                    }
+                    dataPlayers.Rows.Add(id, player, birthday);
+                }
+                dataReader.Close();
+
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            dataPlayers.Rows[index].Cells[0].Selected = true;
+            groupBox1.Text = "Игроки (" + dataPlayers.Rows.Count.ToString() + ")";
+            dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
+        }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -35,7 +90,8 @@ namespace enumerator
 
         private void form_add_tournament_Load(object sender, EventArgs e)
         {
-            comboBox1.DataSource = Data.player_list();
+            //comboBox1.DataSource = Data.player_list();
+            players_update();
         }
 
         private void button_OK_Click(object sender, EventArgs e)
@@ -168,16 +224,21 @@ namespace enumerator
 
         private void buttonAddPlayerInTournament_Click(object sender, EventArgs e)
         {
-            string id, player;
+            string player;
+            int id;
             bool error = false;
-            id = Data.player_id(comboBox1.Text).ToString();
-            player = comboBox1.Text;
+            //id = Data.player_id(comboBox1.Text).ToString();
+            //id = dataPlayers.CurrentRow.Index;
+            id = Convert.ToInt32(dataPlayers.Rows[Convert.ToInt32(dataPlayers.CurrentRow.Index)].Cells[0].Value);
+            //player = comboBox1.Text;
+            player = dataPlayers.Rows[Convert.ToInt32(Convert.ToInt32(dataPlayers.CurrentRow.Index))].Cells[1].Value.ToString();
 
             for (int i = 0; i < dataPlayersInTournament.Rows.Count; i++)
             {
-                if (dataPlayersInTournament.Rows[i].Cells[0].Value.ToString() == id) error = true;
+                if (Convert.ToInt32(dataPlayersInTournament.Rows[i].Cells[0].Value) == id) error = true;
+                //MessageBox.Show(dataPlayersInTournament.Rows[i].Cells[0].Value.ToString() + " - " + id.ToString());
             }
-            if (comboBox1.SelectedIndex == -1) error = true;
+            //if (comboBox1.SelectedIndex == -1) error = true;
             if (!error)
             {
                 dataPlayersInTournament.Rows.Add(id, player);
@@ -190,7 +251,7 @@ namespace enumerator
             {
                 button_OK.Enabled = false;
             }
-            label6.Text = "Игроки (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+            label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
         }
 
         private void buttonDelPlayerInTournament_Click(object sender, EventArgs e)
@@ -212,7 +273,59 @@ namespace enumerator
             {
                 button_OK.Enabled = false;
             }
-            label6.Text = "Игроки (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+            label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+        }
+
+        private void buttonAddPlayer_Click(object sender, EventArgs e)
+        {
+            Data.edited_player = -1;
+            form_add_edit_player form_aep = new form_add_edit_player();
+            form_aep.Owner = this;
+            form_aep.ShowDialog();
+        }
+
+        private void buttonEditPlayer_Click(object sender, EventArgs e)
+        {
+            int index = dataPlayers.CurrentRow.Index;
+            Data.edited_player = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
+            form_add_edit_player form_aep = new form_add_edit_player();
+            form_aep.Owner = this;
+            form_aep.ShowDialog();
+        }
+
+        private void buttonDelPlayer_Click(object sender, EventArgs e)
+        {
+            buttonDelPlayer.Enabled = false;
+            MessageBox.Show("Удаление игроков отключено в целях безопасности", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            /*
+            int index = dataPlayers.CurrentRow.Index;
+            int id = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
+            DialogResult dr = MessageBox.Show(Data.player_name(id) + Environment.NewLine + "Вы действительно хотите удалить этого игрока?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                MySqlConnection connect = null;
+                try
+                {
+                    connect = new MySqlConnection(Data.connectionString);
+                    connect.Open();
+                    string query = "DELETE FROM players WHERE id='" + id + "'";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException err)
+                {
+                    MessageBox.Show("Ошибка: " + err.ToString());
+                }
+                finally
+                {
+                    if (connect != null)
+                    {
+                        connect.Close();
+                    }
+                }
+                players_update();
+            }
+            */
         }
     }
 }
