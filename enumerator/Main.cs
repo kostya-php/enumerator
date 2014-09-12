@@ -436,6 +436,7 @@ namespace enumerator
                     label2.Text = Data.player2;
                     button_techpor1.Visible = true;
                     button_techpor2.Visible = true;
+                    button_noplay.Visible = true;
                 }
                 catch (MySqlException err)
                 {
@@ -467,6 +468,7 @@ namespace enumerator
             label2.Text = "Стол свободен";
             button_techpor1.Visible = false;
             button_techpor2.Visible = false;
+            button_noplay.Visible = false;
         }
 
         private void timer_UpdateJoystick_Tick(object sender, EventArgs e)
@@ -545,7 +547,7 @@ namespace enumerator
             matches_update();
         }
 
-        private void techpor(int id,int p)
+        private void techpor(int id, int p)
         {
             MySqlConnection connect = null;
             try
@@ -563,6 +565,13 @@ namespace enumerator
                 }
                 MySqlCommand cmd = new MySqlCommand(query, connect);
                 cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
                 timer_Enumerator.Stop();
                 Data.full_reset();
                 Data.f1.label_timer.Text = "00:00";
@@ -573,16 +582,8 @@ namespace enumerator
                 label2.Text = "Стол свободен";
                 button_techpor1.Visible = false;
                 button_techpor2.Visible = false;
+                button_noplay.Visible = false;
                 matches_update();
-            }
-            catch (MySqlException err)
-            {
-                MessageBox.Show("Ошибка: " + err.ToString());
-                buttonCancelMatch.Enabled = false;
-                buttonStartMatch.Enabled = true;
-            }
-            finally
-            {
                 if (connect != null)
                 {
                     connect.Close();
@@ -592,7 +593,7 @@ namespace enumerator
 
         private void button_techpor1_Click(object sender, EventArgs e)
         {
-            if ((Data.status == 0)||(Data.status == 1))
+            if ((Data.status == 0) || (Data.status == 1))
             {
                 DialogResult res = MessageBox.Show("Назначить игроку " + Data.player1.ToString() + " техническое поражение?", "Подтверждение", MessageBoxButtons.OKCancel);
                 if (res == DialogResult.OK)
@@ -607,11 +608,55 @@ namespace enumerator
         {
             if ((Data.status == 0) || (Data.status == 1))
             {
-                DialogResult res = MessageBox.Show("Назначить игроку " + Data.player1.ToString() + " техническое поражение?", "Подтверждение", MessageBoxButtons.OKCancel);
+                DialogResult res = MessageBox.Show("Назначить игроку " + Data.player2.ToString() + " техническое поражение?", "Подтверждение", MessageBoxButtons.OKCancel);
                 if (res == DialogResult.OK)
                 {
                     int id = Data.match;
                     this.techpor(id, 2);
+                }
+            }
+        }
+
+        private void button_noplay_Click(object sender, EventArgs e)
+        {
+            if ((Data.status == 0) || (Data.status == 1))
+            {
+                DialogResult res = MessageBox.Show("Встреча между игроками " + Environment.NewLine + Data.player1.ToString() + " - " + Data.player2.ToString() + Environment.NewLine + " действительно не состоялась?", "Подтверждение", MessageBoxButtons.OKCancel);
+                if (res == DialogResult.OK)
+                {
+                    MySqlConnection connect = null;
+                    try
+                    {
+                        int id = Data.match;
+                        connect = new MySqlConnection(Data.connectionString);
+                        connect.Open();
+                        string query = "UPDATE matches SET status='4', start=null, end=null, x='0', y='0' WHERE id='" + id.ToString() + "'";
+                        MySqlCommand cmd = new MySqlCommand(query, connect);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (MySqlException err)
+                    {
+                        MessageBox.Show("Ошибка: " + err.ToString());
+                    }
+                    finally
+                    {
+                        timer_Enumerator.Stop();
+                        Data.full_reset();
+                        Data.f1.label_timer.Text = "00:00";
+                        Data.f2.label_timer.Text = "00:00";
+                        buttonCancelMatch.Enabled = false;
+                        buttonStartMatch.Enabled = true;
+                        label1.Text = "";
+                        label2.Text = "Стол свободен";
+                        button_techpor1.Visible = false;
+                        button_techpor2.Visible = false;
+                        button_noplay.Visible = false;
+                        matches_update();
+                        if (connect != null)
+                        {
+                            connect.Close();
+                        }
+                    }
                 }
             }
         }
