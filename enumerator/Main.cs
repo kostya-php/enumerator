@@ -152,7 +152,7 @@ namespace enumerator
                     int n = Convert.ToInt32(cmd.ExecuteScalar());
                     if (n > 0)
                     {
-                        query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' ORDER BY id ASC";
+                        query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
                         cmd = new MySqlCommand(query, connect);
                         dataReader = cmd.ExecuteReader();
                         string players, id;
@@ -161,7 +161,25 @@ namespace enumerator
                         {
                             if (dataReader["status"].ToString() == "0")
                             {
-                                players = Data.player_name(Convert.ToInt32(dataReader["player1"])) + " - " + Data.player_name(Convert.ToInt32(dataReader["player2"]));
+                                string p1 = "", p2 = "";
+                                if (dataReader["player1"].ToString() != "")
+                                {
+                                    p1 = Data.player_name(Convert.ToInt32(dataReader["player1"]));
+                                }
+                                else
+                                {
+                                    p1 = "?";
+                                }
+                                if (dataReader["player2"].ToString() != "")
+                                {
+                                    p2 = Data.player_name(Convert.ToInt32(dataReader["player2"]));
+                                }
+                                else
+                                {
+                                    p2 = "?";
+                                }
+                                //players = Data.player_name(Convert.ToInt32(dataReader["player1"])) + " - " + Data.player_name(Convert.ToInt32(dataReader["player2"]));
+                                players = p1 + " - " + p2;
                                 id = dataReader["id"].ToString();
                                 dataMatches.Rows.Add(number.ToString(), players, id);
                             }
@@ -187,6 +205,7 @@ namespace enumerator
 
         private void Main_Load(object sender, EventArgs e)
         {
+            Data.v.Show();
             label1.Text = "";
             label2.Text = "Стол свободен";
             Data.use_console = false;
@@ -546,6 +565,7 @@ namespace enumerator
         private void button1_Click(object sender, EventArgs e)
         {
             matches_update();
+            tournaments_update();
         }
 
         private void techpor(int id, int p)
@@ -558,11 +578,11 @@ namespace enumerator
                 string query = "";
                 if (p == 1)
                 {
-                    query = "UPDATE matches SET status='3', start=null, end=null, x='" + Data.min_wins.ToString() + "', y='0' WHERE id='" + id.ToString() + "'";
+                    query = "UPDATE matches SET status='3', start=null, end=null, x='0', y='" + Data.min_wins.ToString() + "' WHERE id='" + id.ToString() + "'";
                 }
                 if (p == 2)
                 {
-                    query = "UPDATE matches SET status='3', start=null, end=null, x='0', y='" + Data.min_wins.ToString() + "' WHERE id='" + id.ToString() + "'";
+                    query = "UPDATE matches SET status='3', start=null, end=null, x='" + Data.min_wins.ToString() + "', y='0' WHERE id='" + id.ToString() + "'";
                 }
                 MySqlCommand cmd = new MySqlCommand(query, connect);
                 cmd.ExecuteNonQuery();
