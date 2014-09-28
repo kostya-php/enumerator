@@ -110,7 +110,72 @@ namespace enumerator
                     result = dataReader["player"].ToString();
                 }
                 dataReader.Close();
-                connect.Close();
+                //connect.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
+
+        // Получаем название турнира по его id
+        public static string tournament_name(int id)
+        {
+            string result = "NoName";
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM tournaments WHERE id='" + id.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = dataReader["name"].ToString();
+                }
+                dataReader.Close();
+                //connect.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
+        // Получаем дату турнира по его id
+        public static string tournament_date(int id)
+        {
+            string result = "1970-01-01";
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM tournaments WHERE id='" + id.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = Convert.ToDateTime(dataReader["date"]).ToString("dd MMMM yyyy");
+                }
+                dataReader.Close();
+                //connect.Close();
             }
             catch (MySqlException err)
             {
@@ -173,7 +238,7 @@ namespace enumerator
                     result = Convert.ToInt32(dataReader["id"]);
                 }
                 dataReader.Close();
-                connect.Close();
+                //connect.Close();
             }
             catch (MySqlException err)
             {
@@ -318,7 +383,8 @@ namespace enumerator
         public static Form1 f1 { get; set; }
         public static Form2 f2 { get; set; }
         public static Main fm { get; set; }
-        public static vib8 v { get; set; }
+        public static vib8 v8 { get; set; }
+        public static krug krug { get; set; }
 
         public static void update_info()
         {
@@ -334,11 +400,11 @@ namespace enumerator
                 MySqlDataReader dataReader = cmd.ExecuteReader();
                 if (dataReader.Read())
                 {
-                    if ((dataReader["player1"].ToString() != "")&(dataReader["player2"].ToString() != ""))
-                    result2 += player_name(Convert.ToInt32(dataReader["player1"])) + " - " + player_name(Convert.ToInt32(dataReader["player2"]));
+                    if ((dataReader["player1"].ToString() != "") & (dataReader["player2"].ToString() != ""))
+                        result2 += player_name(Convert.ToInt32(dataReader["player1"])) + " - " + player_name(Convert.ToInt32(dataReader["player2"]));
                 }
                 dataReader.Close();
-                connect.Close();
+                //connect.Close();
                 if (result2 != "")
                 {
                     //f1.tableLayoutPanel1.Visible = true;
@@ -1036,7 +1102,7 @@ namespace enumerator
                             {
                                 connect.Close();
                             }
-                            Data.update_vib8();
+                            Data.fm.matches_update();
                         }
                     }
                     full_reset();
@@ -1565,10 +1631,195 @@ namespace enumerator
                 write_log("Из " + rounds + "-х партий (до " + min_wins + " побед)");
             }
         }
+        // Получить текущий турнир
+        public static int get_current_tournament()
+        {
+            int result = -1;
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "SELECT * FROM tournaments WHERE status='1'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = Convert.ToInt32(dataReader["id"]);
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
+        // Получить протокол текущего турнира
+        public static string get_protocol(int id)
+        {
+            string result = "";
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(Data.connectionString);
+                connect.Open();
+                string query = "SELECT * FROM tournaments WHERE id='" + id.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result = dataReader["protocol"].ToString();
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
         public static void update_vib8()
         {
+            if (Data.get_protocol(Data.get_current_tournament()) == "vib8")
+            {
+                Data.v8.label1.Text =
+                    "Название турнира: " + Data.tournament_name(get_current_tournament()) + Environment.NewLine +
+                    "Дата:" + Data.tournament_date(get_current_tournament());
+                MySqlConnection connect = null;
+                try
+                {
+                    connect = new MySqlConnection(Data.connectionString);
+                    connect.Open();
+                    string query = "SELECT * FROM matches WHERE tournament='" + get_current_tournament().ToString() + "' ORDER BY number ASC";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        int i = Convert.ToInt32(dataReader["number"]);
+                        int p1 = -1, p2 = -1, x = -1, y = -1;
+                        if (dataReader["player1"].ToString() != "")
+                        {
+                            p1 = Convert.ToInt32(dataReader["player1"]);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = Data.player_name(p1);
+                        }
+                        else
+                        {
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = "";
+                        }
+                        if (dataReader["player2"].ToString() != "")
+                        {
+                            p2 = Convert.ToInt32(dataReader["player2"]);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = Data.player_name(p2);
+                        }
+                        else
+                        {
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = "";
+                        }
+
+                        if (dataReader["x"].ToString() != "")
+                        {
+                            x = Convert.ToInt32(dataReader["x"]);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = x.ToString();
+                        }
+                        else
+                        {
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = "-";
+                            x = -1;
+                        }
+                        if (dataReader["y"].ToString() != "")
+                        {
+                            y = Convert.ToInt32(dataReader["y"]);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = y.ToString();
+                        }
+                        else
+                        {
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = "-";
+                            y = -1;
+                        }
+
+                        if ((x != -1) & (y != -1))
+                        {
+                            if (x > y)
+                            {
+                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"];
+                                tmp.Font = new Font(tmp.Font, FontStyle.Bold);
+                                if (i == 7)
+                                {
+                                    Data.v8.WINNER.Text = Data.player_name(p1);
+                                }
+                            }
+                            if (x < y)
+                            {
+                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"];
+                                tmp.Font = new Font(tmp.Font, FontStyle.Bold);
+                                if (i == 7)
+                                {
+                                    Data.v8.WINNER.Text = Data.player_name(p2);
+                                }
+                            }
+                        }
+                        /*
+                        if (i == 7)
+                        {
+                            if ((x != -1) & (y != -1))
+                            {
+                                if (x > y)
+                                {
+                                    Data.v8.WINNER.Text = Data.player_name(p1);
+                                }
+                                if (x < y)
+                                {
+                                    Data.v8.WINNER.Text = Data.player_name(p2);
+                                }
+                            }
+                        }
+                        */
+                    }
+                    dataReader.Close();
+                }
+                catch (MySqlException err)
+                {
+                    MessageBox.Show("Ошибка: " + err.ToString());
+                }
+                finally
+                {
+                    if (connect != null)
+                    {
+                        connect.Close();
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= 7; i++)
+                {
+                    Data.v8.Controls["game" + i.ToString() + "_player1"].Text = "";
+                    Data.v8.Controls["game" + i.ToString() + "_player1"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player1"].Font, FontStyle.Bold);
+                    Data.v8.Controls["game" + i.ToString() + "_player2"].Text = "";
+                    Data.v8.Controls["game" + i.ToString() + "_player2"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player2"].Font, FontStyle.Bold);
+                    Data.v8.Controls["game" + i.ToString() + "x"].Text = "-";
+                    Data.v8.Controls["game" + i.ToString() + "y"].Text = "-";
+                }
+                Data.v8.WINNER.Text = "";
+            }
             // проверить наличие активного турнира
             // проверить протокол (vib8)
+            /*
             MySqlConnection connect = null;
             try
             {
@@ -1589,40 +1840,40 @@ namespace enumerator
                         if (dataReader["player1"].ToString() != "")
                         {
                             p1 = Convert.ToInt32(dataReader["player1"]);
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = Data.player_name(p1);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = Data.player_name(p1);
                         }
                         else
                         {
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = "";
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = "";
                         }
                         if (dataReader["player2"].ToString() != "")
                         {
                             p2 = Convert.ToInt32(dataReader["player2"]);
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = Data.player_name(p2);
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = Data.player_name(p2);
                         }
                         else
                         {
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = "";
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = "";
                         }
 
                         if (dataReader["x"].ToString() != "")
                         {
                             x = Convert.ToInt32(dataReader["x"]);
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = x.ToString();
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = x.ToString();
                         }
                         else
                         {
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = "-";
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = "-";
                             x = -1;
                         }
                         if (dataReader["y"].ToString() != "")
                         {
                             y = Convert.ToInt32(dataReader["y"]);
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = y.ToString();
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = y.ToString();
                         }
                         else
                         {
-                            Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = "-";
+                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = "-";
                             y = -1;
                         }
 
@@ -1630,12 +1881,12 @@ namespace enumerator
                         {
                             if (x > y)
                             {
-                                Control tmp = Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"];
+                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"];
                                 tmp.Font = new Font(tmp.Font, FontStyle.Bold);
                             }
                             if (x < y)
                             {
-                                Control tmp = Data.v.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"];
+                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"];
                                 tmp.Font = new Font(tmp.Font, FontStyle.Bold);
                             }
                         }
@@ -1646,11 +1897,11 @@ namespace enumerator
                             {
                                 if (x > y)
                                 {
-                                    Data.v.WINNER.Text = Data.player_name(p1);
+                                    Data.v8.WINNER.Text = Data.player_name(p1);
                                 }
                                 if (x < y)
                                 {
-                                    Data.v.WINNER.Text = Data.player_name(p2);
+                                    Data.v8.WINNER.Text = Data.player_name(p2);
                                 }
                             }
                         }
@@ -1661,14 +1912,14 @@ namespace enumerator
                 {
                     for (int i = 1; i <= 7; i++)
                     {
-                        Data.v.Controls["game" + i.ToString() + "_player1"].Text = "";
-                        Data.v.Controls["game" + i.ToString() + "_player1"].Font = new Font(Data.v.Controls["game" + i.ToString() + "_player1"].Font, FontStyle.Bold);
-                        Data.v.Controls["game" + i.ToString() + "_player2"].Text = "";
-                        Data.v.Controls["game" + i.ToString() + "_player2"].Font = new Font(Data.v.Controls["game" + i.ToString() + "_player2"].Font, FontStyle.Bold);
-                        Data.v.Controls["game" + i.ToString() + "x"].Text = "-";
-                        Data.v.Controls["game" + i.ToString() + "y"].Text = "-";
+                        Data.v8.Controls["game" + i.ToString() + "_player1"].Text = "";
+                        Data.v8.Controls["game" + i.ToString() + "_player1"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player1"].Font, FontStyle.Bold);
+                        Data.v8.Controls["game" + i.ToString() + "_player2"].Text = "";
+                        Data.v8.Controls["game" + i.ToString() + "_player2"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player2"].Font, FontStyle.Bold);
+                        Data.v8.Controls["game" + i.ToString() + "x"].Text = "-";
+                        Data.v8.Controls["game" + i.ToString() + "y"].Text = "-";
                     }
-                    Data.v.WINNER.Text = "";
+                    Data.v8.WINNER.Text = "";
                 }
             }
             catch (MySqlException err)
@@ -1682,6 +1933,7 @@ namespace enumerator
                     connect.Close();
                 }
             }
+            */
             //при наличии всех условий обновить форму vib8
 
             // иначе обнулить все поля
@@ -1718,7 +1970,8 @@ namespace enumerator
             Data.f1 = new Form1();
             Data.f2 = new Form2();
             Data.fm = new Main();
-            Data.v = new vib8();
+            Data.v8 = new vib8();
+            Data.krug = new krug();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);
             KBDHook.LocalHook = false;
             KBDHook.InstallHook();

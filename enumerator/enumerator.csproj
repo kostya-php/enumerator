@@ -116,6 +116,12 @@
       <DependentUpon>form_settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Hook.cs" />
+    <Compile Include="krug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="krug.Designer.cs">
+      <DependentUpon>krug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form_settings.resx">
       <DependentUpon>form_settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="krug.resx">
+      <DependentUpon>krug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

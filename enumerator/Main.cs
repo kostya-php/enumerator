@@ -189,6 +189,11 @@ namespace enumerator
                     }
                 }
                 groupBox3.Text = "Доступные встречи (" + dataMatches.Rows.Count.ToString() + ")";
+                string protocol = Data.get_protocol(Data.get_current_tournament());
+                if (protocol == "vib8")
+                {
+                    Data.update_vib8();
+                }
             }
             catch (MySqlException err)
             {
@@ -205,7 +210,7 @@ namespace enumerator
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Data.v.Show();
+            //Data.krug.Show();
             label1.Text = "";
             label2.Text = "Стол свободен";
             Data.use_console = false;
@@ -566,6 +571,21 @@ namespace enumerator
         {
             matches_update();
             tournaments_update();
+            string protocol = Data.get_protocol(Data.get_current_tournament());
+            switch (protocol)
+            {
+                case "krug":
+                    //Data.krug.Show();
+                    MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
+                    break;
+                case "vib8":
+                    //Data.update_vib8();
+                    break;
+                default:
+                    MessageBox.Show("Сейчас нет активных турниров");
+                    break;
+            }
+            //Data.update_vib8();
         }
 
         private void techpor(int id, int p)
@@ -679,6 +699,24 @@ namespace enumerator
                         }
                     }
                 }
+            }
+        }
+
+        private void таблицаРезультатовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string protocol = Data.get_protocol(Data.get_current_tournament());
+            switch (protocol)
+            {
+                case "krug":
+                    //Data.krug.Show();
+                    MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
+                    break;
+                case "vib8":
+                    Data.v8.Show();
+                    break;
+                default:
+                    MessageBox.Show("Сейчас нет активных турниров");
+                    break;
             }
         }
     }

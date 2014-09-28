@@ -92,6 +92,7 @@ namespace enumerator
         {
             //comboBox1.DataSource = Data.player_list();
             players_update();
+            comboBox_protocol.SelectedIndex = 0;
         }
 
         private void button_OK_Click(object sender, EventArgs e)
@@ -240,14 +241,14 @@ namespace enumerator
                             dataReader.Close();
                             int k = 1;
                             int p1 = 1, p2 = 2;
-                            for (int i = 0; i < membership/2; i++)
+                            for (int i = 0; i < membership / 2; i++)
                             {
-                                query = "INSERT INTO matches VALUES (null,'" + (n + 1).ToString() + "','" + k.ToString() + "','" + (player[p1-1]).ToString() + "','" + (player[p2-1]).ToString() + "',null,null,0,null,null)";
+                                query = "INSERT INTO matches VALUES (null,'" + (n + 1).ToString() + "','" + k.ToString() + "','" + (player[p1 - 1]).ToString() + "','" + (player[p2 - 1]).ToString() + "',null,null,0,null,null)";
                                 cmd = new MySqlCommand(query, connect);
                                 cmd.ExecuteNonQuery();
                                 k++;
-                                p1+=2;
-                                p2+=2;
+                                p1 += 2;
+                                p2 += 2;
                             }
                             for (int i = 0; i < 3; i++)
                             {
@@ -256,14 +257,14 @@ namespace enumerator
                                 cmd.ExecuteNonQuery();
                                 k++;
                             }
-                            Data.v.game1_player1.Text = Data.player_name(player[0]);
-                            Data.v.game1_player2.Text = Data.player_name(player[1]);
-                            Data.v.game2_player1.Text = Data.player_name(player[2]);
-                            Data.v.game2_player2.Text = Data.player_name(player[3]);
-                            Data.v.game3_player1.Text = Data.player_name(player[4]);
-                            Data.v.game3_player2.Text = Data.player_name(player[5]);
-                            Data.v.game4_player1.Text = Data.player_name(player[6]);
-                            Data.v.game4_player2.Text = Data.player_name(player[7]);
+                            Data.v8.game1_player1.Text = Data.player_name(player[0]);
+                            Data.v8.game1_player2.Text = Data.player_name(player[1]);
+                            Data.v8.game2_player1.Text = Data.player_name(player[2]);
+                            Data.v8.game2_player2.Text = Data.player_name(player[3]);
+                            Data.v8.game3_player1.Text = Data.player_name(player[4]);
+                            Data.v8.game3_player2.Text = Data.player_name(player[5]);
+                            Data.v8.game4_player1.Text = Data.player_name(player[6]);
+                            Data.v8.game4_player2.Text = Data.player_name(player[7]);
                             break;
                         }
                 }
@@ -291,6 +292,7 @@ namespace enumerator
         private void textBox_name_TextChanged(object sender, EventArgs e)
         {
             textBox_translit_name.Text = Data.GetTranslit(textBox_name.Text);
+            check();
         }
 
         private void buttonAddPlayerInTournament_Click(object sender, EventArgs e)
@@ -314,15 +316,8 @@ namespace enumerator
             {
                 dataPlayersInTournament.Rows.Add(id, player);
             }
-            if ((dataPlayersInTournament.Rows.Count > 3) & (dataPlayersInTournament.Rows.Count < 13))
-            {
-                button_OK.Enabled = true;
-            }
-            else
-            {
-                button_OK.Enabled = false;
-            }
             label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+            check();
         }
 
         private void buttonDelPlayerInTournament_Click(object sender, EventArgs e)
@@ -335,16 +330,8 @@ namespace enumerator
                     dataPlayersInTournament.Rows.RemoveAt(index);
                 }
             }
-
-            if ((dataPlayersInTournament.Rows.Count > 3) & (dataPlayersInTournament.Rows.Count < 13))
-            {
-                button_OK.Enabled = true;
-            }
-            else
-            {
-                button_OK.Enabled = false;
-            }
             label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+            check();
         }
 
         private void buttonAddPlayer_Click(object sender, EventArgs e)
@@ -397,6 +384,34 @@ namespace enumerator
                 players_update();
             }
             */
+        }
+
+        private void check()
+        {
+            bool error = false;
+            int membership = dataPlayersInTournament.Rows.Count;
+            if (textBox_name.Text.Length < 4) error = true;
+            switch (comboBox_protocol.SelectedIndex)
+            {
+                case 0:
+                    if (!((membership >= 4) & (membership <= 12))) error = true;
+                    toolStripStatusLabel1.Text = "Подсказка: во встречах по круговому способу может участвовать от 4 до 12 игроков.";
+                    break;
+                case 1:
+                    if (membership!=8) error = true;
+                    toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков.";
+                    break;
+                default:
+                    error = true;
+                    break;
+            }
+            if (!error) button_OK.Enabled = true;
+            else button_OK.Enabled = false;
+        }
+
+        private void comboBox_protocol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            check();
         }
     }
 }

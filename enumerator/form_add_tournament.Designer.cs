@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,9 +60,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox_protocol = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayersInTournament)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -152,13 +155,13 @@
             this.textBox_note.Location = new System.Drawing.Point(343, 25);
             this.textBox_note.Multiline = true;
             this.textBox_note.Name = "textBox_note";
-            this.textBox_note.Size = new System.Drawing.Size(379, 85);
+            this.textBox_note.Size = new System.Drawing.Size(388, 64);
             this.textBox_note.TabIndex = 9;
             // 
             // button_OK
             // 
             this.button_OK.Enabled = false;
-            this.button_OK.Location = new System.Drawing.Point(12, 384);
+            this.button_OK.Location = new System.Drawing.Point(12, 371);
             this.button_OK.Name = "button_OK";
             this.button_OK.Size = new System.Drawing.Size(75, 23);
             this.button_OK.TabIndex = 10;
@@ -168,7 +171,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(657, 384);
+            this.buttonCancel.Location = new System.Drawing.Point(657, 371);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 11;
@@ -194,7 +197,7 @@
             this.dataPlayersInTournament.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.player});
-            this.dataPlayersInTournament.Location = new System.Drawing.Point(12, 203);
+            this.dataPlayersInTournament.Location = new System.Drawing.Point(12, 169);
             this.dataPlayersInTournament.MultiSelect = false;
             this.dataPlayersInTournament.Name = "dataPlayersInTournament";
             this.dataPlayersInTournament.ReadOnly = true;
@@ -226,7 +229,7 @@
             this.buttonAddPlayerInTournament.AutoSize = true;
             this.buttonAddPlayerInTournament.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddPlayerInTournament.Image = global::enumerator.Properties.Resources.addplayer;
-            this.buttonAddPlayerInTournament.Location = new System.Drawing.Point(270, 254);
+            this.buttonAddPlayerInTournament.Location = new System.Drawing.Point(270, 169);
             this.buttonAddPlayerInTournament.Name = "buttonAddPlayerInTournament";
             this.buttonAddPlayerInTournament.Size = new System.Drawing.Size(70, 59);
             this.buttonAddPlayerInTournament.TabIndex = 15;
@@ -238,7 +241,7 @@
             this.buttonDelPlayerInTournament.AutoSize = true;
             this.buttonDelPlayerInTournament.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDelPlayerInTournament.Image = global::enumerator.Properties.Resources.delplayer;
-            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(270, 319);
+            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(267, 285);
             this.buttonDelPlayerInTournament.Name = "buttonDelPlayerInTournament";
             this.buttonDelPlayerInTournament.Size = new System.Drawing.Size(70, 59);
             this.buttonDelPlayerInTournament.TabIndex = 16;
@@ -248,7 +251,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 187);
+            this.label6.Location = new System.Drawing.Point(9, 153);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 13);
             this.label6.TabIndex = 17;
@@ -291,39 +294,39 @@
             this.dataPlayers.AllowUserToDeleteRows = false;
             this.dataPlayers.AllowUserToResizeColumns = false;
             this.dataPlayers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dataPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.birthday});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataPlayers.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataPlayers.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataPlayers.Location = new System.Drawing.Point(6, 19);
             this.dataPlayers.MultiSelect = false;
             this.dataPlayers.Name = "dataPlayers";
             this.dataPlayers.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataPlayers.RowHeadersVisible = false;
             this.dataPlayers.RowHeadersWidth = 20;
             this.dataPlayers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -361,7 +364,7 @@
             this.groupBox1.Controls.Add(this.buttonDelPlayer);
             this.groupBox1.Controls.Add(this.buttonAddPlayer);
             this.groupBox1.Controls.Add(this.buttonEditPlayer);
-            this.groupBox1.Location = new System.Drawing.Point(346, 129);
+            this.groupBox1.Location = new System.Drawing.Point(346, 95);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(386, 249);
             this.groupBox1.TabIndex = 23;
@@ -376,8 +379,9 @@
             "Система с выбыванием (8 игроков)"});
             this.comboBox_protocol.Location = new System.Drawing.Point(12, 129);
             this.comboBox_protocol.Name = "comboBox_protocol";
-            this.comboBox_protocol.Size = new System.Drawing.Size(274, 21);
+            this.comboBox_protocol.Size = new System.Drawing.Size(252, 21);
             this.comboBox_protocol.TabIndex = 24;
+            this.comboBox_protocol.SelectedIndexChanged += new System.EventHandler(this.comboBox_protocol_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -388,11 +392,29 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Протокол:";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 397);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(744, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 26;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(67, 17);
+            this.toolStripStatusLabel1.Text = "Подсказка:";
+            // 
             // form_add_tournament
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 419);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox_protocol);
             this.Controls.Add(this.groupBox1);
@@ -423,6 +445,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayersInTournament)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,5 +483,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
         private System.Windows.Forms.ComboBox comboBox_protocol;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

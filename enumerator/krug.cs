@@ -10,22 +10,22 @@ using System.Windows.Forms;
 
 namespace enumerator
 {
-    public partial class vib8 : Form
+    public partial class krug : Form
     {
-        public vib8()
+        public krug()
         {
             InitializeComponent();
         }
 
-        private void vib8_FormClosing(object sender, FormClosingEventArgs e)
+        private void krug_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Visible = false;
         }
 
-        private void vib8_Load(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-
+            webBrowser1.Refresh();
         }
     }
 }

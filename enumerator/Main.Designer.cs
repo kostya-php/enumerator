@@ -80,6 +80,7 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.таблицаРезультатовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -628,15 +629,23 @@
             // ServiceToolStripMenuItem
             // 
             this.ServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.таблицаРезультатовToolStripMenuItem,
             this.SettingsToolStripMenuItem});
             this.ServiceToolStripMenuItem.Name = "ServiceToolStripMenuItem";
             this.ServiceToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ServiceToolStripMenuItem.Text = "Сервис";
             // 
+            // таблицаРезультатовToolStripMenuItem
+            // 
+            this.таблицаРезультатовToolStripMenuItem.Name = "таблицаРезультатовToolStripMenuItem";
+            this.таблицаРезультатовToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.таблицаРезультатовToolStripMenuItem.Text = "Таблица результатов";
+            this.таблицаРезультатовToolStripMenuItem.Click += new System.EventHandler(this.таблицаРезультатовToolStripMenuItem_Click);
+            // 
             // SettingsToolStripMenuItem
             // 
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.SettingsToolStripMenuItem.Text = "Настройки";
             this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
@@ -752,6 +761,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn player;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
         public System.Windows.Forms.Button button_noplay;
+        private System.Windows.Forms.ToolStripMenuItem таблицаРезультатовToolStripMenuItem;
 
 
     }
