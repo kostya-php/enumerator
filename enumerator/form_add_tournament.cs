@@ -81,6 +81,7 @@ namespace enumerator
             dataPlayers.Rows[index].Cells[0].Selected = true;
             groupBox1.Text = "Игроки (" + dataPlayers.Rows.Count.ToString() + ")";
             dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
+            dataPlayers.Rows[0].Cells[1].Selected = true;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -297,27 +298,30 @@ namespace enumerator
 
         private void buttonAddPlayerInTournament_Click(object sender, EventArgs e)
         {
-            string player;
-            int id;
-            bool error = false;
-            //id = Data.player_id(comboBox1.Text).ToString();
-            //id = dataPlayers.CurrentRow.Index;
-            id = Convert.ToInt32(dataPlayers.Rows[Convert.ToInt32(dataPlayers.CurrentRow.Index)].Cells[0].Value);
-            //player = comboBox1.Text;
-            player = dataPlayers.Rows[Convert.ToInt32(Convert.ToInt32(dataPlayers.CurrentRow.Index))].Cells[1].Value.ToString();
+            if (dataPlayers.CurrentRow != null)
+            {
+                string player;
+                int id;
+                bool error = false;
+                //id = Data.player_id(comboBox1.Text).ToString();
+                //id = dataPlayers.CurrentRow.Index;
+                id = Convert.ToInt32(dataPlayers.Rows[Convert.ToInt32(dataPlayers.CurrentRow.Index)].Cells[0].Value);
+                //player = comboBox1.Text;
+                player = dataPlayers.Rows[Convert.ToInt32(Convert.ToInt32(dataPlayers.CurrentRow.Index))].Cells[1].Value.ToString();
 
-            for (int i = 0; i < dataPlayersInTournament.Rows.Count; i++)
-            {
-                if (Convert.ToInt32(dataPlayersInTournament.Rows[i].Cells[0].Value) == id) error = true;
-                //MessageBox.Show(dataPlayersInTournament.Rows[i].Cells[0].Value.ToString() + " - " + id.ToString());
+                for (int i = 0; i < dataPlayersInTournament.Rows.Count; i++)
+                {
+                    if (Convert.ToInt32(dataPlayersInTournament.Rows[i].Cells[0].Value) == id) error = true;
+                    //MessageBox.Show(dataPlayersInTournament.Rows[i].Cells[0].Value.ToString() + " - " + id.ToString());
+                }
+                //if (comboBox1.SelectedIndex == -1) error = true;
+                if (!error)
+                {
+                    dataPlayersInTournament.Rows.Add(id, player);
+                }
+                label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
+                check();
             }
-            //if (comboBox1.SelectedIndex == -1) error = true;
-            if (!error)
-            {
-                dataPlayersInTournament.Rows.Add(id, player);
-            }
-            label6.Text = "Игроки на турнире (" + dataPlayersInTournament.Rows.Count.ToString() + "):";
-            check();
         }
 
         private void buttonDelPlayerInTournament_Click(object sender, EventArgs e)
@@ -398,7 +402,7 @@ namespace enumerator
                     toolStripStatusLabel1.Text = "Подсказка: во встречах по круговому способу может участвовать от 4 до 12 игроков.";
                     break;
                 case 1:
-                    if (membership!=8) error = true;
+                    if (membership != 8) error = true;
                     toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков.";
                     break;
                 default:
@@ -412,6 +416,42 @@ namespace enumerator
         private void comboBox_protocol_SelectedIndexChanged(object sender, EventArgs e)
         {
             check();
+        }
+
+        private void dataPlayers_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if (e.Column.Index == 0)
+            {
+                e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
+                e.Handled = true;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            bool first_find = false;
+            foreach (DataGridViewRow row in dataPlayers.Rows)
+            {
+                if (row.Cells[1].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                //if (row.Cells[1].Value.ToString().Contains(textBox1.Text))
+                {
+                    dataPlayers.Rows[row.Index].Visible = true;
+                    if (!first_find)
+                    {
+                        dataPlayers.Rows[row.Index].Cells[1].Selected = true;
+                        first_find = true;
+                    }
+                }
+                else
+                {
+                    dataPlayers.Rows[row.Index].Visible = false;
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

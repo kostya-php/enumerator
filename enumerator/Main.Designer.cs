@@ -42,9 +42,6 @@
             this.buttonEditPlayer = new System.Windows.Forms.Button();
             this.buttonAddPlayer = new System.Windows.Forms.Button();
             this.dataPlayers = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.player = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonDelTournament = new System.Windows.Forms.Button();
             this.buttonAddTournament = new System.Windows.Forms.Button();
@@ -85,6 +82,9 @@
             this.ReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.player = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).BeginInit();
@@ -204,30 +204,7 @@
             this.dataPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataPlayers.Size = new System.Drawing.Size(379, 195);
             this.dataPlayers.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "#";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id.Width = 30;
-            // 
-            // player
-            // 
-            this.player.HeaderText = "Игрок";
-            this.player.Name = "player";
-            this.player.ReadOnly = true;
-            this.player.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.player.Width = 200;
-            // 
-            // birthday
-            // 
-            this.birthday.HeaderText = "Дата рождения";
-            this.birthday.Name = "birthday";
-            this.birthday.ReadOnly = true;
-            this.birthday.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.birthday.Width = 127;
+            this.dataPlayers.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataPlayers_SortCompare);
             // 
             // groupBox2
             // 
@@ -672,6 +649,27 @@
             this.AboutToolStripMenuItem.Text = "О программе";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
+            // id
+            // 
+            this.id.HeaderText = "#";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 30;
+            // 
+            // player
+            // 
+            this.player.HeaderText = "Игрок";
+            this.player.Name = "player";
+            this.player.ReadOnly = true;
+            this.player.Width = 200;
+            // 
+            // birthday
+            // 
+            this.birthday.HeaderText = "Дата рождения";
+            this.birthday.Name = "birthday";
+            this.birthday.ReadOnly = true;
+            this.birthday.Width = 127;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -757,11 +755,11 @@
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Button button_techpor2;
         public System.Windows.Forms.Button button_techpor1;
+        public System.Windows.Forms.Button button_noplay;
+        private System.Windows.Forms.ToolStripMenuItem таблицаРезультатовToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn player;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
-        public System.Windows.Forms.Button button_noplay;
-        private System.Windows.Forms.ToolStripMenuItem таблицаРезультатовToolStripMenuItem;
 
 
     }

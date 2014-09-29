@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace enumerator
 {
-    public partial class vib8 : Form
+    public partial class vib16 : Form
     {
-        public vib8()
+        public vib16()
         {
             InitializeComponent();
         }
 
-        private void vib8_FormClosing(object sender, FormClosingEventArgs e)
+        private void vib16_Load(object sender, EventArgs e)
         {
-            e.Cancel = true;
-            this.Visible = false;
+
         }
     }
 }

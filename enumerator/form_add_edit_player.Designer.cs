@@ -46,6 +46,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox_gender = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox_is_rated = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -187,7 +188,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(12, 158);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(470, 376);
+            this.pictureBox1.Size = new System.Drawing.Size(470, 353);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
@@ -212,11 +213,22 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Пол:";
             // 
+            // checkBox_is_rated
+            // 
+            this.checkBox_is_rated.AutoSize = true;
+            this.checkBox_is_rated.Location = new System.Drawing.Point(12, 517);
+            this.checkBox_is_rated.Name = "checkBox_is_rated";
+            this.checkBox_is_rated.Size = new System.Drawing.Size(111, 17);
+            this.checkBox_is_rated.TabIndex = 24;
+            this.checkBox_is_rated.Text = "Рейтингованный";
+            this.checkBox_is_rated.UseVisualStyleBackColor = true;
+            // 
             // form_add_edit_player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 575);
+            this.Controls.Add(this.checkBox_is_rated);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox_gender);
             this.Controls.Add(this.pictureBox1);
@@ -269,5 +281,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ComboBox comboBox_gender;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox_is_rated;
     }
 }

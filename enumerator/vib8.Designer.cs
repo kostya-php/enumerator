@@ -703,7 +703,6 @@
             this.Name = "vib8";
             this.Text = "Таблица результатов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.vib8_FormClosing);
-            this.Load += new System.EventHandler(this.vib8_Load);
             this.tbl1.ResumeLayout(false);
             this.tbl1.PerformLayout();
             this.tbl2.ResumeLayout(false);
