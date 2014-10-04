@@ -386,6 +386,8 @@ namespace enumerator
         public static vib8 v8 { get; set; }
         public static krug krug { get; set; }
 
+
+        // Обновление информации внизу счета
         public static void update_info()
         {
             MySqlConnection connect = null;
@@ -404,18 +406,13 @@ namespace enumerator
                         result2 += player_name(Convert.ToInt32(dataReader["player1"])) + " - " + player_name(Convert.ToInt32(dataReader["player2"]));
                 }
                 dataReader.Close();
-                //connect.Close();
                 if (result2 != "")
                 {
-                    //f1.tableLayoutPanel1.Visible = true;
-                    //f2.tableLayoutPanel1.Visible = true;
                     f1.info.Text = result + result2;
                     f2.info.Text = result + result2;
                 }
                 else
                 {
-                    //f1.tableLayoutPanel1.Visible = false;
-                    //f2.tableLayoutPanel1.Visible = false;
                     f1.info.Text = "ICE-PONG";
                     f2.info.Text = "ICE-PONG";
                 }
@@ -432,6 +429,7 @@ namespace enumerator
                 }
             }
         }
+
         // Хук клавиатуры
         public static void KBDHook_KeyDown(LLKHEventArgs e)
         {
@@ -495,6 +493,8 @@ namespace enumerator
                     break;
 
                 case Keys.Enter:
+                    // Старт ближайшей игры или подтверждение конца партии
+                    // ПЕРЕДЕЛАТЬ
                     if (status == -1)
                     {
                         if (fm.dataMatches.Rows.Count > 0)
@@ -514,28 +514,6 @@ namespace enumerator
                             history = "";
                             reset_score();
                         }
-                    /*
-                    if (status == -1)
-                    {
-                        //if (f1.info.Text != "Ожидание встречи") write_log("Встреча окончена");
-                        full_reset();
-                        f1.label_timer.Text = "00:00";
-                        f2.label_timer.Text = "00:00";
-                        //f1.info.Text = "Ожидание встречи";
-                        //f1.завершитьВстречуToolStripMenuItem.Enabled = false;
-                        //f1.выбратьИгроковToolStripMenuItem.Enabled = true;
-                        //f1.выбратьВстречуToolStripMenuItem.Enabled = true;
-                    }
-                    else
-                        if (status == 2)
-                        {
-                            query += "INSERT INTO rounds VALUES (null,'" + match + "','" + (x + y).ToString() + "','" + xx + "','" + yy + "');";
-                            status = 3;
-                            //f1.info.Text = "";
-                            history = "";
-                            reset_score();
-                        }
-                    */
                     break;
 
                 case Keys.Escape:
@@ -644,40 +622,20 @@ namespace enumerator
                             case 4:
                                 if (button_4 == 0)
                                 {
-                                    /*
-                                    if (status == -1)
-                                    {
-                                        form_matches fm = new form_matches();
-                                        if (!fm_fp)
-                                        {
-                                            fm.Owner = f1;
-                                            fm.ShowDialog();
-                                        }
-                                    }
-                                    */
                                     button_4 = 1;
                                 }
                                 break;
                             case 5:
                                 if (button_5 == 0)
                                 {
-                                    /*
-                                    if (status == -1)
-                                    {
-                                        form_pick fp = new form_pick();
-                                        if (!fm_fp)
-                                        {
-                                            fp.Owner = f1;
-                                            fp.ShowDialog();
-                                        }
-                                    }
-                                    */
                                     button_5 = 1;
                                 }
                                 break;
                             case 6:
                                 if (button_6 == 0)
                                 {
+                                    // Старт ближайшей игры или подтверждение конца партии
+                                    // ПЕРЕДЕЛАТЬ
                                     if (status == -1)
                                     {
                                         if (fm.dataMatches.Rows.Count > 0)
@@ -754,7 +712,7 @@ namespace enumerator
                     }
                 }
             }
-            // Обработка исключения (например, если джойстик внезапно отключили)
+            // Обработка исключения (например, если джойстик ВНЕЗАПНО отключили)
             catch (Exception e)
             {
                 // Остановка таймера, проверяющего состояние джойстика
@@ -807,7 +765,6 @@ namespace enumerator
                 history = "";
                 refresh();
                 set_inning();
-                //f1.info.Text = "Розыгрыш подачи";
                 write_log("Розыгрыш подачи");
                 if (!from_bd)
                 {
@@ -893,6 +850,8 @@ namespace enumerator
         // Полный сброс
         public static void full_reset()
         {
+            f1.label_timer.Text = "00:00";
+            f2.label_timer.Text = "00:00";
             fm.label1.Text = "";
             fm.label2.Text = "Стол свободен";
             fm.button_techpor1.Visible = false;
@@ -912,11 +871,8 @@ namespace enumerator
             inning_side = 0;
             query = "";
             history = "";
-
             start = "";
             fm.timer_Enumerator.Stop();
-            //f1.timer4.Stop();
-
             refresh();
             set_inning();
         }
@@ -926,7 +882,6 @@ namespace enumerator
         {
             if (history != "") history += ",";
             history += s;
-            //info.Text = history;
         }
         // Добавление очка
         public static void add_point(bool reverse, string player)
@@ -939,15 +894,11 @@ namespace enumerator
                     {
                         case "xx":
                             xx++;
-                            //f1.label_xx.Text = xx.ToString();
-                            //f2.label_xx.Text = xx.ToString();
                             history_add("xx");
                             write_log(xx + ":" + yy + " (игрок " + player1 + " заработал очко)");
                             break;
                         case "yy":
                             yy++;
-                            //f1.label_yy.Text = yy.ToString();
-                            //f2.label_yy.Text = yy.ToString();
                             write_log(xx + ":" + yy + " (игрок " + player2 + " заработал очко)");
                             history_add("yy");
                             break;
@@ -959,15 +910,11 @@ namespace enumerator
                     {
                         case "xx":
                             yy++;
-                            //f1.label_xx.Text = yy.ToString();
-                            //f2.label_xx.Text = yy.ToString();
                             history_add("yy");
                             write_log(xx + ":" + yy + " (игрок " + player2 + " заработал очко)");
                             break;
                         case "yy":
                             xx++;
-                            //f1.label_yy.Text = xx.ToString();
-                            //f2.label_yy.Text = xx.ToString();
                             history_add("xx");
                             write_log(xx + ":" + yy + " (игрок " + player1 + " заработал очко)");
                             break;
@@ -991,20 +938,15 @@ namespace enumerator
                     Data.fm.buttonCancelMatch.Enabled = false;
                     if (x > y)
                     {
-                        //f1.info.Text = "Победитель: " + player1;
                         write_log("В этой встрече победил: " + player1);
                     }
                     if (y > x)
                     {
-                        //f1.info.Text = "Победитель: " + player2;
                         write_log("В этой встрече победил: " + player2);
                     }
-                    //fm.timer_Enumerator.Stop();
-                    //f1.timer4.Stop();
                     status = -1;
                     query += "UPDATE matches SET x='" + x + "',y='" + y + "',status='2',end='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE id='" + match + "';";
                     // Записать в лог-файл выполняемый запрос
-                    //write_log(query);
                     if (match > 0)
                     {
                         MySqlConnection connect = null;
@@ -1015,17 +957,8 @@ namespace enumerator
                             string q = query;
                             MySqlCommand cmd = new MySqlCommand(q, connect);
                             cmd.ExecuteNonQuery();
-                            string protocol = "";
-                            string q1 = "SELECT * FROM tournaments WHERE id='" + Data.tournament.ToString() + "'";
-                            cmd = new MySqlCommand(q1, connect);
-                            MySqlDataReader dataReader = cmd.ExecuteReader();
-                            while (dataReader.Read())
-                            {
-                                protocol = dataReader["protocol"].ToString();
-                            }
-                            dataReader.Close();
-
-                            // если протокол - "Система с выбыванием (8 игроков)"
+                            string protocol = get_protocol(Data.tournament);
+                            // если протокол - "Система с выбыванием (8 игроков)" (пока в разработке)
                             if (protocol == "vib8")
                             {
                                 int number = -1;
@@ -1039,7 +972,7 @@ namespace enumerator
                                 }
                                 string q2 = "SELECT * FROM matches WHERE id='" + match.ToString() + "'";
                                 cmd = new MySqlCommand(q2, connect);
-                                dataReader = cmd.ExecuteReader();
+                                MySqlDataReader dataReader = cmd.ExecuteReader();
                                 while (dataReader.Read())
                                 {
                                     number = Convert.ToInt32(dataReader["number"]);
@@ -1106,8 +1039,6 @@ namespace enumerator
                         }
                     }
                     full_reset();
-                    //f1.label_timer.Text = "00:00";
-                    //f2.label_timer.Text = "00:00";
                     Data.fm.buttonStartMatch.Enabled = true;
                     Data.fm.buttonCancelMatch.Enabled = false;
                 }
@@ -1228,12 +1159,10 @@ namespace enumerator
                 case "x":
                     x++;
                     history_add("x");
-                    //f1.info.Text = "Эту партию выйграл игрок: " + player1;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
                 case "y":
                     y++;
                     history_add("y");
-                    //f1.info.Text = "Эту партию выйграл игрок: " + player2;// + "\r\nНажмите ENTER (или 6 на джойстике) для продолжения";
                     break;
             }
             status = 2;

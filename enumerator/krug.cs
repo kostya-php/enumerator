@@ -27,5 +27,10 @@ namespace enumerator
         {
             webBrowser1.Refresh();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            webBrowser1.Refresh();
+        }
     }
 }

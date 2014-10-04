@@ -103,16 +103,6 @@ namespace enumerator
             e.Cancel = true;
             this.Visible = false;
         }
-        // Выбрать игроков вручную (из БД берутся только сами игроки)
-        private void выбратьИгроковToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Data.status == -1)
-            {
-                form_pick fp = new form_pick();
-                fp.Owner = this;
-                fp.ShowDialog();
-            }
-        }
         // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player1_TextChanged(object sender, EventArgs e)
         {
@@ -137,16 +127,6 @@ namespace enumerator
             TimeSpan delta = end_datetime - start_datetime;
             string time = delta.ToString(@"mm\:ss");
             label_timer.Text = time.ToString();
-        }
-        // Выбрать встречу (из БД)
-        private void выбратьВстречуToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            form_matches fm = new form_matches();
-            if (!fm.Visible)
-            {
-                fm.Owner = this;
-                fm.ShowDialog();
-            }
         }
 
         private void базаДанныхToolStripMenuItem_Click(object sender, EventArgs e)

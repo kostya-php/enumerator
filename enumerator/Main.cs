@@ -708,8 +708,8 @@ namespace enumerator
             switch (protocol)
             {
                 case "krug":
-                    //Data.krug.Show();
-                    MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
+                    Data.krug.Show();
+                    //MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
                     break;
                 case "vib8":
                     Data.v8.Show();

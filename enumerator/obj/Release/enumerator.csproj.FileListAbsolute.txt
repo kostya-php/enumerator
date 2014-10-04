@@ -6,8 +6,6 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form1.resour
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_tournament.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_console.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_edit_player.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_matches.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_pick.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_settings.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Main.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Properties.Resources.resources
