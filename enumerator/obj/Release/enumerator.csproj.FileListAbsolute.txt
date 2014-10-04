@@ -17,5 +17,4 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.exe
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib8.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.krug.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csprojResolveAssemblyReference.cache
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib16.resources

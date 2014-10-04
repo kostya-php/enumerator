@@ -402,8 +402,10 @@ namespace enumerator
                     toolStripStatusLabel1.Text = "Подсказка: во встречах по круговому способу может участвовать от 4 до 12 игроков.";
                     break;
                 case 1:
+                    // пока не работает
+                    error = true;
                     if (membership != 8) error = true;
-                    toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков.";
+                    toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков. P.S. В разработке.";
                     break;
                 default:
                     error = true;

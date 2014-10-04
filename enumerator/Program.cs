@@ -1970,7 +1970,7 @@ namespace enumerator
             Data.f1 = new Form1();
             Data.f2 = new Form2();
             Data.fm = new Main();
-            Data.v8 = new vib8();
+            //Data.v8 = new vib8();
             Data.krug = new krug();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);
             KBDHook.LocalHook = false;

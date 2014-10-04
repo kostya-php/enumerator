@@ -22,5 +22,10 @@ namespace enumerator
             e.Cancel = true;
             this.Visible = false;
         }
+
+        private void vib8_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
