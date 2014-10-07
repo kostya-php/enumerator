@@ -160,4 +160,7 @@
   <data name="delplayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delplayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_1412728286_27579" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1412728286_27579.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Threading;
 
 namespace enumerator
 {
@@ -35,7 +36,10 @@ namespace enumerator
             {
                 index = dataPlayers.CurrentRow.Index;
             }
-            dataPlayers.Rows.Clear();
+            this.Invoke((MethodInvoker)delegate()
+            {
+                dataPlayers.Rows.Clear();
+            });
             MySqlConnection connect = null;
             try
             {
@@ -47,22 +51,16 @@ namespace enumerator
                 query = "SELECT * FROM players ORDER BY id ASC";
                 cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                string id, player, birthday;
-                DateTime dt = new DateTime();
+                string id, player;
                 while (dataReader.Read())
                 {
                     id = dataReader["id"].ToString();
                     player = dataReader["player"].ToString();
-                    if (dataReader["birthday"].ToString() != "")
+                    this.Invoke((MethodInvoker)delegate()
                     {
-                        dt = Convert.ToDateTime(dataReader["birthday"]);
-                        birthday = dt.ToString("dd MMMM yyyy");
-                    }
-                    else
-                    {
-                        birthday = "?";
-                    }
-                    dataPlayers.Rows.Add(id, player, birthday);
+                        dataPlayers.Rows.Add(id, player);
+                    });
+                    Thread.Sleep(10);
                 }
                 dataReader.Close();
 
@@ -78,10 +76,13 @@ namespace enumerator
                     connect.Close();
                 }
             }
-            dataPlayers.Rows[index].Cells[0].Selected = true;
-            groupBox1.Text = "Игроки (" + dataPlayers.Rows.Count.ToString() + ")";
-            dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
-            dataPlayers.Rows[0].Cells[1].Selected = true;
+            this.Invoke((MethodInvoker)delegate()
+            {
+                dataPlayers.Rows[index].Cells[0].Selected = true;
+                groupBox1.Text = "Игроки (" + dataPlayers.Rows.Count.ToString() + ")";
+                //dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
+                dataPlayers.Rows[0].Cells[1].Selected = true;
+            });
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -92,7 +93,9 @@ namespace enumerator
         private void form_add_tournament_Load(object sender, EventArgs e)
         {
             //comboBox1.DataSource = Data.player_list();
-            players_update();
+            Thread myThread = new Thread(players_update);
+            myThread.Start();
+            //players_update();
             comboBox_protocol.SelectedIndex = 0;
         }
 
@@ -284,7 +287,7 @@ namespace enumerator
             Main form_at = this.Owner as Main;
             if (form_at != null)
             {
-                form_at.tournaments_update();
+                //form_at.tournaments_update();
                 form_at.matches_update();
             }
             this.Close();

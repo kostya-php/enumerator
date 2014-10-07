@@ -63,6 +63,16 @@ namespace enumerator.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
         /// </summary>
+        internal static System.Drawing.Icon _1412728286_27579 {
+            get {
+                object obj = ResourceManager.GetObject("_1412728286_27579", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
         internal static System.Drawing.Icon add_group_8863 {
             get {
                 object obj = ResourceManager.GetObject("add_group_8863", resourceCulture);

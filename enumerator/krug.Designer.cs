@@ -82,7 +82,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "krug";
-            this.Text = "krug";
+            this.Text = "Таблица результатов";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.krug_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);

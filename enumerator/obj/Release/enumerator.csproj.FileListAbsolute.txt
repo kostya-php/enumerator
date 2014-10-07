@@ -1,4 +1,6 @@
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.exe.config
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.exe
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.exe
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\enumerator.pdb
 C:\Users\mckay\Desktop\enumerator\enumerator\bin\Release\MySql.Data.dll
@@ -6,13 +8,13 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form1.resour
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_tournament.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_console.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_edit_player.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_players.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_settings.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.krug.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Main.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Properties.Resources.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form2.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csproj.GenerateResource.Cache
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.exe
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.pdb
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib8.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.krug.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib16.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib8.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csproj.GenerateResource.Cache
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_tournaments.resources

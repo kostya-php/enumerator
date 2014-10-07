@@ -11,6 +11,7 @@
     <AssemblyName>enumerator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>опубликовать\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -45,6 +45,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\1412728286_27579.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.DirectX.DirectInput, Version=1.0.2902.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
@@ -94,11 +97,23 @@
     <Compile Include="form_add_edit_player.Designer.cs">
       <DependentUpon>form_add_edit_player.cs</DependentUpon>
     </Compile>
+    <Compile Include="form_players.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_players.Designer.cs">
+      <DependentUpon>form_players.cs</DependentUpon>
+    </Compile>
     <Compile Include="form_settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="form_settings.Designer.cs">
       <DependentUpon>form_settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form_tournaments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form_tournaments.Designer.cs">
+      <DependentUpon>form_tournaments.cs</DependentUpon>
     </Compile>
     <Compile Include="Hook.cs" />
     <Compile Include="krug.cs">
@@ -146,8 +161,14 @@
     <EmbeddedResource Include="form_add_edit_player.resx">
       <DependentUpon>form_add_edit_player.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form_players.resx">
+      <DependentUpon>form_players.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form_settings.resx">
       <DependentUpon>form_settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form_tournaments.resx">
+      <DependentUpon>form_tournaments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="krug.resx">
       <DependentUpon>krug.cs</DependentUpon>
@@ -245,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delplayer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1412728286_27579.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

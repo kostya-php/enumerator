@@ -386,6 +386,9 @@ namespace enumerator
         public static vib8 v8 { get; set; }
         public static krug krug { get; set; }
 
+        public static form_players fp { get; set; }
+        public static form_tournaments ft { get; set; }
+
 
         // Обновление информации внизу счета
         public static void update_info()
@@ -1901,6 +1904,8 @@ namespace enumerator
             Data.fm = new Main();
             //Data.v8 = new vib8();
             Data.krug = new krug();
+            Data.fp = new form_players();
+            Data.ft = new form_tournaments();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);
             KBDHook.LocalHook = false;
             KBDHook.InstallHook();

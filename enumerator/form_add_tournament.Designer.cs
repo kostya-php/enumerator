@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,16 +54,15 @@
             this.buttonEditPlayer = new System.Windows.Forms.Button();
             this.buttonAddPlayer = new System.Windows.Forms.Button();
             this.dataPlayers = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox_protocol = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayersInTournament)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataPlayers)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -157,7 +156,7 @@
             this.textBox_note.Location = new System.Drawing.Point(343, 25);
             this.textBox_note.Multiline = true;
             this.textBox_note.Name = "textBox_note";
-            this.textBox_note.Size = new System.Drawing.Size(388, 46);
+            this.textBox_note.Size = new System.Drawing.Size(267, 46);
             this.textBox_note.TabIndex = 9;
             // 
             // button_OK
@@ -173,7 +172,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(657, 371);
+            this.buttonCancel.Location = new System.Drawing.Point(535, 371);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 11;
@@ -207,7 +206,7 @@
             this.dataPlayersInTournament.RowHeadersWidth = 20;
             this.dataPlayersInTournament.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataPlayersInTournament.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataPlayersInTournament.Size = new System.Drawing.Size(252, 175);
+            this.dataPlayersInTournament.Size = new System.Drawing.Size(252, 196);
             this.dataPlayersInTournament.TabIndex = 14;
             // 
             // id
@@ -243,7 +242,7 @@
             this.buttonDelPlayerInTournament.AutoSize = true;
             this.buttonDelPlayerInTournament.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonDelPlayerInTournament.Image = global::enumerator.Properties.Resources.delplayer;
-            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(267, 285);
+            this.buttonDelPlayerInTournament.Location = new System.Drawing.Point(267, 306);
             this.buttonDelPlayerInTournament.Name = "buttonDelPlayerInTournament";
             this.buttonDelPlayerInTournament.Size = new System.Drawing.Size(70, 59);
             this.buttonDelPlayerInTournament.TabIndex = 16;
@@ -262,7 +261,7 @@
             // buttonDelPlayer
             // 
             this.buttonDelPlayer.Enabled = false;
-            this.buttonDelPlayer.Location = new System.Drawing.Point(305, 220);
+            this.buttonDelPlayer.Location = new System.Drawing.Point(183, 242);
             this.buttonDelPlayer.Name = "buttonDelPlayer";
             this.buttonDelPlayer.Size = new System.Drawing.Size(75, 23);
             this.buttonDelPlayer.TabIndex = 21;
@@ -272,7 +271,7 @@
             // 
             // buttonEditPlayer
             // 
-            this.buttonEditPlayer.Location = new System.Drawing.Point(87, 220);
+            this.buttonEditPlayer.Location = new System.Drawing.Point(82, 242);
             this.buttonEditPlayer.Name = "buttonEditPlayer";
             this.buttonEditPlayer.Size = new System.Drawing.Size(95, 23);
             this.buttonEditPlayer.TabIndex = 20;
@@ -282,7 +281,7 @@
             // 
             // buttonAddPlayer
             // 
-            this.buttonAddPlayer.Location = new System.Drawing.Point(6, 220);
+            this.buttonAddPlayer.Location = new System.Drawing.Point(6, 242);
             this.buttonAddPlayer.Name = "buttonAddPlayer";
             this.buttonAddPlayer.Size = new System.Drawing.Size(75, 23);
             this.buttonAddPlayer.TabIndex = 19;
@@ -296,88 +295,76 @@
             this.dataPlayers.AllowUserToDeleteRows = false;
             this.dataPlayers.AllowUserToResizeColumns = false;
             this.dataPlayers.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.birthday});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataPlayers.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn2});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataPlayers.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataPlayers.Location = new System.Drawing.Point(6, 45);
             this.dataPlayers.MultiSelect = false;
             this.dataPlayers.Name = "dataPlayers";
             this.dataPlayers.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataPlayers.RowHeadersVisible = false;
             this.dataPlayers.RowHeadersWidth = 20;
             this.dataPlayers.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataPlayers.Size = new System.Drawing.Size(379, 169);
+            this.dataPlayers.Size = new System.Drawing.Size(252, 191);
             this.dataPlayers.TabIndex = 18;
             this.dataPlayers.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.dataPlayers_SortCompare);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "#";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Игрок";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 200;
-            // 
-            // birthday
-            // 
-            this.birthday.HeaderText = "Дата рождения";
-            this.birthday.Name = "birthday";
-            this.birthday.ReadOnly = true;
-            this.birthday.Width = 127;
-            // 
             // groupBox1
             // 
+            this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.dataPlayers);
             this.groupBox1.Controls.Add(this.buttonDelPlayer);
             this.groupBox1.Controls.Add(this.buttonAddPlayer);
             this.groupBox1.Controls.Add(this.buttonEditPlayer);
-            this.groupBox1.Location = new System.Drawing.Point(346, 95);
+            this.groupBox1.Location = new System.Drawing.Point(346, 82);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 249);
+            this.groupBox1.Size = new System.Drawing.Size(264, 284);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Игроки";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 13);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Поиск:";
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(205, 19);
+            this.textBox1.Location = new System.Drawing.Point(54, 18);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 20);
+            this.textBox1.Size = new System.Drawing.Size(204, 20);
             this.textBox1.TabIndex = 27;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -408,7 +395,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 397);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(744, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(622, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 26;
             this.statusStrip1.Text = "statusStrip1";
@@ -419,20 +406,26 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(67, 17);
             this.toolStripStatusLabel1.Text = "Подсказка:";
             // 
-            // label8
+            // dataGridViewTextBoxColumn1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(157, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 13);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Поиск:";
+            this.dataGridViewTextBoxColumn1.HeaderText = "#";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Игрок";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
             // form_add_tournament
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 419);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(622, 419);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox_protocol);
@@ -502,10 +495,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
