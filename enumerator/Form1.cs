@@ -92,22 +92,9 @@ namespace enumerator
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*
-            DialogResult reply = MessageBox.Show("Вы действительно хотите закрыть счетчик?", "Закрыть", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (reply == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                if ((Data.player1 != null) & (Data.player2 != null))
-                    abort_game();
-                write_log("Закрытие программы");
-                timer1.Stop();
-            }
-            */
             e.Cancel = true;
             this.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
         }
         // Выбрать игроков вручную (из БД берутся только сами игроки)
         private void выбратьИгроковToolStripMenuItem_Click(object sender, EventArgs e)

@@ -73,7 +73,7 @@ namespace enumerator
                                 //players = Data.player_name(Convert.ToInt32(dataReader["player1"])) + " - " + Data.player_name(Convert.ToInt32(dataReader["player2"]));
                                 players = p1 + " - " + p2;
                                 id = dataReader["id"].ToString();
-                                dataMatches.Rows.Add(number.ToString(), players, id);
+                                dataMatches.Rows.Add(number.ToString(), p1, p2, id);
                             }
                             number++;
                         }
@@ -98,6 +98,7 @@ namespace enumerator
                     connect.Close();
                 }
             }
+            textBox1.Text = "";
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -121,7 +122,13 @@ namespace enumerator
 
         private void buttonOpenEnumerator1_Click(object sender, EventArgs e)
         {
-            if (!Data.f1.Visible) Data.f1.Visible = true;
+            if (!Data.f1.Visible) Data.f1.Show();
+            else
+            {
+                Data.f1.WindowState = FormWindowState.Normal;
+                Data.f1.Focus();
+            }
+            //if (!Data.f1.Visible) Data.f1.Visible = true;
         }
 
         // При закрытии формы какая-то хрень нужна
@@ -132,22 +139,13 @@ namespace enumerator
 
         private void buttonOpenEnumerator2_Click(object sender, EventArgs e)
         {
-            if (!Data.f2.Visible) Data.f2.Visible = true;
-        }
-
-        private void buttonAddTournament_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonDelTournament_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataTournaments_SelectionChanged(object sender, EventArgs e)
-        {
-            
+            if (!Data.f2.Visible) Data.f2.Show();
+            else
+            {
+                Data.f2.WindowState = FormWindowState.Normal;
+                Data.f2.Focus();
+            }
+            //if (!Data.f2.Visible) Data.f2.Visible = true;
         }
         public void start_match()
         {
@@ -155,7 +153,7 @@ namespace enumerator
             {
                 // получаем id встречи
                 int index = dataMatches.CurrentRow.Index;
-                Data.match = Convert.ToInt32(dataMatches.Rows[index].Cells[2].Value);
+                Data.match = Convert.ToInt32(dataMatches.Rows[index].Cells[3].Value);
                 // получаем текущие дату и время
                 string start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 Data.start = start;
@@ -458,7 +456,13 @@ namespace enumerator
             switch (protocol)
             {
                 case "krug":
-                    Data.krug.Show();
+                    if (!Data.krug.Visible) Data.krug.Show();
+                    else
+                    {
+                        Data.krug.WindowState = FormWindowState.Normal;
+                        Data.krug.Focus();
+                    }
+                    //Data.krug.Show();
                     //MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
                     break;
                 case "vib8":
@@ -488,6 +492,48 @@ namespace enumerator
             {
                 Data.ft.WindowState = FormWindowState.Normal;
                 Data.ft.Focus();
+            }
+        }
+
+        private void счетчикToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Data.f1.Visible) Data.f1.Show();
+            else
+            {
+                Data.f1.WindowState = FormWindowState.Normal;
+                Data.f1.Focus();
+            }
+        }
+
+        private void счетчикреверсToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Data.f2.Visible) Data.f2.Show();
+            else
+            {
+                Data.f2.WindowState = FormWindowState.Normal;
+                Data.f2.Focus();
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            bool first_find = false;
+            foreach (DataGridViewRow row in dataMatches.Rows)
+            {
+                if ((row.Cells[1].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0) | (row.Cells[2].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0))
+                //if (row.Cells[1].Value.ToString().Contains(textBox1.Text))
+                {
+                    dataMatches.Rows[row.Index].Visible = true;
+                    if (!first_find)
+                    {
+                        dataMatches.Rows[row.Index].Cells[1].Selected = true;
+                        first_find = true;
+                    }
+                }
+                else
+                {
+                    dataMatches.Rows[row.Index].Visible = false;
+                }
             }
         }
     }

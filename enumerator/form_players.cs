@@ -24,8 +24,8 @@ namespace enumerator
         private void form_players_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            //this.Visible = false;
-            this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
         }
         public void players_update()
         {

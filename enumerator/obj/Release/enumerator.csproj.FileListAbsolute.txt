@@ -18,3 +18,4 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib16.resour
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.vib8.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csproj.GenerateResource.Cache
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_tournaments.resources
+C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.csprojResolveAssemblyReference.cache

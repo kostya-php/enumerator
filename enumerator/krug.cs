@@ -21,6 +21,7 @@ namespace enumerator
         {
             e.Cancel = true;
             this.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -86,22 +86,9 @@ namespace enumerator
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*
-            DialogResult reply = MessageBox.Show("Вы действительно хотите закрыть счетчик?", "Закрыть", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (reply == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                if ((Data.player1 != null) & (Data.player2 != null))
-                    abort_game();
-                write_log("Закрытие программы");
-                timer1.Stop();
-            }
-            */
             e.Cancel = true;
             this.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
         }
         // Вместо пробела - переход на новую строку (в имени игрока 1)
         private void label_player1_TextChanged(object sender, EventArgs e)

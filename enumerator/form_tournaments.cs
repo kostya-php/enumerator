@@ -36,15 +36,28 @@ namespace enumerator
                 query = "SELECT * FROM tournaments ORDER BY id ASC";
                 cmd = new MySqlCommand(query, connect);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
-                string id, name, date;
+                string id, name, date, status;
                 while (dataReader.Read())
                 {
                     id = dataReader["id"].ToString();
                     name = dataReader["name"].ToString();
                     date = Convert.ToDateTime(dataReader["date"]).ToString("dd MMMM yyyy");
+                    status = "";
+                    switch (dataReader["status"].ToString())
+                    {
+                        case "1":
+                            status = "Идут игры";
+                            break;
+                        case "2":
+                            status = "Турнир завершен";
+                            break;
+                        case "3":
+                            status = "Турнир просчитан";
+                            break;
+                    }
                     this.Invoke((MethodInvoker)delegate()
                     {
-                        dataTournaments.Rows.Add(id, name, date);
+                        dataTournaments.Rows.Add(id, name, date, status);
                         Data.ft.Text = "Турниры (" + dataTournaments.Rows.Count.ToString() + ")";
                     });
                     Thread.Sleep(10);
@@ -91,8 +104,8 @@ namespace enumerator
         private void form_tournaments_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
-            //this.Visible = false;
-            this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
+            //this.WindowState = FormWindowState.Minimized;
         }
 
         private void buttonAddTournament_Click(object sender, EventArgs e)
@@ -182,6 +195,15 @@ namespace enumerator
             button1.Enabled = false;
             Thread myThread = new Thread(tournaments_update);
             myThread.Start();
+        }
+
+        private void dataTournaments_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            if (e.Column.Index == 0)
+            {
+                e.SortResult = int.Parse(e.CellValue1.ToString()).CompareTo(int.Parse(e.CellValue2.ToString()));
+                e.Handled = true;
+            }
         }
     }
 }
