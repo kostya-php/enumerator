@@ -125,7 +125,77 @@ namespace enumerator
             }
             return result;
         }
-
+        // Получить текущий рейтинг игрока
+        public static double get_rating(int id, int t)
+        {
+            double result = 0.0;
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM players WHERE id='" + id.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result += Convert.ToDouble(dataReader["base_rating"]);
+                }
+                dataReader.Close();
+                query = "SELECT * FROM results WHERE player='" + id.ToString() + "' AND tournament<='" + t.ToString() + "'";
+                cmd = new MySqlCommand(query, connect);
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result += Convert.ToDouble(dataReader["increment"]);
+                }
+                dataReader.Close();
+                result += Data.get_penalty(id, t);
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
+        // Получаем штраф игрока за определенный турнир (если есть)
+        public static double get_penalty(int id, int t)
+        {
+            double result = 0.0;
+            MySqlConnection connect = null;
+            try
+            {
+                connect = new MySqlConnection(connectionString);
+                connect.Open();
+                string query = "SELECT * FROM penalties WHERE player='" + id.ToString() + "' AND tournament<='" + t.ToString() + "'";
+                MySqlCommand cmd = new MySqlCommand(query, connect);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    result += Convert.ToDouble(dataReader["penalty"]);
+                }
+                dataReader.Close();
+            }
+            catch (MySqlException err)
+            {
+                MessageBox.Show("Ошибка: " + err.ToString());
+            }
+            finally
+            {
+                if (connect != null)
+                {
+                    connect.Close();
+                }
+            }
+            return result;
+        }
         // Получаем название турнира по его id
         public static string tournament_name(int id)
         {
@@ -388,7 +458,6 @@ namespace enumerator
 
         public static form_players fp { get; set; }
         public static form_tournaments ft { get; set; }
-
 
         // Обновление информации внизу счета
         public static void update_info()
@@ -1563,7 +1632,7 @@ namespace enumerator
                 write_log("Из " + rounds + "-х партий (до " + min_wins + " побед)");
             }
         }
-        // Получить текущий турнир
+        // Получить id текущего турнира
         public static int get_current_tournament()
         {
             int result = -1;

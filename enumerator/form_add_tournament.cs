@@ -291,6 +291,11 @@ namespace enumerator
                 form_at.matches_update();
             }
             this.Close();
+            Data.ft.Close();
+            //Thread myThread = new Thread(Data.ft.tournaments_update);
+            //myThread.Start();
+            Data.fm.Focus();
+            Data.fm.matches_update();
         }
 
         private void textBox_name_TextChanged(object sender, EventArgs e)
@@ -403,12 +408,14 @@ namespace enumerator
                 case 0:
                     if (!((membership >= 4) & (membership <= 12))) error = true;
                     toolStripStatusLabel1.Text = "Подсказка: во встречах по круговому способу может участвовать от 4 до 12 игроков.";
+                    toolStripStatusLabel1.ForeColor = Color.Black;
                     break;
                 case 1:
                     // пока не работает
                     error = true;
                     if (membership != 8) error = true;
                     toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков. P.S. В разработке.";
+                    toolStripStatusLabel1.ForeColor = Color.Red;
                     break;
                 default:
                     error = true;

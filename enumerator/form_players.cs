@@ -78,7 +78,6 @@ namespace enumerator
                 //dataPlayers.Rows[index].Cells[0].Selected = true;
                 button1.Enabled = true;
                 textBox1.Enabled = true;
-                toolStripStatusLabel1.Text = "Показаны все игроки: " + dataPlayers.Rows.Count.ToString();
             });
 
             //dataPlayers.Sort(dataPlayers.Columns[1], ListSortDirection.Ascending);
@@ -188,8 +187,14 @@ namespace enumerator
                     dataPlayers.Rows[row.Index].Visible = false;
                 }
             }
-            if (textBox1.Text != "") toolStripStatusLabel1.Text = "Найдено игроков: " + dataPlayers.DisplayedRowCount(true).ToString();
-            else toolStripStatusLabel1.Text = "Показаны все игроки: " + dataPlayers.Rows.Count.ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int index = dataPlayers.CurrentRow.Index;
+            int id = Convert.ToInt32(dataPlayers.Rows[index].Cells[0].Value);
+            double r = Data.get_rating(id, 23);
+            double p = Data.get_penalty(id, 23);
         }
     }
 }
