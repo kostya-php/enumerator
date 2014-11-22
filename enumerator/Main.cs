@@ -44,10 +44,11 @@ namespace enumerator
                     int n = Convert.ToInt32(cmd.ExecuteScalar());
                     if (n > 0)
                     {
-                        query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
+                        //query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
+                        query = "SELECT * FROM matches WHERE status='0' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
                         cmd = new MySqlCommand(query, connect);
                         dataReader = cmd.ExecuteReader();
-                        string players, id;
+                        string players, id, tournament;
                         int number = 1;
                         while (dataReader.Read())
                         {
@@ -73,7 +74,9 @@ namespace enumerator
                                 //players = Data.player_name(Convert.ToInt32(dataReader["player1"])) + " - " + Data.player_name(Convert.ToInt32(dataReader["player2"]));
                                 players = p1 + " - " + p2;
                                 id = dataReader["id"].ToString();
-                                dataMatches.Rows.Add(number.ToString(), p1, p2, id);
+                                tournament = Data.tournament_name(Convert.ToInt32(dataReader["tournament"]));
+                                number = Convert.ToInt32(dataReader["number"]);
+                                dataMatches.Rows.Add(number.ToString(),tournament, p1, p2, id);
                             }
                             number++;
                         }
@@ -520,7 +523,7 @@ namespace enumerator
             bool first_find = false;
             foreach (DataGridViewRow row in dataMatches.Rows)
             {
-                if ((row.Cells[1].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0) | (row.Cells[2].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0))
+                if ((row.Cells[1].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0) | (row.Cells[2].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0) | (row.Cells[3].Value.ToString().IndexOf(textBox1.Text, StringComparison.CurrentCultureIgnoreCase) >= 0))
                 //if (row.Cells[1].Value.ToString().Contains(textBox1.Text))
                 {
                     dataMatches.Rows[row.Index].Visible = true;
