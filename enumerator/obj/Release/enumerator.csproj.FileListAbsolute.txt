@@ -10,7 +10,6 @@ C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_console
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_add_edit_player.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_players.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.form_settings.resources
-C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.krug.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Main.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Properties.Resources.resources
 C:\Users\mckay\Desktop\enumerator\enumerator\obj\Release\enumerator.Form2.resources

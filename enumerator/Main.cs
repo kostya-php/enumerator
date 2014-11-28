@@ -45,7 +45,8 @@ namespace enumerator
                     if (n > 0)
                     {
                         //query = "SELECT * FROM matches WHERE tournament='" + t.ToString() + "' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
-                        query = "SELECT * FROM matches WHERE status='0' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
+                        //query = "SELECT * FROM matches WHERE status='0' AND !ISNULL(player1) AND !ISNULL(player2) ORDER BY id ASC";
+                        query = "SELECT * FROM matches WHERE status='0' ORDER BY id ASC";
                         cmd = new MySqlCommand(query, connect);
                         dataReader = cmd.ExecuteReader();
                         string players, id, tournament;
@@ -84,11 +85,13 @@ namespace enumerator
                     }
                 }
                 groupBox3.Text = "Доступные встречи (" + dataMatches.Rows.Count.ToString() + ")";
+                /*
                 string protocol = Data.get_protocol(Data.get_current_tournament());
                 if (protocol == "vib8")
                 {
                     Data.update_vib8();
                 }
+                */
             }
             catch (MySqlException err)
             {
@@ -156,7 +159,10 @@ namespace enumerator
             {
                 // получаем id встречи
                 int index = dataMatches.CurrentRow.Index;
-                Data.match = Convert.ToInt32(dataMatches.Rows[index].Cells[3].Value);
+                Data.match = Convert.ToInt32(dataMatches.Rows[index].Cells[4].Value);
+
+                if ((dataMatches.Rows[index].Cells[2].Value.ToString() == "?") | (dataMatches.Rows[index].Cells[3].Value.ToString() == "?")) return;
+
                 // получаем текущие дату и время
                 string start = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 Data.start = start;
@@ -455,26 +461,7 @@ namespace enumerator
 
         private void таблицаРезультатовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string protocol = Data.get_protocol(Data.get_current_tournament());
-            switch (protocol)
-            {
-                case "krug":
-                    if (!Data.krug.Visible) Data.krug.Show();
-                    else
-                    {
-                        Data.krug.WindowState = FormWindowState.Normal;
-                        Data.krug.Focus();
-                    }
-                    //Data.krug.Show();
-                    //MessageBox.Show("Таблица результатов в круговую на данный момент в разработке.");
-                    break;
-                case "vib8":
-                    Data.v8.Show();
-                    break;
-                default:
-                    MessageBox.Show("Сейчас нет активных турниров");
-                    break;
-            }
+
         }
 
         private void игрокиToolStripMenuItem_Click(object sender, EventArgs e)

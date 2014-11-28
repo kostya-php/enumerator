@@ -454,7 +454,6 @@ namespace enumerator
         public static Form2 f2 { get; set; }
         public static Main fm { get; set; }
         public static vib8 v8 { get; set; }
-        public static krug krug { get; set; }
 
         public static form_players fp { get; set; }
         public static form_tournaments ft { get; set; }
@@ -1006,6 +1005,7 @@ namespace enumerator
                 if ((x == min_wins) | (y == min_wins))
                 {
                     int win_player = -1;
+                    int los_player = -1;
                     Data.fm.buttonStartMatch.Enabled = false;
                     Data.fm.buttonCancelMatch.Enabled = false;
                     if (x > y)
@@ -1037,10 +1037,12 @@ namespace enumerator
                                 if (Convert.ToInt32(x) > Convert.ToInt32(y))
                                 {
                                     win_player = player1_id;
+                                    los_player = player2_id;
                                 }
                                 if (Convert.ToInt32(x) < Convert.ToInt32(y))
                                 {
                                     win_player = player2_id;
+                                    los_player = player1_id;
                                 }
                                 string q2 = "SELECT * FROM matches WHERE id='" + match.ToString() + "'";
                                 cmd = new MySqlCommand(q2, connect);
@@ -1057,12 +1059,18 @@ namespace enumerator
                                             string q3 = "UPDATE matches SET player1='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='5'";
                                             cmd = new MySqlCommand(q3, connect);
                                             cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='8'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
                                             break;
                                         }
                                     case 2:
                                         {
                                             string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='5'";
                                             cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player2='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='8'";
+                                            cmd = new MySqlCommand(q4, connect);
                                             cmd.ExecuteNonQuery();
                                             break;
                                         }
@@ -1071,12 +1079,18 @@ namespace enumerator
                                             string q3 = "UPDATE matches SET player1='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='6'";
                                             cmd = new MySqlCommand(q3, connect);
                                             cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='9'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
                                             break;
                                         }
                                     case 4:
                                         {
                                             string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='6'";
                                             cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player2='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='9'";
+                                            cmd = new MySqlCommand(q4, connect);
                                             cmd.ExecuteNonQuery();
                                             break;
                                         }
@@ -1085,12 +1099,58 @@ namespace enumerator
                                             string q3 = "UPDATE matches SET player1='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='7'";
                                             cmd = new MySqlCommand(q3, connect);
                                             cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='11'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
                                             break;
                                         }
                                     case 6:
                                         {
                                             string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='7'";
                                             cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='10'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
+                                            break;
+                                        }
+                                    case 8:
+                                        {
+                                            string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='10'";
+                                            cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='13'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
+                                            break;
+                                        }
+                                    case 9:
+                                        {
+                                            string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='11'";
+                                            cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player2='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='13'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
+                                            break;
+                                        }
+                                    case 10:
+                                        {
+                                            string q3 = "UPDATE matches SET player1='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='12'";
+                                            cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player1='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='14'";
+                                            cmd = new MySqlCommand(q4, connect);
+                                            cmd.ExecuteNonQuery();
+                                            break;
+                                        }
+                                    case 11:
+                                        {
+                                            string q3 = "UPDATE matches SET player2='" + win_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='12'";
+                                            cmd = new MySqlCommand(q3, connect);
+                                            cmd.ExecuteNonQuery();
+                                            string q4 = "UPDATE matches SET player2='" + los_player.ToString() + "' WHERE tournament='" + Data.tournament.ToString() + "' AND number='14'";
+                                            cmd = new MySqlCommand(q4, connect);
                                             cmd.ExecuteNonQuery();
                                             break;
                                         }
@@ -1694,6 +1754,7 @@ namespace enumerator
             }
             return result;
         }
+        /*
         public static void update_vib8()
         {
             if (Data.get_protocol(Data.get_current_tournament()) == "vib8")
@@ -1774,22 +1835,6 @@ namespace enumerator
                                 }
                             }
                         }
-                        /*
-                        if (i == 7)
-                        {
-                            if ((x != -1) & (y != -1))
-                            {
-                                if (x > y)
-                                {
-                                    Data.v8.WINNER.Text = Data.player_name(p1);
-                                }
-                                if (x < y)
-                                {
-                                    Data.v8.WINNER.Text = Data.player_name(p2);
-                                }
-                            }
-                        }
-                        */
                     }
                     dataReader.Close();
                 }
@@ -1818,127 +1863,8 @@ namespace enumerator
                 }
                 Data.v8.WINNER.Text = "";
             }
-            // проверить наличие активного турнира
-            // проверить протокол (vib8)
-            /*
-            MySqlConnection connect = null;
-            try
-            {
-                connect = new MySqlConnection(connectionString);
-                connect.Open();
-                string query = "SELECT * FROM tournaments WHERE status='1' AND protocol='vib8'";
-                MySqlCommand cmd = new MySqlCommand(query, connect);
-                int n = Convert.ToInt32(cmd.ExecuteScalar());
-                if (n > 0)
-                {
-                    query = "SELECT * FROM matches WHERE tournament='" + n.ToString() + "' ORDER BY number ASC";
-                    cmd = new MySqlCommand(query, connect);
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
-                    while (dataReader.Read())
-                    {
-                        int i = Convert.ToInt32(dataReader["number"]);
-                        int p1 = -1, p2 = -1, x = -1, y = -1;
-                        if (dataReader["player1"].ToString() != "")
-                        {
-                            p1 = Convert.ToInt32(dataReader["player1"]);
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = Data.player_name(p1);
-                        }
-                        else
-                        {
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"].Text = "";
-                        }
-                        if (dataReader["player2"].ToString() != "")
-                        {
-                            p2 = Convert.ToInt32(dataReader["player2"]);
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = Data.player_name(p2);
-                        }
-                        else
-                        {
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"].Text = "";
-                        }
-
-                        if (dataReader["x"].ToString() != "")
-                        {
-                            x = Convert.ToInt32(dataReader["x"]);
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = x.ToString();
-                        }
-                        else
-                        {
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_x"].Text = "-";
-                            x = -1;
-                        }
-                        if (dataReader["y"].ToString() != "")
-                        {
-                            y = Convert.ToInt32(dataReader["y"]);
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = y.ToString();
-                        }
-                        else
-                        {
-                            Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_y"].Text = "-";
-                            y = -1;
-                        }
-
-                        if ((x != -1) & (y != -1))
-                        {
-                            if (x > y)
-                            {
-                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player1"];
-                                tmp.Font = new Font(tmp.Font, FontStyle.Bold);
-                            }
-                            if (x < y)
-                            {
-                                Control tmp = Data.v8.Controls["tbl" + i.ToString()].Controls["game" + i.ToString() + "_player2"];
-                                tmp.Font = new Font(tmp.Font, FontStyle.Bold);
-                            }
-                        }
-
-                        if (i == 7)
-                        {
-                            if ((x != -1) & (y != -1))
-                            {
-                                if (x > y)
-                                {
-                                    Data.v8.WINNER.Text = Data.player_name(p1);
-                                }
-                                if (x < y)
-                                {
-                                    Data.v8.WINNER.Text = Data.player_name(p2);
-                                }
-                            }
-                        }
-                    }
-                    dataReader.Close();
-                }
-                else
-                {
-                    for (int i = 1; i <= 7; i++)
-                    {
-                        Data.v8.Controls["game" + i.ToString() + "_player1"].Text = "";
-                        Data.v8.Controls["game" + i.ToString() + "_player1"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player1"].Font, FontStyle.Bold);
-                        Data.v8.Controls["game" + i.ToString() + "_player2"].Text = "";
-                        Data.v8.Controls["game" + i.ToString() + "_player2"].Font = new Font(Data.v8.Controls["game" + i.ToString() + "_player2"].Font, FontStyle.Bold);
-                        Data.v8.Controls["game" + i.ToString() + "x"].Text = "-";
-                        Data.v8.Controls["game" + i.ToString() + "y"].Text = "-";
-                    }
-                    Data.v8.WINNER.Text = "";
-                }
-            }
-            catch (MySqlException err)
-            {
-                MessageBox.Show("Ошибка: " + err.ToString());
-            }
-            finally
-            {
-                if (connect != null)
-                {
-                    connect.Close();
-                }
-            }
-            */
-            //при наличии всех условий обновить форму vib8
-
-            // иначе обнулить все поля
         }
+         * */
     }
     static class Program
     {
@@ -1972,7 +1898,6 @@ namespace enumerator
             Data.f2 = new Form2();
             Data.fm = new Main();
             //Data.v8 = new vib8();
-            Data.krug = new krug();
             Data.fp = new form_players();
             Data.ft = new form_tournaments();
             KBDHook.KeyDown += new KBDHook.HookKeyPress(Data.KBDHook_KeyDown);

@@ -42,6 +42,11 @@
             this.buttonOpenEnumerator1 = new System.Windows.Forms.Button();
             this.buttonOpenEnumerator2 = new System.Windows.Forms.Button();
             this.dataMatches = new System.Windows.Forms.DataGridView();
+            this.dataMatchesColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataMatchesColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataMatchesColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataMatchesColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataMatchesColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button_noplay = new System.Windows.Forms.Button();
             this.button_techpor2 = new System.Windows.Forms.Button();
@@ -65,16 +70,10 @@
             this.ServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.счетчикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.счетчикреверсToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.таблицаРезультатовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataMatchesColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataMatchesColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataMatchesColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataMatchesColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataMatchesColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataMatches)).BeginInit();
@@ -227,6 +226,45 @@
             this.dataMatches.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataMatches.Size = new System.Drawing.Size(652, 169);
             this.dataMatches.TabIndex = 2;
+            // 
+            // dataMatchesColumn1
+            // 
+            this.dataMatchesColumn1.HeaderText = "#";
+            this.dataMatchesColumn1.Name = "dataMatchesColumn1";
+            this.dataMatchesColumn1.ReadOnly = true;
+            this.dataMatchesColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataMatchesColumn1.Width = 30;
+            // 
+            // dataMatchesColumn5
+            // 
+            this.dataMatchesColumn5.HeaderText = "Турнир";
+            this.dataMatchesColumn5.Name = "dataMatchesColumn5";
+            this.dataMatchesColumn5.ReadOnly = true;
+            this.dataMatchesColumn5.Width = 200;
+            // 
+            // dataMatchesColumn2
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataMatchesColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataMatchesColumn2.HeaderText = "Игрок 1";
+            this.dataMatchesColumn2.Name = "dataMatchesColumn2";
+            this.dataMatchesColumn2.ReadOnly = true;
+            this.dataMatchesColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataMatchesColumn2.Width = 200;
+            // 
+            // dataMatchesColumn3
+            // 
+            this.dataMatchesColumn3.HeaderText = "Игрок 2";
+            this.dataMatchesColumn3.Name = "dataMatchesColumn3";
+            this.dataMatchesColumn3.ReadOnly = true;
+            this.dataMatchesColumn3.Width = 200;
+            // 
+            // dataMatchesColumn4
+            // 
+            this.dataMatchesColumn4.HeaderText = "id";
+            this.dataMatchesColumn4.Name = "dataMatchesColumn4";
+            this.dataMatchesColumn4.ReadOnly = true;
+            this.dataMatchesColumn4.Visible = false;
             // 
             // tableLayoutPanel2
             // 
@@ -430,7 +468,6 @@
             this.ServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.счетчикToolStripMenuItem,
             this.счетчикреверсToolStripMenuItem,
-            this.таблицаРезультатовToolStripMenuItem,
             this.SettingsToolStripMenuItem});
             this.ServiceToolStripMenuItem.Name = "ServiceToolStripMenuItem";
             this.ServiceToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -439,28 +476,21 @@
             // счетчикToolStripMenuItem
             // 
             this.счетчикToolStripMenuItem.Name = "счетчикToolStripMenuItem";
-            this.счетчикToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.счетчикToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.счетчикToolStripMenuItem.Text = "Счетчик";
             this.счетчикToolStripMenuItem.Click += new System.EventHandler(this.счетчикToolStripMenuItem_Click);
             // 
             // счетчикреверсToolStripMenuItem
             // 
             this.счетчикреверсToolStripMenuItem.Name = "счетчикреверсToolStripMenuItem";
-            this.счетчикреверсToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.счетчикреверсToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.счетчикреверсToolStripMenuItem.Text = "Счетчик (реверс)";
             this.счетчикреверсToolStripMenuItem.Click += new System.EventHandler(this.счетчикреверсToolStripMenuItem_Click);
-            // 
-            // таблицаРезультатовToolStripMenuItem
-            // 
-            this.таблицаРезультатовToolStripMenuItem.Name = "таблицаРезультатовToolStripMenuItem";
-            this.таблицаРезультатовToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.таблицаРезультатовToolStripMenuItem.Text = "Таблица результатов";
-            this.таблицаРезультатовToolStripMenuItem.Click += new System.EventHandler(this.таблицаРезультатовToolStripMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
             // 
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.SettingsToolStripMenuItem.Text = "Настройки";
             this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
@@ -486,45 +516,6 @@
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.AboutToolStripMenuItem.Text = "О программе";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
-            // 
-            // dataMatchesColumn1
-            // 
-            this.dataMatchesColumn1.HeaderText = "#";
-            this.dataMatchesColumn1.Name = "dataMatchesColumn1";
-            this.dataMatchesColumn1.ReadOnly = true;
-            this.dataMatchesColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataMatchesColumn1.Width = 30;
-            // 
-            // dataMatchesColumn5
-            // 
-            this.dataMatchesColumn5.HeaderText = "Турнир";
-            this.dataMatchesColumn5.Name = "dataMatchesColumn5";
-            this.dataMatchesColumn5.ReadOnly = true;
-            this.dataMatchesColumn5.Width = 200;
-            // 
-            // dataMatchesColumn2
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataMatchesColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataMatchesColumn2.HeaderText = "Игрок 1";
-            this.dataMatchesColumn2.Name = "dataMatchesColumn2";
-            this.dataMatchesColumn2.ReadOnly = true;
-            this.dataMatchesColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataMatchesColumn2.Width = 200;
-            // 
-            // dataMatchesColumn3
-            // 
-            this.dataMatchesColumn3.HeaderText = "Игрок 2";
-            this.dataMatchesColumn3.Name = "dataMatchesColumn3";
-            this.dataMatchesColumn3.ReadOnly = true;
-            this.dataMatchesColumn3.Width = 200;
-            // 
-            // dataMatchesColumn4
-            // 
-            this.dataMatchesColumn4.HeaderText = "id";
-            this.dataMatchesColumn4.Name = "dataMatchesColumn4";
-            this.dataMatchesColumn4.ReadOnly = true;
-            this.dataMatchesColumn4.Visible = false;
             // 
             // Main
             // 
@@ -594,7 +585,6 @@
         public System.Windows.Forms.Button button_techpor2;
         public System.Windows.Forms.Button button_techpor1;
         public System.Windows.Forms.Button button_noplay;
-        private System.Windows.Forms.ToolStripMenuItem таблицаРезультатовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem базаДанныхToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem игрокиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem турнирыToolStripMenuItem;

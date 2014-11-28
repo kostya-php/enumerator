@@ -116,12 +116,6 @@
       <DependentUpon>form_tournaments.cs</DependentUpon>
     </Compile>
     <Compile Include="Hook.cs" />
-    <Compile Include="krug.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="krug.Designer.cs">
-      <DependentUpon>krug.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form_tournaments.resx">
       <DependentUpon>form_tournaments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="krug.resx">
-      <DependentUpon>krug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

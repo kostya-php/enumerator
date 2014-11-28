@@ -216,7 +216,14 @@ namespace enumerator
                                 4 7-8
                                 5 win1-win2
                                 6 win3-win4
-                                7 win5-win6
+                                7 win5-win6 (1-2 place)
+                                8 los1-los2
+                                9 los3-los4
+                                10 los6-win8
+                                11 los5-win9
+                                12 win10-win11 (3-4 place)
+                                13 los8-los9 (7-8 place)
+                                14 los10-los11 (5-6 place)
                                 
                              * победитель в первой игре попадает в пятую
                              * победитель во второй игре попадает в пятую
@@ -254,13 +261,14 @@ namespace enumerator
                                 p1 += 2;
                                 p2 += 2;
                             }
-                            for (int i = 0; i < 3; i++)
+                            for (int i = 0; i < 10; i++)
                             {
                                 query = "INSERT INTO matches VALUES (null,'" + (n + 1).ToString() + "','" + k.ToString() + "',null,null,null,null,0,null,null)";
                                 cmd = new MySqlCommand(query, connect);
                                 cmd.ExecuteNonQuery();
                                 k++;
                             }
+                            /*
                             Data.v8.game1_player1.Text = Data.player_name(player[0]);
                             Data.v8.game1_player2.Text = Data.player_name(player[1]);
                             Data.v8.game2_player1.Text = Data.player_name(player[2]);
@@ -269,6 +277,7 @@ namespace enumerator
                             Data.v8.game3_player2.Text = Data.player_name(player[5]);
                             Data.v8.game4_player1.Text = Data.player_name(player[6]);
                             Data.v8.game4_player2.Text = Data.player_name(player[7]);
+                            */
                             break;
                         }
                 }
@@ -412,7 +421,7 @@ namespace enumerator
                     break;
                 case 1:
                     // пока не работает
-                    error = true;
+                    //error = true;
                     if (membership != 8) error = true;
                     toolStripStatusLabel1.Text = "Подсказка: во встречах на выбывание может участвовать 8 игроков. P.S. В разработке.";
                     toolStripStatusLabel1.ForeColor = Color.Red;
